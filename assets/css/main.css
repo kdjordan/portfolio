@@ -1,0 +1,18 @@
+/* ./assets/css/main.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'ADELIA';
+  src: url('../fonts/Geist.otf');
+}
+
+body {
+  background-color: #0a0a0a;
+  background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom right, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 35px 35px;
+  background-position: 0 0, 17.5px 17.5px;
+  overflow-x: hidden;
+}
