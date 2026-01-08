@@ -11,11 +11,26 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Core black and white
-        'primary-black': '#0A0A0A',
-        'primary-white': '#FFFFFF',
+        // Core palette - KJ Portfolio
+        'bg-primary': '#050505',
+        'bg-secondary': '#0a0a0a',
+        'bg-tertiary': '#111111',
 
-        // Grayscale palette
+        // Text colors
+        'text-primary': '#f5f5f5',
+        'text-secondary': '#888888',
+        'text-muted': '#555555',
+
+        // Electric red accent
+        'accent': '#ff2d2d',
+        'accent-glow': 'rgba(255, 45, 45, 0.25)',
+        'accent-dim': '#cc2424',
+
+        // Frost highlight (for 3D effects)
+        'frost': '#e0f7ff',
+        'frost-dim': 'rgba(224, 247, 255, 0.1)',
+
+        // Legacy support
         gray: {
           50: '#FAFAFA',
           100: '#F5F5F5',
@@ -28,57 +43,58 @@ export default {
           800: '#262626',
           900: '#171717',
         },
-
-        // Accent colors for minimal use
-        accent: {
-          light: '#F5F5F5',
-          dark: '#0A0A0A',
-        },
-
-        // System colors
-        success: '#00C853',
-        error: '#FF3B30',
-
-        // Background colors
-        bg: {
-          primary: '#0A0A0A',
-          secondary: '#171717',
-          tertiary: '#262626',
-        },
       },
       fontFamily: {
-        display: ['Space Grotesk', 'sans-serif'],
-        oswald: ['Oswald', 'sans-serif'],
-        geist: ['Geist', 'sans-serif'],
-        arial: ['Arial', 'sans-serif'],
-      },
-      boxShadow: {
-        meteor: '0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em #9FF279',
+        display: ['Bebas Neue', 'sans-serif'],
+        body: ['Space Grotesk', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
       },
       fontSize: {
-        sizeSm: 'clamp(0.8rem, 0.17vi + 0.76rem, 0.89rem)',
-        sizeBase: 'clamp(1rem, 0.34vi + 0.91rem, 1.19rem)',
-        sizeLg: 'clamp(1.25rem, 0.61vi + 1.1rem, 1.58rem)',
-        sizeXl: 'clamp(1.56rem, 1vi + 1.31rem, 2.11rem)',
-        size2xl: 'clamp(1.95rem, 1.56vi + 1.56rem, 2.81rem)',
-        size3xl: 'clamp(2.44rem, 2.38vi + 1.85rem, 3.75rem)',
-        size4xl: 'clamp(3.05rem, 3.54vi + 2.17rem, 5rem)',
-        size5xl: 'clamp(3.81rem, 5.18vi + 2.52rem, 6.66rem)',
-        size6xl: 'clamp(4.77rem, 7.48vi + 2.9rem, 8.88rem)',
+        // Hero sizes - dramatic
+        'hero': 'clamp(3rem, 10vw, 10rem)',
+        'hero-sub': 'clamp(1.5rem, 4vw, 3rem)',
+
+        // Section headers
+        'section': 'clamp(2rem, 6vw, 5rem)',
+        'section-sub': 'clamp(1.25rem, 2vw, 1.75rem)',
+
+        // Body text
+        'body-lg': 'clamp(1.125rem, 1.5vw, 1.375rem)',
+        'body': 'clamp(1rem, 1.25vw, 1.125rem)',
+        'body-sm': 'clamp(0.875rem, 1vw, 1rem)',
+
+        // Small/utility
+        'label': 'clamp(0.75rem, 0.9vw, 0.875rem)',
       },
-      borderCustom: {
-        guides: '1px solid #027333',
+      spacing: {
+        'section': 'clamp(6rem, 15vh, 12rem)',
+        'section-sm': 'clamp(3rem, 8vh, 6rem)',
       },
-      gridTemplateColumns: {
-        skills: 'repeat(2, minmax(140px, 200px))',
+      transitionDuration: {
+        'snappy': '150ms',
+        'smooth': '300ms',
+      },
+      transitionTimingFunction: {
+        'snappy': 'cubic-bezier(0.25, 0.1, 0.25, 1)',
+        'bounce-out': 'cubic-bezier(0.34, 1.56, 0.64, 1)',
       },
       animation: {
-        fadeIn: 'fadeIn 1s ease-in forwards',
+        'fade-in': 'fadeIn 0.6s ease-out forwards',
+        'slide-up': 'slideUp 0.6s ease-out forwards',
+        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
+        },
+        slideUp: {
+          '0%': { opacity: '0', transform: 'translateY(30px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        pulseGlow: {
+          '0%, 100%': { boxShadow: '0 0 20px rgba(255, 45, 45, 0.3)' },
+          '50%': { boxShadow: '0 0 40px rgba(255, 45, 45, 0.6)' },
         },
       },
     },

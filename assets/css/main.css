@@ -1,18 +1,106 @@
-/* ./assets/css/main.css */
+/* KJ Portfolio - Main Styles */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: 'ADELIA';
-  src: url('../fonts/Geist.otf');
+/* Base layer overrides */
+@layer base {
+  html {
+    @apply antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-bg-primary text-text-primary font-body;
+    overflow-x: hidden;
+  }
+
+  /* Selection styling */
+  ::selection {
+    @apply bg-accent text-white;
+  }
+
+  /* Smooth focus states */
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-bg-primary;
+  }
 }
 
-body {
-  background-color: #0a0a0a;
-  background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-    linear-gradient(to bottom right, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-  background-size: 35px 35px;
-  background-position: 0 0, 17.5px 17.5px;
-  overflow-x: hidden;
+/* Component layer */
+@layer components {
+  /* Snappy link hover */
+  .link-hover {
+    @apply transition-colors duration-snappy ease-snappy;
+  }
+
+  .link-hover:hover {
+    @apply text-accent;
+  }
+
+  /* Accent underline on hover */
+  .link-underline {
+    @apply relative;
+  }
+
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-[1px] bg-accent transition-all duration-snappy ease-snappy;
+  }
+
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+
+  /* Section container */
+  .section-container {
+    @apply w-full max-w-6xl mx-auto px-6 md:px-12;
+  }
+
+  /* Glow effect for accent elements */
+  .accent-glow {
+    box-shadow: 0 0 30px theme('colors.accent-glow');
+  }
+}
+
+/* Utility layer */
+@layer utilities {
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Prevent text selection */
+  .select-none-deep {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* GPU acceleration hint */
+  .gpu {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+}
+
+/* WebGL canvas base */
+.three-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.three-canvas.interactive {
+  pointer-events: auto;
 }

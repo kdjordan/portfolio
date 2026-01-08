@@ -1,7 +1,18 @@
 <template>
-  <div id="footer">
-    <div class="text-primary-white flex justify-center items-center py-8 text-center">
-      This site was built in 2025 by Kevin Jordan using Nuxt 3, Tailwind, and GSAP.
+  <footer class="footer section-container py-12">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+      <span class="text-label text-text-muted">
+        KJ &copy; {{ new Date().getFullYear() }}
+      </span>
+      <span class="text-label text-text-muted">
+        Built with Nuxt, Three.js &amp; GSAP
+      </span>
     </div>
-  </div>
+  </footer>
 </template>
+
+<style scoped>
+.footer {
+  @apply border-t border-text-muted/10;
+}
+</style>

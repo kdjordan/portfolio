@@ -1,55 +1,74 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
 import { jobs } from '~/data/jobs'
-
-const experienceRef = ref<HTMLElement | null>(null)
-const hasScrolled = ref(false)
-
-const handleScroll = () => {
-  if (!experienceRef.value) return
-
-  const rect = experienceRef.value.getBoundingClientRect()
-  const triggerPoint = window.innerHeight * 0.8
-
-  if (rect.top < triggerPoint) {
-    hasScrolled.value = true
-  }
-}
-
-onMounted(() => {
-  if (!import.meta.client) return
-
-  window.addEventListener('scroll', handleScroll)
-  handleScroll() // Check initial position
-})
-
-onUnmounted(() => {
-  if (import.meta.client) {
-    window.removeEventListener('scroll', handleScroll)
-  }
-})
 </script>
 
 <template>
-  <section
-    ref="experienceRef"
-    id="experience"
-    class="w-full flex flex-col transition-all duration-700"
-    :class="{ 'opacity-0 translate-y-10': !hasScrolled, 'opacity-100 translate-y-0': hasScrolled }"
-    style="scroll-margin-top: 350px"
-  >
-    <!-- Each job row -->
-    <div
-      v-for="(job, index) in jobs"
-      :key="index"
-      class="flex justify-between items-center py-8 border-t border-white/70 last:border-b"
-    >
-      <div class="font-oswald text-lg md:text-2xl tracking-widest uppercase text-stone-300">
-        {{ job.employer }}
-      </div>
-      <div class="font-oswald text-base md:text-xl tracking-wider uppercase text-stone-400 text-right ml-4">
-        {{ job.title }}
+  <section id="experience" class="section-container">
+    <!-- Section header -->
+    <div class="mb-12">
+      <span class="text-accent text-label uppercase tracking-widest">Experience</span>
+    </div>
+
+    <!-- Timeline -->
+    <div class="experience-list">
+      <div
+        v-for="(job, index) in jobs"
+        :key="index"
+        class="experience-item group"
+      >
+        <div class="experience-content">
+          <div class="experience-employer">
+            {{ job.employer }}
+          </div>
+          <div class="experience-role">
+            {{ job.title }}
+          </div>
+        </div>
+        <div class="experience-dates">
+          {{ job.dates }}
+        </div>
       </div>
     </div>
   </section>
 </template>
+
+<style scoped>
+.experience-list {
+  @apply space-y-0;
+}
+
+.experience-item {
+  @apply flex justify-between items-baseline py-6 border-b border-text-muted/20;
+  @apply transition-all duration-snappy ease-snappy;
+}
+
+.experience-item:first-child {
+  @apply border-t;
+}
+
+.experience-item:hover {
+  @apply pl-4 border-accent/50;
+}
+
+.experience-content {
+  @apply flex flex-col md:flex-row md:items-baseline md:gap-4;
+}
+
+.experience-employer {
+  @apply font-display text-section-sub text-text-primary uppercase tracking-wide;
+  @apply transition-colors duration-snappy;
+}
+
+.experience-item:hover .experience-employer {
+  @apply text-accent;
+}
+
+.experience-role {
+  @apply text-body text-text-secondary mt-1 md:mt-0;
+}
+
+.experience-dates {
+  @apply text-label text-text-muted uppercase tracking-widest;
+  @apply hidden md:block;
+}
+</style>

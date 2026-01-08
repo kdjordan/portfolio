@@ -1,80 +1,84 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-
-const contactRef = ref<HTMLElement | null>(null)
-
-onMounted(async () => {
-  if (!import.meta.client) return
-
-  const gsap = (await import('gsap')).default
-  const { ScrollTrigger } = await import('gsap/ScrollTrigger')
-  gsap.registerPlugin(ScrollTrigger)
-
-  gsap.from('#contact', {
-    opacity: 0,
-    duration: 2,
-    ease: 'power1.out',
-    scrollTrigger: {
-      trigger: '#contact',
-      start: '25% 75%',
-    },
-  })
-})
+const links = [
+  {
+    name: 'GitHub',
+    href: 'https://github.com/kdjordan',
+    icon: 'fa-brands fa-github'
+  },
+  {
+    name: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/kevin-dean-jordan/',
+    icon: 'fa-brands fa-linkedin'
+  },
+  {
+    name: 'Email',
+    href: 'mailto:k.dean.jordan@gmail.com',
+    icon: 'fa-solid fa-envelope'
+  }
+]
 </script>
+
 <template>
-  <section
-    id="contact"
-    ref="contactRef"
-    class="flex flex-col justify-center"
-    style="scroll-margin-top: 200px"
-  >
-    <div class="flex flex-col w-full mb-32">
-      <div>
-        <div class="flex flex-col text-gray-200 justify-center items-center">
-          <div class="mb-8 text-center gradient-text lg:mb-16">
-            <p>
-              If you are working on something interesting, I'd like to hear about it.
-            </p>
-            <p class="mt-4e">
-              Here's the links - hope to hear from you.
-            </p>
-          </div>
-          <div>
-            <ul class="text-primary-white flex justify-center items-center h-full gap-8">
-              <li>
-                <a
-                  href="https://github.com/kdjordan"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  ><font-awesome-icon
-                    icon="fa-brands fa-github"
-                    size="2xl"
-                /></a>
-              </li>
-              <li>
-                <a
-                  href="https://www.linkedin.com/in/kevin-dean-jordan/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  ><font-awesome-icon
-                    icon="fa-brands fa-linkedin"
-                    size="2xl"
-                /></a>
-              </li>
-              <li>
-                <a
-                  href="mailto:k.dean.jordan@gmail.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  ><font-awesome-icon
-                    icon="fa-solid fa-envelope"
-                    size="2xl"
-                /></a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+  <section id="contact" class="section-container min-h-[50vh] flex flex-col justify-center">
+    <!-- Section header -->
+    <div class="mb-12">
+      <span class="text-accent text-label uppercase tracking-widest">Contact</span>
     </div>
+
+    <!-- Main message -->
+    <div class="max-w-3xl mb-16">
+      <h2 class="text-section font-display text-text-primary leading-tight">
+        LET'S BUILD<br />
+        <span class="text-accent">SOMETHING.</span>
+      </h2>
+    </div>
+
+    <!-- Links -->
+    <ul class="flex items-center gap-12">
+      <li v-for="link in links" :key="link.name">
+        <a
+          :href="link.href"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="contact-link group"
+          :aria-label="link.name"
+        >
+          <font-awesome-icon
+            :icon="link.icon"
+            class="contact-icon"
+          />
+          <span class="contact-label">{{ link.name }}</span>
+        </a>
+      </li>
+    </ul>
   </section>
 </template>
+
+<style scoped>
+.contact-link {
+  @apply flex flex-col items-center gap-3;
+  @apply transition-transform duration-snappy ease-snappy;
+}
+
+.contact-link:hover {
+  @apply -translate-y-1;
+}
+
+.contact-icon {
+  @apply text-3xl md:text-4xl text-text-primary;
+  @apply transition-colors duration-snappy;
+}
+
+.contact-link:hover .contact-icon {
+  @apply text-accent;
+}
+
+.contact-label {
+  @apply text-label text-text-muted uppercase tracking-widest;
+  @apply opacity-0 transition-opacity duration-snappy;
+}
+
+.contact-link:hover .contact-label {
+  @apply opacity-100;
+}
+</style>
