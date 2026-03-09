@@ -2,7 +2,6 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
 
-  // SSG mode
   ssr: true,
   nitro: {
     preset: 'static',
@@ -19,7 +18,7 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: 'KJ - Kevin Jordan',
+      title: 'Kevin Jordan — Technical Founder & Builder',
       htmlAttrs: {
         lang: 'en',
         style: 'background-color: #050505'
@@ -27,7 +26,8 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
-        { name: 'theme-color', content: '#050505' }
+        { name: 'theme-color', content: '#050505' },
+        { name: 'description', content: 'Kevin Jordan — Technical founder, builder, and AI systems engineer. 25+ years shipping products, scaling companies, and building autonomous agent systems.' }
       ],
       link: [
         { rel: 'icon', type: 'image/png', href: '/image/favicon.png' },
@@ -42,7 +42,6 @@ export default defineNuxtConfig({
   },
 
   css: [
-    '@fortawesome/fontawesome-svg-core/styles.css',
     '~/assets/css/main.css'
   ],
 

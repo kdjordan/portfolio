@@ -2,9 +2,10 @@
 const isOpen = ref(false)
 
 const navLinks = [
-  { name: 'About', href: '#about' },
-  { name: 'Experience', href: '#experience' },
-  { name: 'Contact', href: '#contact' }
+  { name: 'About', href: '#about', type: 'anchor' },
+  { name: 'Work', href: '/work', type: 'route' },
+  { name: 'Blog', href: '/blog', type: 'route' },
+  { name: 'Contact', href: '#contact', type: 'anchor' }
 ]
 
 const toggleMenu = async () => {
@@ -14,7 +15,6 @@ const toggleMenu = async () => {
   isOpen.value = !isOpen.value
 
   if (isOpen.value) {
-    // Open menu
     gsap.to('#overlay', {
       x: 0,
       duration: 0.4,
@@ -29,7 +29,6 @@ const toggleMenu = async () => {
       ease: 'power3.out'
     })
   } else {
-    // Close menu
     gsap.to('.nav-link', {
       opacity: 0,
       y: 20,
@@ -57,9 +56,9 @@ const handleNavClick = () => {
   <header class="nav-header">
     <nav class="nav-container section-container">
       <!-- Logo -->
-      <a href="#" class="nav-logo">
-        <span class="font-display text-2xl text-text-primary">KJ</span>
-      </a>
+      <NuxtLink to="/" class="nav-logo">
+        <span class="font-hero text-2xl text-text-primary">KJ</span>
+      </NuxtLink>
 
       <!-- Hamburger -->
       <button
@@ -84,7 +83,16 @@ const handleNavClick = () => {
           :key="link.name"
           class="nav-link"
         >
+          <NuxtLink
+            v-if="link.type === 'route'"
+            :to="link.href"
+            class="nav-menu-link"
+            @click="handleNavClick"
+          >
+            {{ link.name }}
+          </NuxtLink>
           <a
+            v-else
             :href="link.href"
             class="nav-menu-link"
             @click="handleNavClick"
