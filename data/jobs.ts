@@ -1,4 +1,4 @@
-interface Job {
+export interface Job {
   employer: string
   title: string
   brief: string
@@ -10,50 +10,79 @@ export const jobs: Job[] = [
   {
     employer: 'BTS',
     title: 'Director US Domestic',
-    brief: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
-    dates: 'Sep 2025-Present',
-    highlights: ['Enhanced infrastructure utilization, achieving a 50% reduction in overhead costs.', 'Developed a tax reporting system that decreased staff hours by 25%.', 'Coordinated projects between 3 International Teams.', 'Designed and developed a customer payment portal.']
+    brief: 'Leading U.S. operations for one of the largest wholesale VoIP carriers. Building internal tools for rate analysis, routing optimization, and carrier strategy.',
+    dates: 'Sep 2025 -- Present',
+    highlights: [
+      'Enhanced infrastructure utilization, achieving a 50% reduction in overhead costs.',
+      'Developed a tax reporting system that decreased staff hours by 25%.',
+      'Coordinated projects between 3 international teams.',
+      'Designed and developed a customer payment portal.'
+    ]
   },
   {
     employer: 'V-Tell',
     title: 'VP Wholesale Services',
-    brief: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
-    dates: '2019-Sep 2025',
-    highlights: ['Enhanced infrastructure utilization, achieving a 50% reduction in overhead costs.', 'Developed a tax reporting system that decreased staff hours by 25%.', 'Coordinated projects between 3 International Teams.', 'Designed and developed a customer payment portal.']
+    brief: 'Managed wholesale voice operations, vendor relationships, and technical infrastructure for a mid-market telecom carrier.',
+    dates: '2019 -- Sep 2025',
+    highlights: [
+      'Enhanced infrastructure utilization, achieving a 50% reduction in overhead costs.',
+      'Developed a tax reporting system that decreased staff hours by 25%.',
+      'Coordinated projects between 3 international teams.',
+      'Designed and developed a customer payment portal.'
+    ]
   },
   {
     employer: 'NW Straps',
-    title: 'FOUNDER / DEV',
-    brief: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
-    dates: '2016-2018',
-    highlights: ['Conceived and executed a comprehensive business plan.', 'Created distinctive branding and established a digital presence.', 'Developed and launched the initial product line.', 'Organized warehouse space, designed manufacturing area, and directed the procurement of all manufacturing equipment, including sublimation printers, webbing sublimators, sewing machines, and raw materials.', 'Innovated and optimized sales strategies and funnels.', 'Grew the business from inception to $1 million in gross revenue.']
+    title: 'Founder / Dev',
+    brief: 'Built a consumer products company from zero to $1M in revenue. Handled everything from product design and manufacturing to e-commerce and fulfillment.',
+    dates: '2016 -- 2018',
+    highlights: [
+      'Conceived and executed a comprehensive business plan.',
+      'Developed and launched the initial product line.',
+      'Grew the business from inception to $1 million in gross revenue.'
+    ]
   },
   {
     employer: '3Charm',
-    title: 'Founder / DEV',
-    brief: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
-    dates: '2012-2015',
-    highlights: ['Orchestrated the creation and operational setup of the business from inception.', 'Developed an e-com website which produced 15k/mo.', 'Designed, developed, and maintained a streaming sales platform that generated $2 million annually.', 'Directed and implemented the first streaming virtual trade show, resulting in $300k in sales over four days.']
+    title: 'Founder / Dev',
+    brief: 'Created a streaming sales platform that generated $2M annually. Directed the first streaming virtual trade show, producing $300K in sales over four days.',
+    dates: '2012 -- 2015',
+    highlights: [
+      'Developed an e-commerce website producing $15K/month.',
+      'Built a streaming sales platform generating $2 million annually.',
+      'Directed the first streaming virtual trade show, resulting in $300K in sales over four days.'
+    ]
   },
   {
     employer: 'Tabata Project',
-    title: 'DEV / Coach',
-    brief: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
-    dates: '2010-2012',
-    highlights: ['Designed and launched an original web presence.', 'Created, recorded, and maintained a catalog of MP3 workouts.', 'Coached clients in the physical gym setting.', 'Drove a 300% increase in revenue.']
+    title: 'Dev / Coach',
+    brief: 'Built the web presence and digital product catalog for a fitness brand. Drove a 300% increase in revenue.',
+    dates: '2010 -- 2012',
+    highlights: [
+      'Designed and launched an original web presence.',
+      'Created and maintained a catalog of digital workout products.',
+      'Drove a 300% increase in revenue.'
+    ]
   },
   {
     employer: 'Fired Glass Company',
-    title: 'FOUNDER / DEV',
-    brief: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
-    dates: '2000-2010',
-    highlights: ['Established and led an artist co-op, managing 25 individuals.', 'Handled taxes, safety codes, accounting, and daily operations.', 'Supervised production and managed shipping logistics.']
+    title: 'Founder / Dev',
+    brief: 'Established and led a 25-person artist co-op for a decade. Managed operations, production, and logistics.',
+    dates: '2000 -- 2010',
+    highlights: [
+      'Established and led an artist co-op, managing 25 individuals.',
+      'Handled operations, accounting, and daily logistics.',
+      'Supervised production and managed shipping.'
+    ]
   },
   {
     employer: 'Catalogfinder',
     title: 'Lead Dev',
-    brief: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
-    dates: '1998-2000',
-    highlights: ['Hired and managed a small engineering team.', 'Conceived, authored, orchestrated, and executed software projects that initially funded the company.']
+    brief: 'Hired and managed an engineering team. Built the software projects that initially funded the company.',
+    dates: '1998 -- 2000',
+    highlights: [
+      'Hired and managed a small engineering team.',
+      'Built software projects that initially funded the company.'
+    ]
   },
 ]
