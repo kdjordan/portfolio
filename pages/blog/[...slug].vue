@@ -1,7 +1,8 @@
 <script setup lang="ts">
 const route = useRoute()
-const { data: post } = await useAsyncData(`blog-${route.path}`, () => {
-  return queryContent(route.path).findOne()
+const contentPath = route.path.replace(/\/+$/, '') || route.path
+const { data: post } = await useAsyncData(`blog-${contentPath}`, () => {
+  return queryContent(contentPath).findOne()
 })
 
 if (!post.value) {
