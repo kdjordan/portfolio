@@ -23,6 +23,32 @@ The agent (her name is Zoe) handles daily research, content drafting, system hea
 
 Claude Code — the tool I'm writing this post with — operates completely outside the automated system. More on that later. It's the most important architectural decision I made.
 
+Skills are defined as structured markdown — no executable code, just guidelines the model follows:
+
+```markdown
+# research/SKILL.md
+
+## Objective
+Find actionable content opportunities with testable hypotheses.
+
+## Sources (rotate, never repeat same combo)
+- Reddit: r/fitness, r/homegym, r/bodyweightfitness
+- YouTube: search last 7 days, sort by view count
+- Hacker News: Algolia API, filter Show HN
+
+## Output Format
+For each finding:
+- Signal strength: strong / moderate / weak
+- Content type: educational / engagement / promotional
+- Hook angle: one sentence
+- Source URL
+
+## Quality Gates
+- Minimum 3 findings per run
+- No duplicate sources from last 2 runs
+- Every finding must have a hook angle
+```
+
 ## Iteration 1: Everything Breaks Immediately
 
 The first model I tried was MiniMax M2.5. $20/month flat rate, seemed reasonable. It lasted three days.
@@ -39,6 +65,33 @@ I replaced the single-model approach with a three-tier cascade:
 2. **Gemini 2.5 Flash** (fallback 1) — Free tier, 1,000 requests/day. Zero marginal cost but aggressive per-minute burst limits and unreliable tool calls.
 3. **Claude Haiku 4.5** (fallback 2) — Pay-per-token safety net. Reliable tool use. Only fires when both tiers above are exhausted.
 
+Here's the actual cascade configuration:
+
+```json
+{
+  "models": [
+    {
+      "id": "openai-codex/gpt-5.1-codex-mini",
+      "role": "primary",
+      "auth": "oauth",
+      "note": "~225 msgs/5h window, best tool-following"
+    },
+    {
+      "id": "google/gemini-2.5-flash",
+      "role": "fallback-1",
+      "auth": "api-key",
+      "note": "free tier, 1000 req/day, unreliable tool calls"
+    },
+    {
+      "id": "anthropic/claude-haiku-4-5",
+      "role": "fallback-2",
+      "auth": "api-key",
+      "note": "$1/MTok in, $5/MTok out — safety net only"
+    }
+  ]
+}
+```
+
 This cascade has been reshuffled three times. Gemini started as primary (it's free), got demoted when it kept dropping tool parameters. Codex Mini got promoted. The order matters less than having the fallback chain at all.
 
 The worst outage happened when an OAuth refresh token race condition took down tier one, tier two was already rate-limited from absorbing the overflow, and tier three hadn't been authenticated yet. All three tiers dead simultaneously. Total blackout. The fix was straightforward — authenticate all your fallbacks before you need them — but I only learned that by losing all three at once.
@@ -51,9 +104,38 @@ Running an always-on agent gets expensive fast if you're not deliberate about it
 
 The fix: run heartbeats on a local Ollama instance (llama3.2:3b) running on the Mac Mini's GPU. Zero API cost. The 3B model is plenty for "check if the gateway is responding and report disk space."
 
+```json
+{
+  "heartbeat": {
+    "model": "ollama/llama3.2:3b",
+    "interval": "2h",
+    "activeHours": "08:00-22:00",
+    "lightContext": true,
+    "tasks": ["gateway-health", "dashboard-health", "disk-sanity", "cron-failures"]
+  }
+}
+```
+
 **System prompt optimization** saved another chunk. The initial agent prompt was 16,918 characters. I moved non-essential reference material to on-demand files the agent reads only when relevant. Got it down to 7,345 characters — a 57% reduction. That's real money on per-token models and real quota on subscription models.
 
-**Context pruning** prevents sessions from ballooning. A cache-TTL of 6 hours, keeping only the last 3 assistant messages, with automatic compaction at 80K tokens. When a session hits the threshold, it distills the conversation into a daily memory file and starts fresh.
+**Context pruning** prevents sessions from ballooning:
+
+```json
+{
+  "contextPruning": {
+    "mode": "cache-ttl",
+    "ttl": "6h",
+    "keepLastAssistant": 3
+  },
+  "compaction": {
+    "mode": "safeguard",
+    "softThreshold": 80000,
+    "action": "flush-to-daily-memory"
+  }
+}
+```
+
+When a session hits the 80K token threshold, it distills the conversation into a daily memory file and starts fresh.
 
 The total cost to run this 24/7: about $40/month. $20 for Codex Mini subscription, maybe $15-20 in Haiku tokens on a busy month, and whatever electricity the Mac Mini uses. That's less than most people spend on streaming services.
 
@@ -70,6 +152,45 @@ But here's the key insight: Claude Code writes back to the same memory system th
 When I use Claude Code to restructure a skill, debug a pipeline, or run a weekly synthesis across all 250+ memory documents — the results get stored in ClawVault (the long-term memory) and appended to the daily workspace memory file. The next time Zoe picks up a cron job or answers a Telegram message, she has full context on what changed and why.
 
 This creates a two-tier architecture:
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                   INTERACTIVE TIER                       │
+│              (Human at the keyboard)                     │
+│                                                         │
+│  ┌──────────────┐    ┌──────────────┐                   │
+│  │  Claude Code  │───▶│  ClawVault   │  Long-term       │
+│  │  (Opus 4.6)  │    │  250+ docs   │  memory           │
+│  │  via SSH     │───▶│              │                   │
+│  └──────────────┘    └──────┬───────┘                   │
+│         │                   │                            │
+│         │            ┌──────▼───────┐                   │
+│         └───────────▶│  Workspace   │  Daily memory     │
+│                      │  Memory      │  (real-time)      │
+│                      └──────┬───────┘                   │
+├─────────────────────────────┼───────────────────────────┤
+│                   AUTOMATED TIER                         │
+│              (Always-on, no human)                       │
+│                      │                                   │
+│  ┌──────────────┐    │    ┌──────────────┐              │
+│  │  Telegram    │◀───┘    │  Cron Jobs   │              │
+│  │  Bot         │         │  Research    │              │
+│  └──────┬───────┘         │  Drafts     │              │
+│         │                 │  Heartbeat  │              │
+│         ▼                 └──────┬───────┘              │
+│  ┌─────────────────────────────────────┐                │
+│  │         Model Cascade               │                │
+│  │  Codex Mini ──▶ Gemini ──▶ Haiku   │                │
+│  │  ($20/mo)      (free)    (per-tok) │                │
+│  └─────────────────────────────────────┘                │
+│                                                         │
+│  ┌──────────────┐                                       │
+│  │  Ollama 3B   │  Heartbeat only (zero API cost)      │
+│  │  (local GPU) │                                       │
+│  └──────────────┘                                       │
+└─────────────────────────────────────────────────────────┘
+```
+
 - **Always-on automated tier** (OpenClaw): handles Telegram, cron jobs, research, health checks. Runs on the cost-optimized model cascade.
 - **Manual interactive tier** (Claude Code): handles configuration, development, complex analysis. Runs on the Max subscription. Human-in-the-loop by design.
 
@@ -98,6 +219,31 @@ The system runs two complementary memory layers:
 **ClawVault** is the long-term archive. 250+ documents organized by category — decisions, lessons, patterns, projects, people, preferences. BM25 text search plus vector embeddings for semantic retrieval. Nightly git backup. This is where architectural decisions, post-mortems, and strategic insights live.
 
 **Workspace memory** is the short-term layer. Daily markdown files that the agent reads in real time. Session logs, status updates, handoff notes. When Claude Code finishes a work session, the results get written here so Zoe has immediate context.
+
+```
+┌──────────────────┐         ┌──────────────────┐
+│    ClawVault     │         │ Workspace Memory  │
+│  (long-term)     │         │  (short-term)     │
+├──────────────────┤         ├──────────────────┤
+│ 250+ documents   │         │ Daily .md files   │
+│ BM25 + vectors   │         │ Plain text        │
+│ Categories:      │         │                   │
+│  decisions       │         │ Read: every       │
+│  lessons         │         │  interaction      │
+│  patterns        │         │                   │
+│  projects        │         │ Write: session    │
+│  insights        │         │  logs, handoffs   │
+├──────────────────┤         ├──────────────────┤
+│ Read: weekly     │         │ Read: real-time   │
+│  synthesis only  │         │  by automated     │
+│                  │         │  agents           │
+│ Write: Claude    │         │                   │
+│  Code + cron     │         │ Write: Claude     │
+│                  │         │  Code + compaction │
+│ Backup: nightly  │         │                   │
+│  git push        │         │                   │
+└──────────────────┘         └──────────────────┘
+```
 
 The critical insight: these are separate systems with different access patterns. The automated agent reads workspace memory on every interaction but only touches ClawVault during scheduled synthesis. If you write to ClawVault but skip workspace memory, the agent has no idea what happened until the next review cycle. I learned this the hard way — spending an hour configuring something in Claude Code, storing it to ClawVault, and then watching Zoe completely ignore it for two days.
 
