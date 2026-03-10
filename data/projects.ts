@@ -3,6 +3,7 @@ export interface Project {
   description: string
   link: string | null
   image: string | null
+  imagePosition?: string
   techs: string[]
   github: string | null
   category: 'ai' | 'web' | 'product'
@@ -25,29 +26,31 @@ const projects: Project[] = [
     name: 'Zoe',
     description: 'AI command center and agent identity. Real-time system monitoring, service health, cron oversight, and an always-on agent personality that manages the entire stack.',
     link: null,
-    image: null,
+    image: 'zoe.png',
+    imagePosition: 'left top',
     techs: ['Vue 3', 'Node.js', 'Tailwind', 'WebSocket'],
     github: null,
     category: 'ai',
     featured: true
   },
   {
-    name: 'SwytchAI',
-    description: 'AI-powered telecom switching platform.',
+    name: 'TelcoOS',
+    description: 'Cross-platform desktop application for telecom operators. Rate deck management, carrier routing strategy, margin analysis, and operational tooling. Rust backend for high-performance processing of large datasets.',
     link: null,
     image: null,
-    techs: ['Vue 3', 'TypeScript', 'Node.js', 'AI/ML'],
+    techs: ['React', 'TypeScript', 'Tauri', 'Rust', 'Python'],
     github: null,
     category: 'ai',
-    featured: false
+    featured: true
   },
   {
-    name: 'TelcoOS',
-    description: 'Desktop application for telecom operators. Rate deck management, carrier routing strategy, margin analysis, and operational tooling. Deployable as a desktop app or VPS instance.',
+    name: 'CDRCheck',
+    description: 'Professional-grade billing reconciliation for telecom carriers. Identify billing discrepancies in seconds across wholesale voice routes.',
     link: null,
-    image: null,
-    techs: ['Vue 3', 'TypeScript', 'Node.js', 'Postgres', 'Electron'],
-    github: null,
+    image: 'cdrcheck.png',
+    imagePosition: 'center top',
+    techs: ['Next.js', 'TypeScript', 'SQLite', 'Coolify'],
+    github: 'https://github.com/kdjordan',
     category: 'product',
     featured: true
   },
@@ -55,7 +58,8 @@ const projects: Project[] = [
     name: 'VOIPAccelerator',
     description: 'Rate deck analysis and customization tool for VoIP carriers. Upload, compare, and optimize pricing structures across wholesale voice routes.',
     link: 'https://voipaccelerator.com',
-    image: null,
+    image: 'vaccelerator.png',
+    imagePosition: 'left top',
     techs: ['Vue 3', 'TypeScript', 'Node.js', 'Postgres'],
     github: null,
     category: 'product',
@@ -64,20 +68,30 @@ const projects: Project[] = [
   // Web / Product Projects
   {
     name: 'GRHIIT',
-    description: 'Fitness application with AI-powered content pipeline for research, drafting, and social distribution.',
+    description: 'iOS fitness app with AI-powered content pipeline for research, drafting, and social distribution.',
     link: null,
-    image: 'grhiit.png',
-    techs: ['React', 'Tailwind', 'Node.js', 'Postgres', 'AI Pipeline'],
-    github: 'https://github.com/kdjordan/grhiit',
+    image: null,
+    techs: ['React Native', 'Expo', 'Firebase', 'NativeWind', 'AI Pipeline'],
+    github: 'https://github.com/kdjordan',
     category: 'product',
     featured: true
+  },
+  {
+    name: 'GRHIIT Web',
+    description: 'Marketing site and content hub for the GRHIIT fitness app.',
+    link: null,
+    image: 'grhiit.png',
+    techs: ['Nuxt 3', 'Tailwind', 'GSAP', 'SQLite'],
+    github: 'https://github.com/kdjordan',
+    category: 'web',
+    featured: false
   },
   {
     name: 'kevinjordan.dev',
     description: 'This portfolio. Built with Claude Code as a proof-of-concept for AI-assisted development.',
     link: 'https://kevinjordan.dev',
     image: null,
-    techs: ['Nuxt 3', 'Tailwind', 'GSAP', 'Claude Code', 'Three.js'],
+    techs: ['Nuxt 3', 'Tailwind', 'GSAP', 'Claude Code'],
     github: 'https://github.com/kdjordan/portfolio',
     category: 'web',
     featured: false
@@ -93,19 +107,9 @@ const projects: Project[] = [
     featured: false
   },
   {
-    name: 'Eugene Sculpture Group',
-    description: 'Website for an artist collective.',
-    link: 'https://eugenesculpturegroup.com/',
-    image: 'esg.png',
-    techs: ['Vue 2', 'SCSS'],
-    github: 'https://github.com/kdjordan/esgroup',
-    category: 'web',
-    featured: false
-  },
-  {
     name: 'Outbound Props',
     description: 'Housing development marketing site.',
-    link: null,
+    link: 'https://outboundprops.com/',
     image: 'ob.png',
     techs: ['Vue 3', 'Tailwind'],
     github: 'https://github.com/kdjordan/outboundProps',
