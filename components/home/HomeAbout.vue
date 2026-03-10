@@ -27,7 +27,7 @@
       <div class="mt-12 p-6 border-l-2 border-accent bg-bg-secondary/50 accent-glow-border">
         <span class="font-mono text-mono-sm text-accent uppercase tracking-widest block mb-3">Currently</span>
         <p class="text-body text-text-secondary leading-relaxed">
-          Leading U.S. operations at <span class="text-text-primary">BTS</span>,
+          Leading U.S. operations at <a href="https://bts.io/" target="_blank" rel="noopener noreferrer" class="text-text-primary link-hover">BTS</a>,
           one of the largest VoIP carriers in the world. Simultaneously building autonomous AI
           agent systems -- multi-model orchestration, persistent memory, automated research
           pipelines, and production monitoring. Human oversight at the decision points that matter.

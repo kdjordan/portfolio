@@ -1,5 +1,34 @@
 <script setup lang="ts">
 const isOpen = ref(false)
+const navHidden = ref(false)
+let lastScrollY = 0
+let scrollTimer: ReturnType<typeof setTimeout>
+
+const onScroll = () => {
+  const y = window.scrollY
+  // Only hide/show when not at the very top and menu isn't open
+  if (y > 80 && !isOpen.value) {
+    navHidden.value = y > lastScrollY // scrolling down = hide
+  } else {
+    navHidden.value = false
+  }
+  lastScrollY = y
+
+  // Also reveal after scroll stops
+  clearTimeout(scrollTimer)
+  scrollTimer = setTimeout(() => {
+    navHidden.value = false
+  }, 800)
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', onScroll, { passive: true })
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', onScroll)
+  clearTimeout(scrollTimer)
+})
 
 const navLinks = [
   { name: 'About', href: '#about', type: 'anchor' },
@@ -53,7 +82,7 @@ const handleNavClick = () => {
 </script>
 
 <template>
-  <header class="nav-header">
+  <header class="nav-header" :class="{ 'nav-hidden': navHidden }">
     <nav class="nav-container section-container">
       <!-- Logo -->
       <NuxtLink to="/" class="nav-logo">
@@ -108,6 +137,11 @@ const handleNavClick = () => {
 <style scoped>
 .nav-header {
   @apply fixed top-0 left-0 w-full z-50;
+  transition: transform 0.3s ease;
+}
+
+.nav-header.nav-hidden {
+  transform: translateY(-100%);
 }
 
 .nav-container {
