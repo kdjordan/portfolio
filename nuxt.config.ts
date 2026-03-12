@@ -13,8 +13,13 @@ export default defineNuxtConfig({
 
   modules: [
     '@nuxtjs/tailwindcss',
-    '@nuxt/content'
+    '@nuxt/content',
+    '@nuxtjs/sitemap'
   ],
+
+  site: {
+    url: 'https://kevinjordan.dev',
+  },
 
   app: {
     head: {
