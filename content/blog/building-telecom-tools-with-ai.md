@@ -1,15 +1,13 @@
 ---
 title: "I Used AI to Build Telecom Tools — Here's What Actually Shipped"
 description: "AI didn't replace my telecom expertise. It let me ship two production tools in weeks instead of months. Here's the honest story of building CDRCheck and VoIP Accelerator with AI coding assistants."
-date: 2026-03-13
+date: 2026-03-12
 tags:
   - ai
   - telecom
   - building
   - voip
 ---
-
-# I Used AI to Build Telecom Tools — Here's What Actually Shipped
 
 Let me be clear about something upfront: CDRCheck and VoIP Accelerator are not "AI-powered" products. They don't use machine learning. They don't have neural networks. They're deterministic systems that do exactly what they're told — match records, compare rates, flag discrepancies.
 
@@ -29,9 +27,9 @@ These aren't cutting-edge problems. They're operational grind. The kind of work 
 
 ## What I Actually Built
 
-**[CDRCheck](https://cdrcheck.com)** takes two CDR files — yours and your counterpart's — normalizes the phone numbers and timestamps, then matches every record. It flags what's missing, what doesn't match on duration, and what the monetary difference is. Upload, match, export the discrepancies. Built with Next.js, TypeScript, and SQLite for the matching engine. Handles millions of records.
+**<a href="https://cdrcheck.com" target="_blank">CDRCheck</a>** takes two CDR files — yours and your counterpart's — normalizes the phone numbers and timestamps, then matches every record. It flags what's missing, what doesn't match on duration, and what the monetary difference is. Upload, match, export the discrepancies. Built with Next.js, TypeScript, and SQLite for the matching engine. Handles millions of records.
 
-**[VoIP Accelerator](https://voipaccelerator.com)** does the same thing for rate decks. Upload two A-Z or US rate decks, the system auto-maps your columns, then runs a full comparison — matched codes, unique codes, rate deltas with percentage changes. It also integrates LERG data for US rate deck enrichment. Built with Vue 3, TypeScript, and IndexedDB so the heavy lifting happens in the browser with Web Workers. Processes 250K+ record datasets without breaking a sweat.
+**<a href="https://voipaccelerator.com" target="_blank">VoIP Accelerator</a>** does the same thing for rate decks. Upload two A-Z or US rate decks, the system auto-maps your columns, then runs a full comparison — matched codes, unique codes, rate deltas with percentage changes. It also integrates LERG data for US rate deck enrichment. Built with Vue 3, TypeScript, and IndexedDB so the heavy lifting happens in the browser with Web Workers. Processes 250K+ record datasets without breaking a sweat.
 
 Neither tool is fancy. They're workhorses. The kind of thing a telecom operator opens on Monday morning to figure out why last week's numbers don't add up.
 
