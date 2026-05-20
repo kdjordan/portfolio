@@ -3,88 +3,17 @@ const emit = defineEmits<{
   animationComplete: []
 }>()
 
-const heroRef = ref<HTMLElement | null>(null)
-const firstLineRef = ref<HTMLElement | null>(null)
-const lastLineRef = ref<HTMLElement | null>(null)
-
-const firstName = 'KEVIN'
-const lastName = 'JORDAN'
-
-const firstSize = ref(100)
-const lastSize = ref(100)
-
-const stats = [
-  { target: 25, suffix: '+', label: 'Years Building' },
-  { target: 7, suffix: '', label: 'Companies' },
+const proofPoints = [
+  { value: '25+', label: 'years shipping' },
+  { value: '24/7', label: 'agents running' },
+  { value: '7', label: 'companies built' },
 ]
 
-const displayValues = ref(stats.map(() => 0))
-
-// Measure text at a base size, then scale to fill container width
-function fitText(el: HTMLElement, sizeRef: Ref<number>) {
-  const container = el.parentElement!.clientWidth
-  // Temporarily shrink-to-fit to measure true text width (overflow:hidden clips scrollWidth)
-  const origDisplay = el.style.display
-  const origWidth = el.style.width
-  const origOverflow = el.style.overflow
-  el.style.display = 'inline-block'
-  el.style.width = 'max-content'
-  el.style.overflow = 'visible'
-  el.style.fontSize = '200px'
-  const measured = el.getBoundingClientRect().width
-  // Restore
-  el.style.display = origDisplay
-  el.style.width = origWidth
-  el.style.overflow = origOverflow
-  const fit = Math.floor(200 * (container / measured))
-  sizeRef.value = fit
-  el.style.fontSize = fit + 'px'
-}
-
-function fitAll() {
-  if (!firstLineRef.value || !lastLineRef.value) return
-
-  // Step 1: Fit each word to container width independently
-  fitText(firstLineRef.value, firstSize)
-  fitText(lastLineRef.value, lastSize)
-
-  // Step 2: Check if combined height exceeds available viewport space
-  const navHeight = 120 // nav + generous breathing room
-  const bottomHeight = 220 // subtitle + stats + scroll indicator + padding
-  const availableHeight = window.innerHeight - navHeight - bottomHeight
-  const titleEl = firstLineRef.value.parentElement!
-  const currentHeight = titleEl.getBoundingClientRect().height
-
-  if (currentHeight > availableHeight) {
-    const scale = availableHeight / currentHeight
-    firstSize.value = Math.floor(firstSize.value * scale)
-    lastSize.value = Math.floor(lastSize.value * scale)
-    firstLineRef.value.style.fontSize = firstSize.value + 'px'
-    lastLineRef.value.style.fontSize = lastSize.value + 'px'
-  }
-}
-
-let resizeTimer: ReturnType<typeof setTimeout>
-function onResize() {
-  clearTimeout(resizeTimer)
-  resizeTimer = setTimeout(fitAll, 100)
-}
-
-onMounted(async () => {
-  if (!import.meta.client) return
-  // Explicitly load Bebas Neue before measuring
-  try {
-    await document.fonts.load('200px "Bebas Neue"')
-  } catch {}
-  // Extra frame to ensure font is rendered
-  await new Promise(r => requestAnimationFrame(r))
-  fitAll()
-  window.addEventListener('resize', onResize)
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', onResize)
-})
+const activeSystems = [
+  'AI agent infrastructure',
+  'Telecom operations tooling',
+  'Content and research pipelines',
+]
 
 const animateIn = async () => {
   if (!import.meta.client) return
@@ -92,164 +21,105 @@ const animateIn = async () => {
   const gsap = (await import('gsap')).default
 
   const tl = gsap.timeline({
-    onComplete: () => {
-      emit('animationComplete')
-    }
+    onComplete: () => emit('animationComplete')
   })
 
-  // Section fade in
   tl.to('.hero-section', {
     opacity: 1,
     duration: 0.3,
     ease: 'power2.out'
   })
 
-  // KEVIN — each letter slides up from mask with slight rotation
-  tl.fromTo('.hero-first .hero-char',
-    { y: '120%', rotate: 5, scaleY: 1.1 },
-    {
-      y: '0%',
-      rotate: 0,
-      scaleY: 1,
-      duration: 1.0,
-      stagger: 0.09,
-      ease: 'power4.out'
-    },
-    '-=0.2'
-  )
-
-  // JORDAN — each letter slides up, overlapping timing
-  tl.fromTo('.hero-last .hero-char',
-    { y: '120%', rotate: -3, scaleY: 1.1 },
-    {
-      y: '0%',
-      rotate: 0,
-      scaleY: 1,
-      duration: 1.0,
-      stagger: 0.09,
-      ease: 'power4.out'
-    },
-    '-=0.6'
-  )
-
-  // Subtitle
-  tl.fromTo('.hero-subtitle',
-    { y: 15, opacity: 0, filter: 'blur(4px)' },
+  tl.fromTo(
+    ['.hero-kicker', '.hero-title', '.hero-copy', '.hero-actions'],
+    { y: 18, opacity: 0 },
     {
       y: 0,
       opacity: 1,
-      filter: 'blur(0px)',
-      duration: 0.5,
+      duration: 0.55,
+      stagger: 0.08,
       ease: 'power3.out'
     },
-    '-=0.3'
+    '-=0.05'
   )
 
-  // Stats stagger in
-  tl.fromTo('.hero-stat',
-    { y: 20, opacity: 0 },
+  tl.fromTo(
+    '.proof-item',
+    { y: 14, opacity: 0 },
     {
       y: 0,
       opacity: 1,
-      duration: 0.5,
-      ease: 'power3.out',
-      stagger: 0.08
+      duration: 0.45,
+      stagger: 0.06,
+      ease: 'power3.out'
     },
     '-=0.2'
   )
 
-  // Count up stats
-  stats.forEach((stat, i) => {
-    const obj = { val: 0 }
-    gsap.to(obj, {
-      val: stat.target,
-      duration: 1.5,
-      delay: 1.2 + (i * 0.12),
-      ease: 'power2.out',
-      onUpdate: () => {
-        displayValues.value[i] = Math.round(obj.val)
-      }
-    })
-  })
-
-  // Scroll indicator
-  tl.fromTo('.scroll-indicator',
-    { opacity: 0 },
+  tl.fromTo(
+    '.hero-track',
+    { y: 18, opacity: 0 },
     {
+      y: 0,
       opacity: 1,
-      duration: 0.4,
-      ease: 'power2.out'
+      duration: 0.45,
+      ease: 'power3.out'
     },
-    '-=0.1'
+    '-=0.18'
   )
-}
-
-const formatStat = (index: number) => {
-  const stat = stats[index]
-  return `${displayValues.value[index]}${stat.suffix}`
 }
 
 defineExpose({ animateIn })
 </script>
 
 <template>
-  <section
-    ref="heroRef"
-    class="hero-section dot-grid"
-  >
-    <!-- Everything in one flow block, centered vertically -->
-    <div class="hero-content">
-      <h1 class="hero-title">
-        <!-- KEVIN -->
-        <span
-          ref="firstLineRef"
-          class="hero-line hero-first"
-          :style="{ fontSize: firstSize + 'px' }"
-        >
-          <span
-            v-for="(char, i) in firstName"
-            :key="'f' + i"
-            class="hero-char"
-          >{{ char }}</span>
-        </span>
+  <section class="hero-section">
+    <div class="section-container">
+      <div class="hero-layout">
+        <div class="hero-main">
+          <p class="hero-kicker">
+            Kevin Jordan / Technical founder
+          </p>
 
-        <!-- JORDAN -->
-        <span
-          ref="lastLineRef"
-          class="hero-line hero-last"
-          :style="{ fontSize: lastSize + 'px' }"
-        >
-          <span
-            v-for="(char, i) in lastName"
-            :key="'l' + i"
-            class="hero-char"
-          >{{ char }}</span>
-        </span>
-      </h1>
+          <h1 class="hero-title">
+            I build AI systems and operator tools that survive real work.
+          </h1>
 
-      <!-- Subtitle + stats aligned with nav via section-container -->
-      <div class="section-container hero-info">
-        <p class="hero-subtitle">
-          <span class="text-accent font-mono text-mono-sm">//</span>
-          Technical Founder. Builder. AI Systems.
-        </p>
+          <p class="hero-copy">
+            I turn messy business operations into production software: agent systems,
+            telecom analytics, internal command centers, and the infrastructure that
+            keeps them running when the demo is over.
+          </p>
 
-        <div class="hero-stats">
-          <div
-            v-for="(stat, index) in stats"
-            :key="stat.label"
-            class="hero-stat"
-          >
-            <span class="stat-value">{{ formatStat(index) }}</span>
-            <span class="stat-label">{{ stat.label }}</span>
+          <div class="hero-actions">
+            <NuxtLink to="/work" class="hero-button hero-button-primary">
+              View work
+            </NuxtLink>
+            <NuxtLink to="/blog" class="hero-button hero-button-secondary">
+              Read writing
+            </NuxtLink>
           </div>
         </div>
-      </div>
 
-      <!-- Scroll indicator -->
-      <div class="scroll-indicator">
-        <span class="scroll-text">Scroll</span>
-        <div class="scroll-line"></div>
+        <div class="hero-proof" aria-label="Proof points">
+          <div
+            v-for="point in proofPoints"
+            :key="point.label"
+            class="proof-item"
+          >
+            <span class="proof-value">{{ point.value }}</span>
+            <span class="proof-label">{{ point.label }}</span>
+          </div>
+        </div>
+
+        <div class="hero-track">
+          <span class="track-label">Currently building</span>
+          <ul class="track-list">
+            <li v-for="system in activeSystems" :key="system">
+              {{ system }}
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -257,102 +127,138 @@ defineExpose({ animateIn })
 
 <style scoped>
 .hero-section {
-  @apply relative min-h-screen flex flex-col justify-center;
-  opacity: 0;
+  @apply relative min-h-screen overflow-hidden;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(44, 190, 180, 0.16), transparent 28rem),
+    radial-gradient(circle at 80% 18%, rgba(245, 166, 35, 0.16), transparent 26rem),
+    linear-gradient(135deg, #050505 0%, #07100f 42%, #10100a 100%);
 }
 
-/* Full-bleed content — px matches section-container (px-6 md:px-12) for nav alignment */
-.hero-content {
-  @apply w-full px-6 md:px-12;
+.hero-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent 82%);
 }
 
-/* Title block */
+.hero-layout {
+  @apply relative z-10 min-h-screen flex flex-col justify-end pt-28 pb-10;
+}
+
+.hero-main {
+  @apply max-w-4xl;
+}
+
+.hero-kicker {
+  @apply font-mono text-mono-sm uppercase text-accent tracking-widest mb-5;
+  letter-spacing: 0;
+}
+
 .hero-title {
-  @apply relative;
+  @apply font-display text-text-primary font-semibold leading-none;
+  font-size: 4.75rem;
+  max-width: 13ch;
+  letter-spacing: 0;
 }
 
-/* Each name row — overflow hidden for mask reveal */
-.hero-line {
-  @apply block overflow-hidden text-center;
-  line-height: 0.88;
-  height: 0.88em;
+.hero-copy {
+  @apply text-text-secondary leading-relaxed mt-7 max-w-2xl;
+  font-size: 1.15rem;
 }
 
-.hero-last {
-  margin-top: 0.02em;
+.hero-actions {
+  @apply flex flex-wrap gap-3 mt-8;
 }
 
-
-/* Individual characters — start offscreen behind mask */
-.hero-char {
-  @apply inline-block font-hero text-text-primary;
-  font-size: inherit;
-  letter-spacing: -0.02em;
-  will-change: transform;
-  transform: translateY(120%);
+.hero-button {
+  @apply inline-flex items-center justify-center border px-5 py-3 font-mono text-mono-sm uppercase transition-colors duration-snappy;
+  min-height: 2.875rem;
+  letter-spacing: 0;
 }
 
-/* Subtitle */
-.hero-subtitle {
-  @apply font-body text-hero-sub text-text-secondary tracking-wide mt-6;
+.hero-button-primary {
+  @apply border-accent bg-accent text-bg-primary;
 }
 
-/* Stats */
-.hero-stats {
-  @apply flex gap-12 mt-6 pt-6 border-t border-text-muted/20;
+.hero-button-primary:hover {
+  @apply bg-text-primary border-text-primary;
 }
 
-.hero-stat {
-  @apply flex flex-col gap-1;
+.hero-button-secondary {
+  @apply border-text-muted/50 text-text-primary bg-bg-primary/30;
 }
 
-.stat-value {
-  @apply font-display text-section-sub text-text-primary;
-  min-width: 3ch;
+.hero-button-secondary:hover {
+  @apply border-frost text-frost;
 }
 
-.stat-label {
-  @apply font-mono text-mono-sm text-text-muted uppercase tracking-widest;
+.hero-proof {
+  @apply grid grid-cols-3 gap-px mt-14 max-w-3xl bg-white/10;
 }
 
-/* Scroll indicator */
-.scroll-indicator {
-  @apply flex flex-col items-center gap-3 mt-8;
-  opacity: 0;
+.proof-item {
+  @apply bg-bg-primary/75 px-5 py-4;
+  backdrop-filter: blur(10px);
 }
 
-.scroll-text {
-  @apply text-label text-text-muted uppercase tracking-widest;
+.proof-value {
+  @apply block font-display text-text-primary font-semibold;
+  font-size: 2rem;
 }
 
-.scroll-line {
-  @apply w-px h-10 bg-gradient-to-b from-accent/50 to-transparent;
-  animation: scrollPulse 2s ease-in-out infinite;
+.proof-label {
+  @apply block font-mono text-mono-sm text-text-muted uppercase mt-1;
+  letter-spacing: 0;
 }
 
-@keyframes scrollPulse {
-  0%, 100% {
-    opacity: 0.3;
-    transform: scaleY(1);
+.hero-track {
+  @apply mt-10 border-t border-white/10 pt-5 flex flex-col gap-4;
+}
+
+.track-label {
+  @apply font-mono text-mono-sm text-text-muted uppercase;
+  letter-spacing: 0;
+}
+
+.track-list {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-3;
+}
+
+.track-list li {
+  @apply text-body-sm text-text-secondary border-l border-frost/40 pl-3;
+}
+
+@media (max-width: 900px) {
+  .hero-title {
+    font-size: 3.5rem;
   }
-  50% {
-    opacity: 1;
-    transform: scaleY(1.2);
-  }
 }
 
-/* Mobile adjustments */
 @media (max-width: 640px) {
-  .hero-content {
-    @apply px-6;
+  .hero-layout {
+    @apply pt-24 pb-8;
   }
 
-  .hero-stats {
-    @apply flex-col gap-4;
+  .hero-title {
+    font-size: 2.65rem;
+    max-width: 11ch;
   }
 
-  .scroll-indicator {
-    @apply hidden;
+  .hero-copy {
+    font-size: 1rem;
+  }
+
+  .hero-proof {
+    @apply grid-cols-1 mt-10;
+  }
+
+  .hero-button {
+    @apply w-full;
   }
 }
 </style>
