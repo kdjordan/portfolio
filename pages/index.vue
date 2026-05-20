@@ -10,10 +10,7 @@ onMounted(async () => {
   if (!import.meta.client) return
 
   await nextTick()
-
-  setTimeout(() => {
-    heroRef.value?.animateIn()
-  }, 200)
+  await heroRef.value?.animateIn()
 })
 </script>
 

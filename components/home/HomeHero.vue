@@ -19,6 +19,16 @@ const animateIn = async () => {
   if (!import.meta.client) return
 
   const gsap = (await import('gsap')).default
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  if (reduceMotion) {
+    gsap.set(
+      ['.hero-kicker', '.hero-title', '.hero-copy', '.hero-actions', '.hero-proof', '.proof-item', '.hero-track'],
+      { opacity: 1, y: 0, clearProps: 'transform' }
+    )
+    emit('animationComplete')
+    return
+  }
 
   const tl = gsap.timeline({
     onComplete: () => emit('animationComplete')
@@ -41,6 +51,18 @@ const animateIn = async () => {
       ease: 'power3.out'
     },
     '-=0.05'
+  )
+
+  tl.fromTo(
+    '.hero-proof',
+    { y: 14, opacity: 0 },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 0.25,
+      ease: 'power3.out'
+    },
+    '-=0.2'
   )
 
   tl.fromTo(
@@ -154,6 +176,32 @@ defineExpose({ animateIn })
   @apply max-w-4xl;
 }
 
+.hero-kicker,
+.hero-title,
+.hero-copy,
+.hero-actions,
+.hero-proof,
+.proof-item,
+.hero-track {
+  opacity: 0;
+}
+
+.hero-kicker,
+.hero-title,
+.hero-copy,
+.hero-actions {
+  transform: translateY(18px);
+}
+
+.hero-proof,
+.proof-item {
+  transform: translateY(14px);
+}
+
+.hero-track {
+  transform: translateY(18px);
+}
+
 .hero-kicker {
   @apply font-mono text-mono-sm uppercase text-accent tracking-widest mb-5;
   letter-spacing: 0;
@@ -259,6 +307,19 @@ defineExpose({ animateIn })
 
   .hero-button {
     @apply w-full;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-kicker,
+  .hero-title,
+  .hero-copy,
+  .hero-actions,
+  .hero-proof,
+  .proof-item,
+  .hero-track {
+    opacity: 1;
+    transform: none;
   }
 }
 </style>
