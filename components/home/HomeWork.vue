@@ -1,58 +1,13 @@
 <script setup lang="ts">
 const featuredProjects = [
   {
-    name: 'ReconcileCDR',
-    label: 'CDRcompare rebrand',
-    domain: 'reconcilecdr.com',
-    href: 'https://reconcilecdr.com',
-    status: 'Production',
-    outcome: 'Web-based VoIP CDR reconciliation: upload two call files, auto-map columns, find missing and mismatched calls, quantify monetary impact, and export PDF reports.',
-    techs: ['Next.js 16', 'React 19', 'Drizzle', 'BullMQ']
-  },
-  {
-    name: 'VoIP Accelerator',
-    label: 'Rate and LERG ops',
-    domain: 'voipaccelerator.com',
-    href: 'https://voipaccelerator.com',
-    status: 'Production',
-    outcome: 'Operator tool for LERG data, US/AZ rate sheets, NANP categorization, and pricing comparisons used inside the telecom workflow.',
-    techs: ['Vue 3', 'TypeScript', 'Pinia', 'Supabase']
-  },
-  {
-    name: 'TelcoOS Webapp',
-    label: 'Customer AI workspace',
-    domain: 'telcoos.io',
-    href: 'https://telcoos.io',
-    status: 'Production',
-    outcome: 'Customer-hosted Claude Code workspace with WebSocket-streamed sessions, chat history, per-customer storage, and a browser terminal.',
-    techs: ['React', 'Express', 'WebSocket', 'SQLite']
-  },
-  {
-    name: 'SIP Reasoner',
-    label: 'Rejected call AI',
-    domain: 'Offline harness',
-    href: null,
-    status: 'Phase 1',
-    outcome: 'AI answering-service pipeline for rejected inbound SIP calls, classifying caller intent and collecting fraud-intelligence transcripts before real traffic.',
-    techs: ['Python', 'uv', 'Stdlib harness', 'SIP']
-  },
-  {
-    name: 'GRHIIT Web',
-    label: 'Fitness content site',
-    domain: 'grhiit.com',
-    href: 'https://grhiit.com',
-    status: 'Pre-launch',
-    outcome: 'Brutalist marketing and content site for the GRHIIT bodyweight HIIT methodology, with Nuxt Content articles and a ConvertKit-ready waitlist.',
-    techs: ['Nuxt 3', 'Vue 3', 'Tailwind', 'Amplify']
-  },
-  {
-    name: 'GRHIIT App',
-    label: 'Mobile training app',
-    domain: 'iOS / Android',
-    href: null,
-    status: 'Beta polish',
-    outcome: 'Expo mobile product for 20s work / 10s rest bodyweight HIIT sessions, local-first workouts, identity check-ins, post-session sharing, and stats sync.',
-    techs: ['Expo', 'React Native', 'Firebase', 'Zustand']
+    name: 'MockDeskAI',
+    label: 'Design-to-proof automation',
+    domain: 'mockdeskai.com',
+    href: 'https://mockdeskai.com',
+    status: 'v0.1 shipping',
+    outcome: 'AI-powered proof generation for decorated apparel: upload a PSD or image, mask the regions to change, describe edits in plain text, and generate pixel-accurate variants through provider-agnostic inpainting.',
+    techs: ['Electron', 'React 19', 'Fastify', 'Ideogram']
   }
 ]
 </script>
@@ -67,30 +22,32 @@ const featuredProjects = [
     <div class="work-shell">
       <div class="work-summary">
         <p class="work-kicker">Selected systems</p>
-        <h2>Production work, built for operators.</h2>
+        <h2>One product, built for a real workflow.</h2>
         <p>
-          The projects worth featuring are the ones closest to real usage:
-          telecom reconciliation, rate operations, customer AI workspaces,
-          SIP automation, and a separate fitness product line.
+          MockDeskAI is the only project I am showcasing right now: a desktop
+          and web product for apparel reps who need to turn design changes into
+          production-ready proofs without rebuilding mockups by hand.
         </p>
 
         <div class="work-proof">
           <div>
-            <span>6</span>
-            <p>systems highlighted</p>
+            <span>1</span>
+            <p>product showcased</p>
           </div>
           <div>
-            <span>3</span>
-            <p>operating domains</p>
+            <span>2</span>
+            <p>surfaces shipping</p>
           </div>
         </div>
 
-        <NuxtLink
-          to="/work"
+        <a
+          href="https://mockdeskai.com"
+          target="_blank"
+          rel="noopener noreferrer"
           class="work-link"
         >
-          View all work &rarr;
-        </NuxtLink>
+          Visit MockDeskAI &rarr;
+        </a>
       </div>
 
       <div class="work-list">
