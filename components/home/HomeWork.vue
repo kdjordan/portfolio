@@ -8,6 +8,51 @@ const featuredProjects = [
     status: 'v0.1 shipping',
     outcome: 'AI-powered proof generation for decorated apparel: upload a PSD or image, mask the regions to change, describe edits in plain text, and generate pixel-accurate variants through provider-agnostic inpainting.',
     techs: ['Electron', 'React 19', 'Fastify', 'Ideogram']
+  },
+  {
+    name: 'VOIPAccelerator',
+    label: 'Rate and LERG operations',
+    domain: 'voipaccelerator.com',
+    href: 'https://voipaccelerator.com',
+    status: 'Production',
+    outcome: 'Operator tool for managing LERG data, US/AZ rate sheets, NANP categorization, and wholesale voice pricing comparisons.',
+    techs: ['Vue 3', 'TypeScript', 'Pinia', 'Supabase']
+  },
+  {
+    name: 'ReconcileCDR',
+    label: 'CDR reconciliation',
+    domain: 'reconcilecdr.com',
+    href: 'https://reconcilecdr.com',
+    status: 'Production',
+    outcome: 'Web-based CDR reconciliation for VoIP carriers: upload two call files, auto-map columns, find missing and mismatched calls, quantify impact, and export reports.',
+    techs: ['Next.js 16', 'React 19', 'Drizzle', 'BullMQ']
+  },
+  {
+    name: 'SIP Reasoner',
+    label: 'Rejected call AI',
+    domain: 'Offline harness',
+    href: null,
+    status: 'Phase 1',
+    outcome: 'AI answering-service pipeline for rejected inbound SIP calls, classifying caller intent and capturing structured fraud-intelligence transcripts before real traffic.',
+    techs: ['Python', 'uv', 'Stdlib harness', 'SIP']
+  },
+  {
+    name: 'TelcoOS',
+    label: 'Customer AI workspace',
+    domain: 'telcoos.io',
+    href: 'https://telcoos.io',
+    status: 'Production',
+    outcome: 'Customer-hosted AI operator workspace with streamed sessions, persistent history, per-customer storage, and a browser terminal.',
+    techs: ['React', 'Express', 'WebSocket', 'SQLite']
+  },
+  {
+    name: 'GRHIIT Web',
+    label: 'Fitness content site',
+    domain: 'grhiit.com',
+    href: 'https://grhiit.com',
+    status: 'Pre-launch',
+    outcome: 'Brutalist marketing and content site for the GRHIIT bodyweight HIIT methodology, with Nuxt Content articles and a waitlist flow.',
+    techs: ['Nuxt 3', 'Vue 3', 'Tailwind', 'Amplify']
   }
 ]
 </script>
@@ -22,21 +67,21 @@ const featuredProjects = [
     <div class="work-shell">
       <div class="work-summary">
         <p class="work-kicker">Selected systems</p>
-        <h2>One product, built for a real workflow.</h2>
+        <h2>Selected work, built for real workflows.</h2>
         <p>
-          MockDeskAI is the only project I am showcasing right now: a desktop
-          and web product for apparel reps who need to turn design changes into
-          production-ready proofs without rebuilding mockups by hand.
+          A curated set of current work across apparel proof automation,
+          telecom operations, customer AI workspaces, SIP automation, and a
+          separate fitness content product.
         </p>
 
         <div class="work-proof">
           <div>
-            <span>1</span>
-            <p>product showcased</p>
+            <span>6</span>
+            <p>projects showcased</p>
           </div>
           <div>
-            <span>2</span>
-            <p>surfaces shipping</p>
+            <span>4</span>
+            <p>operating domains</p>
           </div>
         </div>
 
