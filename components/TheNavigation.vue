@@ -32,7 +32,7 @@ onBeforeUnmount(() => {
 
 const navLinks = [
   { name: 'About', href: '#about', type: 'anchor' },
-  { name: 'Work', href: '/work', type: 'route' },
+  { name: 'Work', href: '#work', type: 'anchor' },
   { name: 'Blog', href: '/blog', type: 'route' },
   { name: 'Contact', href: '#contact', type: 'anchor' }
 ]

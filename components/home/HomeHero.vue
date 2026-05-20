@@ -92,9 +92,9 @@ defineExpose({ animateIn })
           </p>
 
           <div class="hero-actions">
-            <NuxtLink to="/work" class="hero-button hero-button-primary">
+            <a href="#work" class="hero-button hero-button-primary">
               View work
-            </NuxtLink>
+            </a>
             <NuxtLink to="/blog" class="hero-button hero-button-secondary">
               Read writing
             </NuxtLink>
