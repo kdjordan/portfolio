@@ -35,7 +35,8 @@ export default defineNuxtConfig({
         { name: 'description', content: 'Kevin Jordan builds AI systems and operator tools that survive real work. KDJORDAN LLC - Pacific Northwest.' }
       ],
       link: [
-        { rel: 'icon', type: 'image/png', href: '/image/favicon.png' },
+        { rel: 'icon', type: 'image/svg+xml', href: '/image/favicon.svg' },
+        { rel: 'alternate icon', type: 'image/png', href: '/image/favicon.png' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         {

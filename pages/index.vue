@@ -80,7 +80,7 @@ const services = [
   },
   {
     title: 'Product Development',
-    description: 'Full-stack, concept to production. Vue, React, Node, Postgres, AWS. 25+ years of shipping working software.'
+    description: 'Full-stack, concept to production. Vue, React, Node, Python, Postgres, SQLite, AWS, Hetzner, Coolify. 25+ years of shipping working software.'
   }
 ]
 
@@ -422,7 +422,7 @@ hr {
 
 .hero {
   display: grid;
-  grid-template-columns: 320px minmax(0, 1fr);
+  grid-template-columns: clamp(280px, 25vw, 320px) minmax(0, 1fr);
   padding-top: 36px;
   padding-bottom: 56px;
 }
@@ -511,7 +511,7 @@ hr {
 .headline {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(54px, 7vw, 88px);
+  font-size: clamp(54px, 6.6vw, 88px);
   line-height: 0.95;
   letter-spacing: -0.025em;
   margin: 0;
@@ -983,6 +983,32 @@ table.work .stack {
     padding-inline: 24px;
   }
 
+  .hero .identity {
+    padding-right: 24px;
+  }
+
+  .hero .body {
+    padding-left: 32px;
+  }
+
+  .headline {
+    font-size: clamp(52px, 6.2vw, 64px);
+  }
+
+  .mark {
+    font-size: 58px;
+  }
+
+  .vital .v {
+    font-size: 12px;
+  }
+
+  .listing {
+    font-size: 11.5px;
+  }
+}
+
+@media (max-width: 840px) {
   .topstrip,
   .topstrip .left,
   .topstrip nav {
