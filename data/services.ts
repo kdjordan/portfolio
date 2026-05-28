@@ -23,6 +23,6 @@ export const services: Service[] = [
   {
     number: '04',
     title: 'Product Development',
-    description: 'Full-stack product development from concept to production. Vue, React, Node, Postgres, AWS. Ship it, don\'t just plan it.'
+    description: 'Full-stack product development from concept to production. Vue, React, Node, Python, Postgres, SQLite, AWS, Hetzner, Coolify. Ship it, don\'t just plan it.'
   },
 ]
