@@ -16,6 +16,7 @@ useSeoMeta({
 
 const formatDate = (date: string) => {
   return new Date(date).toLocaleDateString('en-US', {
+    timeZone: 'UTC',
     year: 'numeric',
     month: 'long',
     day: 'numeric'

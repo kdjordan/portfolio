@@ -1,219 +1,98 @@
-<script setup lang="ts">
-const isOpen = ref(false)
-const navHidden = ref(false)
-let lastScrollY = 0
-let scrollTimer: ReturnType<typeof setTimeout>
-
-const onScroll = () => {
-  const y = window.scrollY
-  // Only hide/show when not at the very top and menu isn't open
-  if (y > 80 && !isOpen.value) {
-    navHidden.value = y > lastScrollY // scrolling down = hide
-  } else {
-    navHidden.value = false
-  }
-  lastScrollY = y
-
-  // Also reveal after scroll stops
-  clearTimeout(scrollTimer)
-  scrollTimer = setTimeout(() => {
-    navHidden.value = false
-  }, 800)
-}
-
-onMounted(() => {
-  window.addEventListener('scroll', onScroll, { passive: true })
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('scroll', onScroll)
-  clearTimeout(scrollTimer)
-})
-
-const navLinks = [
-  { name: 'About', href: '#about', type: 'anchor' },
-  { name: 'Work', href: '#work', type: 'anchor' },
-  { name: 'Blog', href: '/blog', type: 'route' },
-  { name: 'Contact', href: '#contact', type: 'anchor' }
-]
-
-const toggleMenu = async () => {
-  if (!import.meta.client) return
-
-  const gsap = (await import('gsap')).default
-  isOpen.value = !isOpen.value
-
-  if (isOpen.value) {
-    gsap.to('#overlay', {
-      x: 0,
-      duration: 0.4,
-      ease: 'power3.out'
-    })
-    gsap.to('.nav-link', {
-      opacity: 1,
-      y: 0,
-      stagger: 0.1,
-      duration: 0.4,
-      delay: 0.2,
-      ease: 'power3.out'
-    })
-  } else {
-    gsap.to('.nav-link', {
-      opacity: 0,
-      y: 20,
-      stagger: 0.05,
-      duration: 0.2,
-      ease: 'power2.in'
-    })
-    gsap.to('#overlay', {
-      x: '100%',
-      duration: 0.4,
-      delay: 0.2,
-      ease: 'power3.in'
-    })
-  }
-}
-
-const handleNavClick = () => {
-  if (isOpen.value) {
-    toggleMenu()
-  }
-}
-</script>
-
 <template>
-  <header class="nav-header" :class="{ 'nav-hidden': navHidden }">
-    <nav class="nav-container section-container">
-      <!-- Logo -->
-      <NuxtLink to="/" class="nav-logo">
-        <span class="font-hero text-2xl text-text-primary">KJ</span>
-      </NuxtLink>
+  <header class="nav-shell">
+    <div class="section-container">
+      <div class="nav-top">
+        <NuxtLink to="/" class="nav-mark">
+          KJ<span>&mdash;</span>01
+        </NuxtLink>
 
-      <!-- Hamburger -->
-      <button
-        class="nav-hamburger"
-        :class="{ 'is-open': isOpen }"
-        @click="toggleMenu"
-        aria-label="Toggle menu"
-      >
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-      </button>
-    </nav>
-
-    <!-- Overlay menu -->
-    <div
-      id="overlay"
-      class="nav-overlay"
-    >
-      <ul class="nav-menu">
-        <li
-          v-for="link in navLinks"
-          :key="link.name"
-          class="nav-link"
-        >
-          <NuxtLink
-            v-if="link.type === 'route'"
-            :to="link.href"
-            class="nav-menu-link"
-            @click="handleNavClick"
-          >
-            {{ link.name }}
-          </NuxtLink>
-          <a
-            v-else
-            :href="link.href"
-            class="nav-menu-link"
-            @click="handleNavClick"
-          >
-            {{ link.name }}
-          </a>
-        </li>
-      </ul>
+        <nav aria-label="Primary navigation" class="nav-links">
+          <NuxtLink to="/#work">Work</NuxtLink>
+          <NuxtLink to="/#services">Services</NuxtLink>
+          <NuxtLink to="/blog">Writing</NuxtLink>
+          <NuxtLink to="/#about">About</NuxtLink>
+          <NuxtLink to="/#contact" class="active">Contact</NuxtLink>
+        </nav>
+      </div>
+      <hr>
+      <div class="double-rule"></div>
     </div>
   </header>
 </template>
 
 <style scoped>
-.nav-header {
-  @apply fixed top-0 left-0 w-full z-50;
-  transition: transform 0.3s ease;
+.nav-shell {
+  padding-top: 18px;
 }
 
-.nav-header.nav-hidden {
-  transform: translateY(-100%);
+.nav-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 14px;
 }
 
-.nav-container {
-  @apply flex justify-between items-center h-20;
+.nav-mark {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.015em;
 }
 
-.nav-logo {
-  @apply relative z-50;
-  @apply transition-opacity duration-snappy;
+.nav-mark span {
+  color: var(--signal);
 }
 
-.nav-logo:hover {
-  @apply opacity-70;
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
 }
 
-/* Hamburger */
-.nav-hamburger {
-  @apply relative z-50 w-10 h-10 flex flex-col justify-center items-end gap-2;
-  @apply cursor-pointer;
+.nav-links a {
+  padding: 4px 0;
+  border-bottom: 1px solid transparent;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: border-color 150ms, color 150ms;
 }
 
-.hamburger-line {
-  @apply block h-[2px] bg-text-primary;
-  @apply transition-all duration-smooth ease-snappy;
+.nav-links a:hover {
+  color: var(--ink);
+  border-color: var(--ink);
 }
 
-.hamburger-line:first-child {
-  @apply w-8;
+.nav-links a.active {
+  color: var(--signal);
 }
 
-.hamburger-line:last-child {
-  @apply w-5;
+hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 0;
 }
 
-.nav-hamburger:hover .hamburger-line {
-  @apply bg-accent;
+.double-rule {
+  height: 5px;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
 }
 
-.nav-hamburger:hover .hamburger-line:last-child {
-  @apply w-8;
-}
+@media (max-width: 720px) {
+  .nav-top {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 
-/* Open state */
-.nav-hamburger.is-open .hamburger-line:first-child {
-  @apply rotate-45 translate-y-[5px];
-}
-
-.nav-hamburger.is-open .hamburger-line:last-child {
-  @apply -rotate-45 -translate-y-[5px] w-8;
-}
-
-/* Overlay */
-.nav-overlay {
-  @apply fixed inset-0 bg-bg-primary z-40;
-  transform: translateX(100%);
-}
-
-.nav-menu {
-  @apply flex flex-col justify-center items-center h-full gap-8;
-}
-
-.nav-link {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.nav-menu-link {
-  @apply font-display text-6xl md:text-8xl text-text-primary uppercase;
-  @apply transition-colors duration-snappy;
-}
-
-.nav-menu-link:hover {
-  @apply text-accent;
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 8px 18px;
+  }
 }
 </style>

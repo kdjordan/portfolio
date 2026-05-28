@@ -9,6 +9,7 @@ const { data: posts } = await useAsyncData('featured-posts', () => {
 
 const formatDate = (date: string) => {
   return new Date(date).toLocaleDateString('en-US', {
+    timeZone: 'UTC',
     year: 'numeric',
     month: 'short',
     day: 'numeric'

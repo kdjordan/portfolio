@@ -13,6 +13,7 @@ const { data: posts } = await useAsyncData('blog-posts', () => {
 
 const formatDate = (date: string) => {
   return new Date(date).toLocaleDateString('en-US', {
+    timeZone: 'UTC',
     year: 'numeric',
     month: 'short',
     day: 'numeric'

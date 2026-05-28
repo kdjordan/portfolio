@@ -1,7 +1,28 @@
-/* KJ Portfolio - Main Styles */
+/* KJ-01 / KDJORDAN LLC - Main Styles */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --paper: #f1ede3;
+  --paper-raised: #faf7ee;
+  --paper-sunk: #e6e0d0;
+  --ink: #1a1814;
+  --ink-soft: #2c2823;
+  --muted: #6b6760;
+  --muted-soft: #9a948a;
+  --rule: rgba(26, 24, 20, 0.16);
+  --rule-soft: rgba(26, 24, 20, 0.08);
+  --rule-strong: rgba(26, 24, 20, 0.32);
+  --signal: #c5482a;
+  --signal-deep: #8a2f15;
+  --signal-soft: rgba(197, 72, 42, 0.10);
+  --font-display: 'IBM Plex Sans Condensed', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-serif: 'IBM Plex Serif', Georgia, 'Times New Roman', serif;
+  --gutter: 64px;
+  --doc-max: 1440px;
+}
 
 /* Base */
 @layer base {
@@ -14,8 +35,13 @@
   body {
     @apply bg-bg-primary text-text-primary font-body;
     overflow-x: hidden;
+    background-image: radial-gradient(var(--rule) 0.6px, transparent 0.6px);
+    background-size: 20px 20px;
   }
 
+  a {
+    @apply no-underline;
+  }
 
   ::selection {
     @apply bg-accent text-bg-primary;
@@ -30,12 +56,13 @@
 @layer components {
   /* Section container */
   .section-container {
-    @apply w-full max-w-6xl mx-auto px-6 md:px-12;
+    @apply w-full mx-auto px-6 md:px-16;
+    max-width: var(--doc-max);
   }
 
   /* Swiss numbered section header */
   .section-header {
-    @apply flex items-baseline gap-4 mb-16;
+    @apply flex items-baseline gap-4 mb-12;
   }
 
   .section-number {
@@ -87,8 +114,8 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
-    background-size: 28px 28px;
+    background-image: radial-gradient(circle, var(--rule) 0.6px, transparent 0.6px);
+    background-size: 20px 20px;
     z-index: 0;
   }
 
@@ -98,7 +125,7 @@
   }
 
   .accent-glow-border {
-    box-shadow: 0 0 20px rgba(245, 166, 35, 0.1), inset 0 0 20px rgba(245, 166, 35, 0.03);
+    box-shadow: none;
   }
 }
 
