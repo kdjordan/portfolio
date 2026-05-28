@@ -13,7 +13,7 @@ const work = [
     name: 'MockDeskAI',
     description: 'AI-powered design proofing for decorated apparel.',
     domain: 'Apparel / AI proof',
-    stack: 'Electron / React 19 / Fastify / Ideogram',
+    stack: 'React 19 / Vite / Fastify / Drizzle',
     status: 'SHIPPING',
     tone: 'signal',
     href: 'https://mockdeskai.com'
@@ -22,7 +22,7 @@ const work = [
     name: 'VOIPAccelerator',
     description: 'Operator tool for LERG, rate decks, NANP routing.',
     domain: 'Telecom / Ops',
-    stack: 'Vue 3 / TypeScript / Pinia / Supabase',
+    stack: 'Vue 3 / Hono / Postgres / Hetzner',
     status: 'PRODUCTION',
     tone: 'ink',
     href: 'https://voipaccelerator.com'
@@ -31,7 +31,7 @@ const work = [
     name: 'ReconcileCDR',
     description: 'Web-based CDR reconciliation. Two files, one truth.',
     domain: 'Telecom / Data',
-    stack: 'Next.js 16 / Drizzle / BullMQ',
+    stack: 'Next.js 16 / Drizzle / BullMQ / SQLite',
     status: 'PRODUCTION',
     tone: 'ink',
     href: 'https://reconcilecdr.com'
@@ -40,7 +40,7 @@ const work = [
     name: 'SIP Reasoner',
     description: 'AI answering pipeline for rejected inbound SIP.',
     domain: 'Telecom / AI',
-    stack: 'Python / uv / SIP',
+    stack: 'FreeSWITCH / Python / uv / SIP',
     status: 'PHASE 1',
     tone: 'signal',
     href: null
@@ -49,16 +49,16 @@ const work = [
     name: 'TelcoOS',
     description: 'Customer-hosted AI operator workspace, streamed.',
     domain: 'AI / Platform',
-    stack: 'React / Express / WebSocket / SQLite',
+    stack: 'React 18 / Express / SQLite / Hetzner',
     status: 'PRODUCTION',
     tone: 'ink',
     href: 'https://telcoos.io'
   },
   {
-    name: 'GRHIIT Web',
-    description: 'Marketing and content site for the GRHIIT method.',
-    domain: 'Fitness / Brand',
-    stack: 'Nuxt 3 / Tailwind / Amplify',
+    name: 'GRHIIT',
+    description: 'Swift iOS app for the GRHIIT method.',
+    domain: 'Fitness / iOS',
+    stack: 'Swift / iOS',
     status: 'PRE-LAUNCH',
     tone: 'muted',
     href: 'https://grhiit.com'

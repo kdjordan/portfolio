@@ -35,10 +35,10 @@ const projects: Project[] = [
   },
   {
     name: 'TelcoOS',
-    description: 'Cross-platform desktop application for telecom operators. Rate deck management, carrier routing strategy, margin analysis, and operational tooling. Rust backend for high-performance processing of large datasets.',
-    link: null,
+    description: 'Customer-hosted AI operator workspace with streamed sessions, persistent history, per-customer storage, and a browser terminal.',
+    link: 'https://telcoos.io',
     image: null,
-    techs: ['React', 'TypeScript', 'Tauri', 'Rust', 'Python'],
+    techs: ['React 18', 'Express', 'SQLite', 'Hetzner'],
     github: null,
     category: 'ai',
     featured: true
@@ -60,7 +60,7 @@ const projects: Project[] = [
     link: 'https://voipaccelerator.com',
     image: 'vaccelerator.png',
     imagePosition: 'left top',
-    techs: ['Vue 3', 'TypeScript', 'Node.js', 'Postgres'],
+    techs: ['Vue 3', 'Hono', 'Postgres', 'Hetzner'],
     github: null,
     category: 'product',
     featured: true
@@ -71,20 +71,10 @@ const projects: Project[] = [
     description: 'iOS fitness app with AI-powered content pipeline for research, drafting, and social distribution.',
     link: null,
     image: null,
-    techs: ['React Native', 'Expo', 'Firebase', 'NativeWind', 'AI Pipeline'],
+    techs: ['Swift', 'iOS'],
     github: 'https://github.com/kdjordan',
     category: 'product',
     featured: true
-  },
-  {
-    name: 'GRHIIT Web',
-    description: 'Marketing site and content hub for the GRHIIT fitness app.',
-    link: null,
-    image: 'grhiit.png',
-    techs: ['Nuxt 3', 'Tailwind', 'GSAP', 'SQLite'],
-    github: 'https://github.com/kdjordan',
-    category: 'web',
-    featured: false
   },
   {
     name: 'kevinjordan.dev',
