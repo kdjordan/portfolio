@@ -7,7 +7,7 @@ const featuredProjects = [
     href: 'https://mockdeskai.com',
     status: 'v0.1 shipping',
     outcome: 'AI-powered proof generation for decorated apparel: upload a PSD or image, mask the regions to change, describe edits in plain text, and generate pixel-accurate variants through provider-agnostic inpainting.',
-    techs: ['Electron', 'React 19', 'Fastify', 'Ideogram']
+    techs: ['React 19', 'Vite', 'Fastify', 'Drizzle']
   },
   {
     name: 'VOIPAccelerator',
@@ -16,7 +16,7 @@ const featuredProjects = [
     href: 'https://voipaccelerator.com',
     status: 'Production',
     outcome: 'Operator tool for managing LERG data, US/AZ rate sheets, NANP categorization, and wholesale voice pricing comparisons.',
-    techs: ['Vue 3', 'TypeScript', 'Pinia', 'Supabase']
+    techs: ['Vue 3', 'Hono', 'Postgres', 'Hetzner']
   },
   {
     name: 'ReconcileCDR',
@@ -25,7 +25,7 @@ const featuredProjects = [
     href: 'https://reconcilecdr.com',
     status: 'Production',
     outcome: 'Web-based CDR reconciliation for VoIP carriers: upload two call files, auto-map columns, find missing and mismatched calls, quantify impact, and export reports.',
-    techs: ['Next.js 16', 'React 19', 'Drizzle', 'BullMQ']
+    techs: ['Next.js 16', 'Drizzle', 'BullMQ', 'SQLite']
   },
   {
     name: 'SIP Reasoner',
@@ -34,7 +34,7 @@ const featuredProjects = [
     href: null,
     status: 'Phase 1',
     outcome: 'AI answering-service pipeline for rejected inbound SIP calls, classifying caller intent and capturing structured fraud-intelligence transcripts before real traffic.',
-    techs: ['Python', 'uv', 'Stdlib harness', 'SIP']
+    techs: ['FreeSWITCH', 'Python', 'uv', 'SIP']
   },
   {
     name: 'TelcoOS',
@@ -43,16 +43,16 @@ const featuredProjects = [
     href: 'https://telcoos.io',
     status: 'Production',
     outcome: 'Customer-hosted AI operator workspace with streamed sessions, persistent history, per-customer storage, and a browser terminal.',
-    techs: ['React', 'Express', 'WebSocket', 'SQLite']
+    techs: ['React 18', 'Express', 'SQLite', 'Hetzner']
   },
   {
-    name: 'GRHIIT Web',
-    label: 'Fitness content site',
+    name: 'GRHIIT',
+    label: 'Fitness iOS app',
     domain: 'grhiit.com',
     href: 'https://grhiit.com',
     status: 'Pre-launch',
-    outcome: 'Brutalist marketing and content site for the GRHIIT bodyweight HIIT methodology, with Nuxt Content articles and a waitlist flow.',
-    techs: ['Nuxt 3', 'Vue 3', 'Tailwind', 'Amplify']
+    outcome: 'Swift iOS app for the GRHIIT bodyweight HIIT methodology.',
+    techs: ['Swift', 'iOS']
   }
 ]
 </script>
