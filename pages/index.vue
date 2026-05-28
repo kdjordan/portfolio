@@ -1,55 +1,1168 @@
 <script setup lang="ts">
+definePageMeta({
+  layout: false
+})
+
 useSeoMeta({
-  title: 'Kevin Jordan — Technical Founder & Builder',
-  description: 'Kevin Jordan — Technical founder, builder, and AI systems engineer. 25+ years shipping products, scaling companies, and building autonomous agent systems.'
+  title: 'Kevin Jordan - Technical Founder, Operator',
+  description: 'Kevin Jordan builds AI systems and operator tools that survive real work. KDJORDAN LLC - Pacific Northwest.'
 })
 
-const heroRef = ref<InstanceType<typeof HomeHero> | null>(null)
+const work = [
+  {
+    name: 'MockDeskAI',
+    description: 'AI-powered design proofing for decorated apparel.',
+    domain: 'Apparel / AI proof',
+    stack: 'Electron / React 19 / Fastify / Ideogram',
+    status: 'SHIPPING',
+    tone: 'signal',
+    href: 'https://mockdeskai.com'
+  },
+  {
+    name: 'VOIPAccelerator',
+    description: 'Operator tool for LERG, rate decks, NANP routing.',
+    domain: 'Telecom / Ops',
+    stack: 'Vue 3 / TypeScript / Pinia / Supabase',
+    status: 'PRODUCTION',
+    tone: 'ink',
+    href: 'https://voipaccelerator.com'
+  },
+  {
+    name: 'ReconcileCDR',
+    description: 'Web-based CDR reconciliation. Two files, one truth.',
+    domain: 'Telecom / Data',
+    stack: 'Next.js 16 / Drizzle / BullMQ',
+    status: 'PRODUCTION',
+    tone: 'ink',
+    href: 'https://reconcilecdr.com'
+  },
+  {
+    name: 'SIP Reasoner',
+    description: 'AI answering pipeline for rejected inbound SIP.',
+    domain: 'Telecom / AI',
+    stack: 'Python / uv / SIP',
+    status: 'PHASE 1',
+    tone: 'signal',
+    href: null
+  },
+  {
+    name: 'TelcoOS',
+    description: 'Customer-hosted AI operator workspace, streamed.',
+    domain: 'AI / Platform',
+    stack: 'React / Express / WebSocket / SQLite',
+    status: 'PRODUCTION',
+    tone: 'ink',
+    href: 'https://telcoos.io'
+  },
+  {
+    name: 'GRHIIT Web',
+    description: 'Marketing and content site for the GRHIIT method.',
+    domain: 'Fitness / Brand',
+    stack: 'Nuxt 3 / Tailwind / Amplify',
+    status: 'PRE-LAUNCH',
+    tone: 'muted',
+    href: 'https://grhiit.com'
+  }
+]
 
-onMounted(async () => {
-  if (!import.meta.client) return
+const services = [
+  {
+    title: 'AI Agent Systems',
+    description: 'Multi-model orchestration, persistent memory, tool integration, production monitoring. Agents that earn their keep.'
+  },
+  {
+    title: 'AI Strategy',
+    description: "Where AI fits and where it does not. Practical roadmaps grounded in what your team can actually ship. No slide decks."
+  },
+  {
+    title: 'Automation & Infrastructure',
+    description: 'Pipelines, monitoring, health checks, failovers, observability. The boring infra that keeps the exciting parts alive.'
+  },
+  {
+    title: 'Product Development',
+    description: 'Full-stack, concept to production. Vue, React, Node, Postgres, AWS. 25+ years of shipping working software.'
+  }
+]
 
-  await nextTick()
-  await heroRef.value?.animateIn()
-})
+const dispatches = [
+  {
+    date: 'MAY 20 / 2026 / ESSAY',
+    title: "AI Dev SF: Everyone's Building the Same Thing",
+    description: 'The context layer is becoming critical enterprise infrastructure. The hard questions now are reliability, portability, and whether your agent stack can survive a provider switch.',
+    href: '/blog/ai-dev-sf-everyones-building-the-same-thing'
+  },
+  {
+    date: 'APR 03 / 2026 / GUIDE',
+    title: 'Claude Code: What I Actually Use After a Year',
+    description: "A practitioner's guide: the commands, shortcuts, and workflows that survived 12 months of daily use. No fluff, just what works.",
+    href: '/blog/claude-code-guide-what-i-actually-use'
+  },
+  {
+    date: 'MAR 24 / 2026 / FIELD NOTES',
+    title: 'AWC Miami: The Two Camps of Telecom',
+    description: 'A week at the wholesale telecom circuit talking to carriers about AI. The industry is splitting into two camps, and one is about to get left behind.',
+    href: '/blog/awc-miami-ai-disruption-telecom'
+  }
+]
 </script>
 
 <template>
-  <div class="page-wrapper">
-    <HomeHero ref="heroRef" />
+  <div class="kj-page">
+    <div class="doc">
+      <header class="topstrip">
+        <div class="left">
+          <div class="label label--ink">DATA SHEET</div>
+          <div class="label">REV. 2026.05 / PUBLIC</div>
+        </div>
+        <nav aria-label="Primary navigation">
+          <a class="label" href="#work">Work</a>
+          <a class="label" href="#services">Services</a>
+          <NuxtLink class="label" to="/blog">Writing</NuxtLink>
+          <a class="label" href="#about">About</a>
+          <a class="label active" href="#contact">Contact</a>
+        </nav>
+      </header>
 
-    <div class="scroll-section">
-      <HomeAbout />
-    </div>
+      <hr>
+      <div class="double"></div>
 
-    <div class="scroll-section">
-      <HomeWork />
-    </div>
+      <section class="hero">
+        <div class="identity">
+          <div class="label">PART NO.</div>
+          <div class="mark">KJ<span class="dash">&mdash;</span>01</div>
+          <div class="name">Kevin Jordan</div>
+          <div class="role">Technical Founder / Operator</div>
 
-    <div class="scroll-section">
-      <HomeServices />
-    </div>
+          <div class="vital">
+            <div class="label">STATUS</div>
+            <div class="v">
+              <span class="led"></span>
+              SHIPPING / Pacific Northwest
+            </div>
+          </div>
 
-    <div class="scroll-section">
-      <HomeExperience />
-    </div>
+          <div class="vital">
+            <div class="label">AVAILABILITY</div>
+            <div class="v availability">ACCEPTING WORK / Q3 2026</div>
+          </div>
 
-    <div class="scroll-section">
-      <HomeArticles />
-    </div>
+          <div class="vital">
+            <div class="label">LISTING</div>
+            <div class="listing">
+              KDJORDAN LLC / est. 2026<br>
+              kevinjordan.dev
+            </div>
+          </div>
+        </div>
 
-    <div class="scroll-section">
-      <HomeContact />
+        <div class="body">
+          <div class="label">ABSTRACT</div>
+          <h1 class="headline">
+            I build AI&nbsp;systems<br>
+            and operator tools<br>
+            that <em>survive real work.</em>
+          </h1>
+          <p class="abstract">
+            I turn messy business operations into production software: agent systems,
+            telecom analytics, internal command centers, and the infrastructure that
+            keeps them running when the demo is over.
+          </p>
+          <div class="ctas">
+            <a class="btn btn--primary" href="#work">View Work <span class="arr">&darr;</span></a>
+            <a class="btn" href="#contact">Get in Touch <span class="arr">&rarr;</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats" aria-label="Proof points">
+        <div class="stat">
+          <div class="label">YR. SHIPPING</div>
+          <div class="n">25+</div>
+          <div class="sub">1998 -> 2026</div>
+        </div>
+        <div class="stat">
+          <div class="label">AGENTS RUNNING</div>
+          <div class="n">24/7</div>
+          <div class="sub">multi-model, persistent</div>
+        </div>
+        <div class="stat">
+          <div class="label">COMPANIES BUILT</div>
+          <div class="n">07</div>
+          <div class="sub">zero -> market</div>
+        </div>
+        <div class="stat">
+          <div class="label">SYSTEMS LIVE</div>
+          <div class="n">06</div>
+          <div class="sub">see section 02</div>
+        </div>
+      </section>
+
+      <section id="about" class="section">
+        <div class="sechead">
+          <div>
+            <div class="label">&sect;01 / CURRENTLY</div>
+            <h2>What's on <em>the bench.</em></h2>
+          </div>
+          <div class="meta">UPDATED / 2026.05.27</div>
+        </div>
+        <hr>
+        <div class="currently">
+          <p>
+            Leading U.S. operations at
+            <a class="link" href="https://bts.io" target="_blank" rel="noopener noreferrer">BTS</a>,
+            one of the largest wholesale VoIP carriers in the world. Simultaneously building
+            autonomous AI agent systems: multi-model orchestration, persistent memory,
+            automated research pipelines, and production monitoring. Human oversight at
+            the decision points that matter.
+          </p>
+        </div>
+        <div class="now-tiles">
+          <div class="now-tile">
+            <div class="n">[01]</div>
+            <div class="t">AI agent infrastructure</div>
+            <div class="d">Orchestration, memory layer, tool routing, observability: built for production, not demos.</div>
+          </div>
+          <div class="now-tile">
+            <div class="n">[02]</div>
+            <div class="t">Telecom operations tooling</div>
+            <div class="d">Rate analysis, routing optimization, CDR reconciliation, internal command centers for VoIP carriers.</div>
+          </div>
+          <div class="now-tile">
+            <div class="n">[03]</div>
+            <div class="t">Content and research pipelines</div>
+            <div class="d">Automated research, dispatch publishing, ops content infrastructure running quietly in the background.</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="work" class="section">
+        <div class="sechead">
+          <div>
+            <div class="label">&sect;02 / SELECTED WORK</div>
+            <h2>Built for <em>real workflows.</em></h2>
+          </div>
+          <div class="meta">06 PROJECTS / 04 DOMAINS</div>
+        </div>
+        <hr>
+        <div class="work-scroll">
+          <table class="work">
+            <thead>
+              <tr>
+                <th class="num">No.</th>
+                <th>System</th>
+                <th>Domain</th>
+                <th>Stack</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(project, index) in work" :key="project.name">
+                <td class="num">{{ String(index + 1).padStart(2, '0') }}</td>
+                <td>
+                  <component
+                    :is="project.href ? 'a' : 'span'"
+                    :href="project.href || undefined"
+                    :target="project.href ? '_blank' : undefined"
+                    :rel="project.href ? 'noopener noreferrer' : undefined"
+                    class="work-name"
+                  >
+                    {{ project.name }}
+                  </component>
+                  <div class="desc">{{ project.description }}</div>
+                </td>
+                <td>{{ project.domain }}</td>
+                <td class="stack">{{ project.stack }}</td>
+                <td><span class="pill" :class="`pill--${project.tone}`">{{ project.status }}</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="twoup">
+          <div id="services">
+            <div class="label">&sect;03 / SERVICES</div>
+            <h2 class="compact-h">What I do, <em>when hired.</em></h2>
+            <div v-for="(service, index) in services" :key="service.title" class="svc-row">
+              <div class="num">{{ String(index + 1).padStart(2, '0') }}</div>
+              <div>
+                <div class="h">{{ service.title }}</div>
+                <div class="d">{{ service.description }}</div>
+              </div>
+            </div>
+          </div>
+
+          <div id="writing">
+            <div class="label">&sect;04 / DISPATCHES</div>
+            <h2 class="compact-h">Recent <em>writing.</em></h2>
+            <NuxtLink
+              v-for="dispatch in dispatches"
+              :key="dispatch.href"
+              :to="dispatch.href"
+              class="dispatch"
+            >
+              <span class="d-date">{{ dispatch.date }}</span>
+              <span class="d-title">{{ dispatch.title }}</span>
+              <span class="d-dek">{{ dispatch.description }}</span>
+            </NuxtLink>
+            <div class="writing-all">
+              <NuxtLink class="btn" to="/blog">All Writing <span class="arr">&rarr;</span></NuxtLink>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer id="contact" class="footer">
+        <div class="footer-top">
+          <div>
+            <div class="label">&sect;FIN / CONTACT</div>
+            <div class="cta-h">Let's build <em>something.</em></div>
+            <a class="email" href="mailto:kevin@kevinjordan.dev">
+              kevin@kevinjordan.dev <span class="arr">&nearr;</span>
+            </a>
+          </div>
+          <div class="elsewhere">
+            <div class="label">ELSEWHERE</div>
+            <a href="https://linkedin.com/in/kevin-dean-jordan" target="_blank" rel="noopener noreferrer">LinkedIn &nearr;</a>
+            <a href="https://github.com/kdjordan" target="_blank" rel="noopener noreferrer">GitHub &nearr;</a>
+            <a href="https://x.com/kdjordan_io" target="_blank" rel="noopener noreferrer">X / Twitter &nearr;</a>
+          </div>
+        </div>
+
+        <div class="colophon">
+          <span>&copy; 2026 KDJORDAN LLC / DOC KJ-01 / REV 2026.05</span>
+          <span>END OF SHEET</span>
+        </div>
+      </footer>
     </div>
   </div>
 </template>
 
 <style scoped>
-.page-wrapper {
-  @apply relative;
+.kj-page {
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.5;
+  background-image: radial-gradient(var(--rule) 0.6px, transparent 0.6px);
+  background-size: 20px 20px;
 }
 
-.scroll-section {
-  @apply py-section;
+.doc {
+  max-width: var(--doc-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter) 64px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.label {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.label--ink {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 0;
+}
+
+.double {
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  height: 5px;
+}
+
+.topstrip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 18px 0 14px;
+}
+
+.topstrip .left,
+.topstrip nav {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+}
+
+.topstrip nav {
+  gap: 28px;
+}
+
+.topstrip nav a {
+  padding: 4px 0;
+  border-bottom: 1px solid transparent;
+  transition: border-color 150ms, color 150ms;
+}
+
+.topstrip nav a:hover {
+  border-color: var(--ink);
+}
+
+.topstrip nav a.active {
+  color: var(--signal);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  padding-top: 36px;
+  padding-bottom: 56px;
+}
+
+.hero .identity {
+  padding-right: 28px;
+  border-right: 1px solid var(--rule);
+}
+
+.hero .body {
+  padding-left: 40px;
+}
+
+.mark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 0.9;
+  letter-spacing: -0.015em;
+  margin-top: 6px;
+}
+
+.mark .dash {
+  color: var(--signal);
+}
+
+.name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  margin-top: 14px;
+}
+
+.role {
+  color: var(--muted);
+  font-size: 12.5px;
+  margin-top: 2px;
+}
+
+.vital {
+  margin-top: 22px;
+}
+
+.vital .label {
+  margin-bottom: 4px;
+}
+
+.vital .v {
+  font-size: 12.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.availability {
+  color: var(--signal);
+  font-weight: 600;
+}
+
+.listing {
+  font-size: 12px;
+  margin-top: 4px;
+  line-height: 1.7;
+}
+
+.led {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--signal);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.45;
+  }
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(54px, 7vw, 88px);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.headline em,
+.sechead h2 em,
+.compact-h em,
+.cta-h em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--signal);
+}
+
+.abstract {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  line-height: 1.5;
+  max-width: 660px;
+  margin-top: 28px;
+}
+
+.ctas {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 1px solid var(--ink);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: all 150ms;
+  cursor: pointer;
+  background: transparent;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.btn--primary {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.btn--primary:hover {
+  background: var(--signal);
+  border-color: var(--signal);
+}
+
+.btn:hover {
+  background: var(--paper-sunk);
+}
+
+.btn .arr {
+  color: var(--signal);
+  transition: transform 150ms;
+}
+
+.btn--primary .arr {
+  color: var(--paper);
+}
+
+.btn:hover .arr {
+  transform: translateX(2px);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+
+.stat {
+  padding: 22px 24px;
+  border-right: 1px solid var(--rule);
+}
+
+.stat:last-child {
+  border-right: 0;
+}
+
+.stat .n {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 52px;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  margin-top: 4px;
+}
+
+.stat .sub {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.section {
+  padding-top: 56px;
+}
+
+.section + .section {
+  padding-top: 48px;
+}
+
+.sechead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 32px;
+  align-items: end;
+  padding-bottom: 12px;
+}
+
+.sechead h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 44px;
+  line-height: 0.98;
+  letter-spacing: -0.018em;
+  margin: 6px 0 0;
+  text-wrap: balance;
+}
+
+.sechead .meta {
+  text-align: right;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.currently {
+  padding-top: 20px;
+}
+
+.currently p {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 900px;
+}
+
+.currently p .link {
+  border-bottom: 1px solid var(--signal);
+  color: var(--signal);
+}
+
+.now-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 24px;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.now-tile {
+  padding: 16px 18px 18px;
+  border-right: 1px solid var(--rule);
+}
+
+.now-tile:last-child {
+  border-right: 0;
+}
+
+.now-tile .n,
+.svc-row .num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--signal);
+  letter-spacing: 0.14em;
+  font-weight: 600;
+}
+
+.now-tile .t,
+.svc-row .h {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 17px;
+  margin-top: 6px;
+  line-height: 1.2;
+}
+
+.now-tile .d,
+.svc-row .d {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+.work-scroll {
+  overflow-x: auto;
+}
+
+table.work {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+table.work thead th {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--rule);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+table.work tbody td {
+  padding: 16px 12px;
+  border-bottom: 1px solid var(--rule-soft);
+  font-size: 13px;
+  vertical-align: top;
+}
+
+table.work tbody tr:hover td {
+  background: var(--paper-raised);
+}
+
+table.work tbody tr:hover .work-name {
+  color: var(--signal);
+}
+
+table.work .num {
+  color: var(--muted);
+  width: 36px;
+}
+
+.work-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 16px;
+  transition: color 150ms;
+}
+
+table.work .desc {
+  color: var(--muted);
+  max-width: 360px;
+  margin-top: 4px;
+  font-size: 12px;
+}
+
+table.work .stack {
+  color: var(--muted);
+  font-size: 11.5px;
+}
+
+.pill {
+  display: inline-block;
+  padding: 3px 8px;
+  border: 1px solid;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.pill--ink {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.pill--signal {
+  border-color: var(--signal);
+  color: var(--signal);
+}
+
+.pill--muted {
+  border-color: var(--muted);
+  color: var(--muted);
+}
+
+.twoup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  padding-top: 20px;
+}
+
+.compact-h {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: -0.015em;
+  margin: 6px 0 16px;
+}
+
+.svc-row {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 18px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.svc-row:first-of-type {
+  border-top: 1px solid var(--rule);
+}
+
+.svc-row .h {
+  margin-top: 0;
+}
+
+.svc-row .d {
+  font-family: var(--font-serif);
+  font-size: 13.5px;
+  color: var(--ink);
+}
+
+.dispatch {
+  display: block;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--rule-soft);
+  cursor: pointer;
+  transition: padding-left 150ms;
+}
+
+.dispatch:first-of-type {
+  border-top: 1px solid var(--rule);
+}
+
+.dispatch:hover {
+  padding-left: 8px;
+}
+
+.dispatch:hover .d-title {
+  color: var(--signal);
+}
+
+.dispatch .d-date {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.dispatch .d-title {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.25;
+  transition: color 150ms;
+}
+
+.dispatch .d-dek {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 13.5px;
+  color: var(--muted);
+  margin-top: 8px;
+  line-height: 1.55;
+  max-width: 540px;
+}
+
+.writing-all {
+  margin-top: 20px;
+}
+
+.footer {
+  margin-top: 72px;
+  padding-top: 22px;
+  border-top: 2px solid var(--ink);
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: end;
+}
+
+.cta-h {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(44px, 5vw, 64px);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  margin: 8px 0 0;
+}
+
+.email {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  margin-top: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 4px;
+}
+
+.email .arr {
+  color: var(--signal);
+}
+
+.email:hover .arr {
+  animation: nudge 600ms ease-in-out infinite;
+}
+
+@keyframes nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(4px);
+  }
+}
+
+.elsewhere {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-self: end;
+}
+
+.elsewhere a {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 4px 0;
+  border-bottom: 1px solid transparent;
+  transition: all 150ms;
+}
+
+.elsewhere a:hover {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+.colophon {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 56px;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@media (max-width: 980px) {
+  .doc {
+    padding-inline: 24px;
+  }
+
+  .topstrip,
+  .topstrip .left,
+  .topstrip nav {
+    align-items: flex-start;
+  }
+
+  .topstrip {
+    flex-direction: column;
+  }
+
+  .topstrip nav {
+    flex-wrap: wrap;
+    gap: 8px 18px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero .identity {
+    padding: 0 0 28px;
+    border-right: 0;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 28px;
+  }
+
+  .hero .body {
+    padding-left: 0;
+  }
+
+  .sechead {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .sechead .meta {
+    text-align: left;
+  }
+
+  .twoup {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stat {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .stat:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .now-tiles {
+    grid-template-columns: 1fr;
+  }
+
+  .now-tile {
+    border-right: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .now-tile:last-child {
+    border-bottom: 0;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .doc {
+    padding-inline: 18px;
+  }
+
+  .topstrip .left {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .headline {
+    font-size: 46px;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .stat {
+    border-right: 0;
+  }
+
+  .email {
+    font-size: 14px;
+  }
+
+  .colophon {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 720px) {
+  .work-scroll {
+    overflow-x: visible;
+  }
+
+  table.work,
+  table.work thead,
+  table.work tbody,
+  table.work tr,
+  table.work td {
+    display: block;
+    min-width: 0;
+    width: 100%;
+  }
+
+  table.work thead {
+    display: none;
+  }
+
+  table.work tbody tr {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+
+  table.work tbody td {
+    display: grid;
+    grid-template-columns: 74px minmax(0, 1fr);
+    gap: 12px;
+    padding: 4px 0;
+    border-bottom: 0;
+  }
+
+  table.work tbody td::before {
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  table.work tbody td:nth-child(1)::before {
+    content: "No.";
+  }
+
+  table.work tbody td:nth-child(2)::before {
+    content: "System";
+  }
+
+  table.work tbody td:nth-child(3)::before {
+    content: "Domain";
+  }
+
+  table.work tbody td:nth-child(4)::before {
+    content: "Stack";
+  }
+
+  table.work tbody td:nth-child(5)::before {
+    content: "Status";
+  }
+
+  table.work .work-name,
+  table.work .desc {
+    grid-column: 2;
+  }
+
+  table.work .pill {
+    justify-self: start;
+  }
+
+  table.work tbody tr:hover td {
+    background: transparent;
+  }
+
+  table.work .num {
+    width: 100%;
+  }
 }
 </style>
