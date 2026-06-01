@@ -3,9 +3,97 @@ definePageMeta({
   layout: false
 })
 
+const siteUrl = 'https://kevinjordan.dev'
+const siteTitle = 'Kevin Jordan - Technical Founder, Operator'
+const siteDescription = 'Kevin Jordan builds AI systems and operator tools that survive real work. KDJORDAN LLC - Pacific Northwest.'
+const ogImage = `${siteUrl}/og-image.png`
+const personId = `${siteUrl}/#kevin-jordan`
+const organizationId = `${siteUrl}/#kdjordan-llc`
+const websiteId = `${siteUrl}/#website`
+const sameAs = [
+  'https://www.linkedin.com/in/kevin-dean-jordan/',
+  'https://github.com/kdjordan',
+  'https://x.com/kdjordan_io'
+]
+
 useSeoMeta({
-  title: 'Kevin Jordan - Technical Founder, Operator',
-  description: 'Kevin Jordan builds AI systems and operator tools that survive real work. KDJORDAN LLC - Pacific Northwest.'
+  title: siteTitle,
+  description: siteDescription,
+  ogTitle: siteTitle,
+  ogDescription: siteDescription,
+  ogSiteName: 'Kevin Jordan',
+  ogType: 'website',
+  ogUrl: siteUrl,
+  ogImage,
+  ogImageWidth: '1200',
+  ogImageHeight: '630',
+  ogImageAlt: 'Kevin Jordan data sheet homepage preview',
+  twitterCard: 'summary_large_image',
+  twitterTitle: siteTitle,
+  twitterDescription: siteDescription,
+  twitterImage: ogImage,
+  twitterImageAlt: 'Kevin Jordan data sheet homepage preview'
+})
+
+useHead({
+  link: [
+    { rel: 'canonical', href: siteUrl }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'Person',
+            '@id': personId,
+            name: 'Kevin Jordan',
+            alternateName: ['Kevin Dean Jordan', 'kdjordan', 'KJ-01'],
+            url: siteUrl,
+            image: ogImage,
+            jobTitle: 'Technical Founder / Operator',
+            email: 'mailto:kevin@kevinjordan.dev',
+            sameAs,
+            worksFor: { '@id': organizationId },
+            affiliation: { '@id': organizationId },
+            knowsAbout: [
+              'AI systems',
+              'operator tools',
+              'telecom analytics',
+              'AI agent systems',
+              'internal command centers',
+              'product development',
+              'infrastructure automation'
+            ],
+            description: siteDescription,
+            disambiguatingDescription: 'Kevin Dean Jordan, technical founder and operator behind KDJORDAN LLC, kevinjordan.dev, and kdjordan social profiles.'
+          },
+          {
+            '@type': 'Organization',
+            '@id': organizationId,
+            name: 'KDJORDAN LLC',
+            url: siteUrl,
+            logo: `${siteUrl}/favicon.png`,
+            founder: { '@id': personId },
+            sameAs,
+            areaServed: 'Pacific Northwest',
+            description: 'KDJORDAN LLC builds AI systems, telecom analytics, operator tools, and production software infrastructure.'
+          },
+          {
+            '@type': 'WebSite',
+            '@id': websiteId,
+            name: 'Kevin Jordan',
+            url: siteUrl,
+            publisher: { '@id': organizationId },
+            author: { '@id': personId },
+            inLanguage: 'en-US',
+            description: siteDescription
+          }
+        ]
+      })
+    }
+  ]
 })
 
 const work = [

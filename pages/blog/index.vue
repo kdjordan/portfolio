@@ -1,7 +1,32 @@
 <script setup lang="ts">
+const siteUrl = 'https://kevinjordan.dev'
+const pageTitle = 'Blog — Kevin Jordan'
+const pageDescription = 'Thoughts on AI systems, building companies, and shipping products.'
+const ogImage = `${siteUrl}/og-image.png`
+
 useSeoMeta({
-  title: 'Blog — Kevin Jordan',
-  description: 'Thoughts on AI systems, building companies, and shipping products.'
+  title: pageTitle,
+  description: pageDescription,
+  ogTitle: pageTitle,
+  ogDescription: pageDescription,
+  ogSiteName: 'Kevin Jordan',
+  ogType: 'website',
+  ogUrl: `${siteUrl}/blog`,
+  ogImage,
+  ogImageWidth: '1200',
+  ogImageHeight: '630',
+  ogImageAlt: 'Kevin Jordan data sheet homepage preview',
+  twitterCard: 'summary_large_image',
+  twitterTitle: pageTitle,
+  twitterDescription: pageDescription,
+  twitterImage: ogImage,
+  twitterImageAlt: 'Kevin Jordan data sheet homepage preview'
+})
+
+useHead({
+  link: [
+    { rel: 'canonical', href: `${siteUrl}/blog` }
+  ]
 })
 
 const { data: posts } = await useAsyncData('blog-posts', () => {

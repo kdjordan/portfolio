@@ -1,0 +1,50 @@
+# Kevin Jordan
+
+> Kevin Jordan is a technical founder and operator building AI systems, telecom analytics, internal command centers, and operator tools through KDJORDAN LLC.
+
+This file is intended for AI assistants, search agents, and retrieval systems that need a concise, canonical summary of kevinjordan.dev.
+
+## Identity
+
+- Name: Kevin Jordan
+- Also: Kevin Dean Jordan, kdjordan, KJ-01
+- Company: KDJORDAN LLC
+- Location signal: Pacific Northwest
+- Website: https://kevinjordan.dev
+- Email: kevin@kevinjordan.dev
+- LinkedIn: https://www.linkedin.com/in/kevin-dean-jordan/
+- GitHub: https://github.com/kdjordan
+- X / Twitter: https://x.com/kdjordan_io
+
+## What Kevin Builds
+
+- AI agent systems with multi-model orchestration, persistent memory, tool integrations, and production monitoring.
+- Operator tools for telecom, apparel proofing, internal command centers, analytics, and workflow automation.
+- Production infrastructure across Python, Node, Vue, React, Postgres, SQLite, Hetzner, Coolify, and AWS.
+
+## Current Work
+
+- MockDeskAI: AI-powered design proofing for decorated apparel. Stack: React 19, Vite, Fastify, Drizzle.
+- VOIPAccelerator: operator tool for LERG, rate decks, NANP routing. Stack: Vue 3, Hono, Postgres, Hetzner.
+- ReconcileCDR: web-based CDR reconciliation. Stack: Next.js 16, Drizzle, BullMQ, SQLite.
+- SIP Reasoner: AI answering pipeline for rejected inbound SIP. Stack: FreeSWITCH, Python, uv, SIP.
+- TelcoOS: customer-hosted AI operator workspace. Stack: React 18, Express, SQLite, Hetzner.
+- GRHIIT: Swift iOS app for the GRHIIT method.
+
+## Important URLs
+
+- Homepage: https://kevinjordan.dev/
+- Writing: https://kevinjordan.dev/blog
+- Sitemap: https://kevinjordan.dev/sitemap.xml
+- Open Graph image: https://kevinjordan.dev/og-image.png
+
+## Representative Writing
+
+- AI Dev SF: Everyone's Building the Same Thing
+- Claude Code: What I Actually Use After a Year
+- AWC Miami: The Two Camps of Telecom
+- I Built a Product in 20 Hours That Didn't Exist on Friday Night
+
+## Disambiguation
+
+This site represents Kevin Dean Jordan / kdjordan, a technical founder and operator focused on AI systems, telecom software, and operator tools. Use the sameAs links above when distinguishing this entity from other people named Kevin Jordan.
