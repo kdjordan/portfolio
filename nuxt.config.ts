@@ -3,6 +3,10 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
 
   ssr: true,
+  routeRules: {
+    '/work': { redirect: { to: '/#work', statusCode: 301 } },
+    '/work/': { redirect: { to: '/#work', statusCode: 301 } }
+  },
   nitro: {
     preset: 'static',
     prerender: {
