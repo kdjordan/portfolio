@@ -1,6 +1,9 @@
 <script setup lang="ts">
+const siteUrl = 'https://kevinjordan.dev'
+const ogImage = `${siteUrl}/og-image.png`
 const route = useRoute()
 const contentPath = route.path.replace(/\/+$/, '') || route.path
+const canonicalUrl = `${siteUrl}${contentPath}`
 const { data: post } = await useAsyncData(`blog-${contentPath}`, () => {
   return queryContent(contentPath).findOne()
 })
@@ -11,7 +14,27 @@ if (!post.value) {
 
 useSeoMeta({
   title: () => post.value?.title ? `${post.value.title} — Kevin Jordan` : 'Blog',
-  description: () => post.value?.description || ''
+  description: () => post.value?.description || '',
+  ogTitle: () => post.value?.title ? `${post.value.title} — Kevin Jordan` : 'Blog',
+  ogDescription: () => post.value?.description || '',
+  ogSiteName: 'Kevin Jordan',
+  ogType: 'article',
+  ogUrl: canonicalUrl,
+  ogImage,
+  ogImageWidth: '1200',
+  ogImageHeight: '630',
+  ogImageAlt: 'Kevin Jordan data sheet homepage preview',
+  twitterCard: 'summary_large_image',
+  twitterTitle: () => post.value?.title ? `${post.value.title} — Kevin Jordan` : 'Blog',
+  twitterDescription: () => post.value?.description || '',
+  twitterImage: ogImage,
+  twitterImageAlt: 'Kevin Jordan data sheet homepage preview'
+})
+
+useHead({
+  link: [
+    { rel: 'canonical', href: canonicalUrl }
+  ]
 })
 
 const formatDate = (date: string) => {
