@@ -186,4 +186,18 @@ Once the real domain serves correctly from Hetzner:
 ---
 
 ### Rollback (any time within the window)
-Cloudflare → DNS → apex record → point back to the Amplify target. Done. No rebuild.
+Restore the pre-cutover Cloudflare DNS (captured 2026-06-13), all **Proxied (orange)**:
+
+- `kevinjordan.dev` — **A** records (Amplify/CloudFront), all proxied:
+  - `3.165.160.86`
+  - `3.165.160.63`
+  - `3.165.160.15`
+  - `3.165.160.58`
+- `www.kevinjordan.dev` — **CNAME** → `du69ldtwd665p.cloudfront.net`, proxied
+
+Leave the MX (`route1/2/3.mx.cloudflare.net`) and TXT (DKIM `cf2024-1._domainkey`,
+SPF `v=spf1 include:_spf.mx.cloudflare.net ~all`, `google-site-verification=...`)
+records untouched throughout — they are email/verification, unrelated to hosting.
+
+Rollback = re-create the four apex A records above + the www CNAME, set Proxied. No
+rebuild on the origin needed; Amplify stays warm ~48h.
