@@ -5,11 +5,18 @@ export default defineNuxtConfig({
   ssr: true,
   routeRules: {
     '/work': { redirect: { to: '/#work', statusCode: 301 } },
-    '/work/': { redirect: { to: '/#work', statusCode: 301 } }
+    '/work/': { redirect: { to: '/#work', statusCode: 301 } },
+    // Keep marketing pages prerendered to static HTML so crawlable
+    // output is identical to the old Amplify build. Everything else is
+    // served by the Node server.
+    '/': { prerender: true },
+    '/blog/**': { prerender: true }
   },
   nitro: {
-    preset: 'static',
+    preset: 'node-server',
     prerender: {
+      // Crawl from '/' to discover and prerender the blog index and
+      // every post at build time (same coverage as the old SSG bundle).
       crawlLinks: true,
       routes: ['/']
     }
