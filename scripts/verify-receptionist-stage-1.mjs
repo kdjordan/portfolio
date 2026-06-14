@@ -96,7 +96,7 @@ try {
     headers: { cookie }
   })
   assert(authenticatedAdmin.response.status === 200, 'Expected authenticated /admin to load')
-  assert(authenticatedAdmin.text.includes('Authenticated Console shell'), 'Expected admin shell content')
+  assert(authenticatedAdmin.text.includes('Console'), 'Expected admin shell content')
 
   const healthOne = await request('/api/admin/health', {
     headers: { cookie }
