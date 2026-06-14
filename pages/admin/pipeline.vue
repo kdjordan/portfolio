@@ -80,7 +80,17 @@ function score(value: number | null) {
             :key="card.leadId"
             class="border border-rule bg-bg-secondary p-4 transition-colors hover:border-accent"
           >
-            <p class="font-display text-lg font-semibold leading-tight">
+            <a
+              v-if="card.website"
+              :href="card.website"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group/site inline-flex items-baseline gap-1 font-display text-lg font-semibold leading-tight transition-colors hover:text-accent"
+            >
+              {{ card.name }}
+              <span class="font-mono text-mono-sm text-text-muted transition-colors group-hover/site:text-accent">↗</span>
+            </a>
+            <p v-else class="font-display text-lg font-semibold leading-tight">
               {{ card.name }}
             </p>
             <p class="mt-1 font-mono text-mono-sm text-text-muted">
