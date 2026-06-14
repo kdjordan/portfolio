@@ -9,6 +9,26 @@ export interface LeadRecord {
   updatedAt: string
 }
 
+export interface BoardCard {
+  leadId: number
+  stage: string
+  businessId: number
+  name: string
+  phone: string | null
+  rating: number | null
+  hasSite: number
+  siteScore: number | null
+}
+
+export interface PromotableBusiness {
+  id: number
+  name: string
+  phone: string | null
+  rating: number | null
+  hasSite: number
+  siteScore: number | null
+}
+
 const LEAD_COLUMNS = `
   id,
   business_id as businessId,
@@ -44,5 +64,50 @@ export const leadsRepository = {
       .get(id) as LeadRecord | undefined
 
     return row ?? null
+  },
+
+  getByBusinessId(businessId: number): LeadRecord | null {
+    const row = getReceptionistDb()
+      .prepare(`SELECT ${LEAD_COLUMNS} FROM leads WHERE business_id = ?`)
+      .get(businessId) as LeadRecord | undefined
+
+    return row ?? null
+  },
+
+  listBoard(): BoardCard[] {
+    return getReceptionistDb()
+      .prepare(`
+        SELECT
+          l.id as leadId,
+          l.stage as stage,
+          b.id as businessId,
+          b.name as name,
+          b.phone as phone,
+          b.rating as rating,
+          b.has_site as hasSite,
+          b.site_score as siteScore
+        FROM leads l
+        JOIN businesses b ON b.id = l.business_id
+        ORDER BY b.name
+      `)
+      .all() as BoardCard[]
+  },
+
+  listPromotable(): PromotableBusiness[] {
+    return getReceptionistDb()
+      .prepare(`
+        SELECT
+          b.id,
+          b.name,
+          b.phone,
+          b.rating,
+          b.has_site as hasSite,
+          b.site_score as siteScore
+        FROM businesses b
+        LEFT JOIN leads l ON l.business_id = b.id
+        WHERE l.id IS NULL
+        ORDER BY b.name
+      `)
+      .all() as PromotableBusiness[]
   }
 }
