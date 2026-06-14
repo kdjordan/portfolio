@@ -71,6 +71,12 @@ async function scoreSites() {
 function fmtRating(v: number | null) {
   return v === null ? '—' : `★ ${v.toFixed(1)}`
 }
+
+// Only link out to http(s) URLs — guards against a javascript:/data: URI in the
+// stored website becoming an XSS sink via :href.
+function siteHref(url: string | null) {
+  return url && /^https?:\/\//i.test(url) ? url : null
+}
 </script>
 
 <template>
@@ -125,8 +131,8 @@ function fmtRating(v: number | null) {
           >
             <td class="py-4 pr-4">
               <a
-                v-if="row.website"
-                :href="row.website"
+                v-if="siteHref(row.website)"
+                :href="siteHref(row.website)!"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="group/site inline-flex items-baseline gap-1 font-display text-lg font-semibold leading-tight transition-colors hover:text-accent"
