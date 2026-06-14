@@ -10,16 +10,30 @@ export interface ScorableBusiness {
 }
 
 export const scoringRepository = {
-  // Businesses that have a site but no score yet. `no_site` (has_site = 0) is
-  // not an API call and not stored — those rows are simply excluded here.
-  listScorable(): ScorableBusiness[] {
-    return getReceptionistDb()
+  // Businesses with a site that have not been attempted yet. Keyed on
+  // `scored_at` (not `site_score`) so a hard failure — which sets scored_at but
+  // leaves site_score NULL — leaves this set and never re-loops. `no_site`
+  // (has_site = 0) is not an API call and not stored, so those rows are excluded.
+  listScorable(limit?: number): ScorableBusiness[] {
+    const statement = getReceptionistDb().prepare(`
+      SELECT id, website
+      FROM businesses
+      WHERE has_site = 1 AND website IS NOT NULL AND scored_at IS NULL
+      ORDER BY id
+      ${limit ? 'LIMIT @limit' : ''}
+    `)
+    return (limit ? statement.all({ limit }) : statement.all()) as ScorableBusiness[]
+  },
+
+  countScorable(): number {
+    const row = getReceptionistDb()
       .prepare(`
-        SELECT id, website
+        SELECT COUNT(*) AS n
         FROM businesses
-        WHERE has_site = 1 AND website IS NOT NULL AND site_score IS NULL
+        WHERE has_site = 1 AND website IS NOT NULL AND scored_at IS NULL
       `)
-      .all() as ScorableBusiness[]
+      .get() as { n: number }
+    return row.n
   },
 
   recordSiteScore(businessId: number, input: {
@@ -40,5 +54,19 @@ export const scoringRepository = {
         siteScore: input.siteScore,
         pagespeedJson: input.pagespeedJson ?? null
       })
+  },
+
+  // Marks a business as attempted without a score (PageSpeed failed after
+  // retries). Sets scored_at so it drops out of listScorable; site_score stays
+  // NULL, which reads as "unknown" — not bad_site.
+  recordScoreFailure(businessId: number): void {
+    getReceptionistDb()
+      .prepare(`
+        UPDATE businesses
+        SET scored_at = datetime('now'),
+            updated_at = datetime('now')
+        WHERE id = @businessId
+      `)
+      .run({ businessId })
   }
 }
