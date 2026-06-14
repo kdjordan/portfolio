@@ -201,3 +201,25 @@ records untouched throughout — they are email/verification, unrelated to hosti
 
 Rollback = re-create the four apex A records above + the www CNAME, set Proxied. No
 rebuild on the origin needed; Amplify stays warm ~48h.
+
+---
+
+## Coolify gotchas (learned during Stage 1 deploy, 2026-06-14)
+
+- **Env values containing `$` get interpolated and corrupted.** Coolify expands
+  `$WORD` / `${WORD}` references inside env values by default. An argon2 hash
+  (`$argon2id$v=19$m=65536,...`) is silently mangled on injection — the Normal-view
+  editor shows the raw text, but the running container receives a broken value, so
+  `argon2.verify()` throws and login returns **500** (not 401). Fix: enable
+  **Is Literal?** on that variable (or escape every `$` as `$$`, Literal off — not
+  both). Confirm the *runtime* value in the **Terminal** tab:
+  `printf '%s' "$RECEPTIONIST_ADMIN_PASSWORD_HASH" | head -c 20` → must print
+  `$argon2id$v=19$m=6`.
+- **Env changes require a redeploy.** Saving in the editor updates the stored value
+  only; the live container keeps the old value until you **Redeploy**/Restart.
+- **`docker run -e` does NOT reproduce this.** The `$`-eating happens in Coolify's
+  env layer, not Docker — so a secret-bearing env that passes a local Docker test can
+  still break in Coolify. Verify secrets in Coolify (Terminal tab), not just locally.
+- **Auto-deploy is a manual GitHub webhook** (source = Public GitHub, no GitHub App):
+  GitHub repo hook → `http://178.156.251.139:8000/webhooks/source/github/events/manual`
+  with a shared HMAC secret on `push`. Both sides must hold the same secret.
