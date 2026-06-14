@@ -17,12 +17,14 @@ Goal: identical public site, new host, zero SEO/traffic regression. No reception
 - **Cutover (Cloudflare):** test on a staging hostname/IP first; diff prerendered HTML, all routes, the `/work` redirect, sitemap, robots. Then flip the origin record. Propagation is instant (edge IP unchanged). **Keep Amplify warm ~48h** as one-click rollback.
 - **Verify before declaring done:** homepage + blog render, redirects intact, sitemap served, Core Web Vitals stable, Search Console shows no crawl errors, traffic steady for a few days.
 
-**Status (2026-06-14): DONE, baking.** Live on Hetzner/Coolify via Cloudflare, output byte-equivalent to Amplify. PR #23 (`migrate-to-hetzner-node-ssr`) **merged**; Coolify now **auto-deploys from `main`**. Cloudflare SSL at **Full (strict)**. Amplify kept warm ~48h as rollback.
+**Status (2026-06-14): DONE, baking.** Live on Hetzner/Coolify via Cloudflare, output byte-equivalent to Amplify. PR #23 (`migrate-to-hetzner-node-ssr`) **merged**. Cloudflare SSL at **Full (strict)**.
+
+**CI/CD (wired 2026-06-14):** Coolify source is **Public GitHub** (`kdjordan/portfolio`, branch `main`). Auto-deploy is via a **manual GitHub → Coolify webhook** (`http://178.156.251.139:8000/webhooks/source/github/events/manual`, HMAC secret, `push` events) — GitHub repo hook id `641545945`. Push to `main` now triggers a Coolify build+deploy; manual **Redeploy** is the fallback. The old **Amplify push webhook is deactivated** (hook id `599827319`, `active:false`) so pushes no longer rebuild Amplify; the Amplify app stays deployed as DNS rollback until the bake closes. Hardening TODO: webhook is plain HTTP to an IP:8000 — move Coolify behind an HTTPS domain.
 - **Host:** Coolify app `kj-portfolio` (uuid `h4ow80os4scco4k0osscw44w`) on the box **`telcoos-prod` = 178.156.251.139** (Traefik on 80/443, hostname routing). The candidate box `sip-reasoner` (5.161.237.218) was **deliberately rejected** — it's a live FreeSWITCH telecom edge (nginx + certbot certs for sip/demo.telcoos.io, no Docker); Coolify there would have broken its certs/SIP firewall.
 - **Persistent volume:** **mounted and writable at `/app/data`** (Coolify UI). Ready for the Stage 1 sqlite DB — no longer a blocker.
 - **Runbook:** `docs/stage-0-cutover-runbook.md` (incl. rollback DNS values).
 
-Outstanding before the gate fully clears: **only the ~48h bake/monitoring** — Search Console clean + traffic/CWV steady. (Cloudflare Full (strict), PR #23 merge, Coolify push-to-deploy from `main`, and the `/app/data` volume are all done.)
+Outstanding before the gate fully clears: **only the ~48h bake/monitoring** — Search Console clean + traffic/CWV steady. (Cloudflare Full (strict), PR #23 merge, GitHub→Coolify push-to-deploy webhook, Amplify auto-build disabled, and the `/app/data` volume are all done.)
 
 Exit: kevinjordan.dev served from Hetzner, output indistinguishable from the Amplify version, rankings/traffic unchanged.
 
