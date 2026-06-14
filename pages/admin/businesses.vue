@@ -124,7 +124,17 @@ function fmtRating(v: number | null) {
             class="align-top transition-colors hover:bg-bg-secondary"
           >
             <td class="py-4 pr-4">
-              <p class="font-display text-lg font-semibold leading-tight">{{ row.name }}</p>
+              <a
+                v-if="row.website"
+                :href="row.website"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group/site inline-flex items-baseline gap-1 font-display text-lg font-semibold leading-tight transition-colors hover:text-accent"
+              >
+                {{ row.name }}
+                <span class="font-mono text-mono-sm text-text-muted transition-colors group-hover/site:text-accent">↗</span>
+              </a>
+              <p v-else class="font-display text-lg font-semibold leading-tight">{{ row.name }}</p>
               <p class="mt-0.5 font-mono text-mono-sm text-text-muted">{{ row.phone ?? 'No phone' }}</p>
               <p v-if="rowError[row.id]" class="mt-1 font-mono text-mono-sm text-accent">{{ rowError[row.id] }}</p>
             </td>

@@ -15,6 +15,7 @@ export interface BoardCard {
   businessId: number
   name: string
   phone: string | null
+  website: string | null
   rating: number | null
   hasSite: number
   siteScore: number | null
@@ -24,6 +25,7 @@ export interface PromotableBusiness {
   id: number
   name: string
   phone: string | null
+  website: string | null
   rating: number | null
   hasSite: number
   siteScore: number | null
@@ -83,6 +85,7 @@ export const leadsRepository = {
           b.id as businessId,
           b.name as name,
           b.phone as phone,
+          b.website as website,
           b.rating as rating,
           b.has_site as hasSite,
           b.site_score as siteScore
@@ -100,6 +103,7 @@ export const leadsRepository = {
           b.id,
           b.name,
           b.phone,
+          b.website,
           b.rating,
           b.has_site as hasSite,
           b.site_score as siteScore
