@@ -13,6 +13,8 @@
     "@fortawesome/free-regular-svg-icons": "^6.5.1",
     "@nuxtjs/sitemap": "^7.6.0",
     "@tailwindcss/typography": "^0.5.19",
+    "argon2": "0.44.0",
+    "better-sqlite3": "12.9.0",
     "gsap": "^3.12.5",
     "lenis": "^1.3.17",
     "nuxt": "^3.14.0",
