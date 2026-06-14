@@ -1,83 +1,56 @@
 <script setup lang="ts">
-definePageMeta({
-  layout: false
-})
+import type { BoardCard, PromotableBusiness } from '../../server/utils/receptionist/leads'
 
-const { data: session } = await useFetch('/api/admin/session')
+definePageMeta({ layout: 'admin' })
 
-// Console sections. Each is filled in by its own Stage 1 worktree:
-// Territories + Pipeline ship behind these links; `ready` flips on as they land.
-const sections = [
-  {
-    title: 'Territories',
-    href: '/admin/territories',
-    description: 'Saved vertical + metro searches that drive Places ingest.',
-    ready: true
-  },
-  {
-    title: 'Pipeline',
-    href: '/admin/pipeline',
-    description: 'Sourced → scored → consult → live board for working Leads.',
-    ready: true
-  }
-]
+interface Territory { id: number }
+interface BoardResponse { board: BoardCard[], candidates: PromotableBusiness[] }
 
-async function logOut() {
-  await $fetch('/api/admin/logout', { method: 'POST' })
-  await navigateTo('/admin/login')
-}
+const { data: territories } = await useFetch<Territory[]>('/api/admin/territories')
+const { data: board } = await useFetch<BoardResponse>('/api/admin/leads/board')
+
+const stats = computed(() => [
+  { n: territories.value?.length ?? 0, label: 'Territories', to: '/admin/territories' },
+  { n: board.value?.candidates?.length ?? 0, label: 'Sourced', to: '/admin/businesses' },
+  { n: board.value?.board?.length ?? 0, label: 'Leads', to: '/admin/pipeline' }
+])
 </script>
 
 <template>
-  <main class="min-h-screen bg-bg-primary px-6 py-8 text-text-primary md:px-16">
-    <div class="mx-auto flex min-h-[calc(100vh-4rem)] w-full max-w-5xl flex-col">
-      <header class="flex items-center justify-between border-b border-rule pb-5">
-        <div>
-          <p class="font-mono text-label uppercase tracking-widest text-accent">
-            Lead Engine
-          </p>
-          <h1 class="mt-2 font-display text-4xl font-semibold leading-none">
-            Console
-          </h1>
-        </div>
-        <button
-          class="border border-rule px-4 py-2 font-mono text-mono-sm uppercase tracking-widest transition-colors hover:border-accent hover:text-accent"
-          type="button"
-          @click="logOut"
-        >
-          Logout
-        </button>
-      </header>
+  <div class="mx-auto w-full max-w-5xl">
+    <header class="border-b-2 border-text-primary pb-4">
+      <p class="font-mono text-label uppercase tracking-widest text-accent">
+        Overview
+      </p>
+      <h1 class="mt-2 font-display text-4xl font-semibold leading-none">
+        Lead engine
+      </h1>
+    </header>
 
-      <section class="flex flex-1 flex-col justify-center py-10">
-        <p class="font-mono text-sm text-text-muted">
-          Signed in as {{ session?.admin?.username }}.
-        </p>
+    <p class="mt-6 max-w-prose font-serif text-lg text-text-secondary">
+      Find local businesses with a weak or missing web presence, score the gap,
+      and work them toward a paid consult.
+    </p>
 
-        <div class="mt-6 grid gap-4 sm:grid-cols-2">
-          <NuxtLink
-            v-for="section in sections"
-            :key="section.href"
-            :to="section.ready ? section.href : ''"
-            :class="[
-              'block border border-rule p-6 transition-colors',
-              section.ready
-                ? 'hover:border-accent hover:text-accent'
-                : 'cursor-not-allowed opacity-50'
-            ]"
-          >
-            <p class="font-display text-2xl font-semibold">
-              {{ section.title }}
-            </p>
-            <p class="mt-2 font-serif text-text-secondary">
-              {{ section.description }}
-            </p>
-            <p v-if="!section.ready" class="mt-3 font-mono text-mono-sm uppercase tracking-widest text-text-muted">
-              Coming soon
-            </p>
-          </NuxtLink>
-        </div>
-      </section>
-    </div>
-  </main>
+    <dl class="mt-10 grid grid-cols-3 border-y border-rule">
+      <NuxtLink
+        v-for="(stat, i) in stats"
+        :key="stat.label"
+        :to="stat.to"
+        class="group py-7 transition-colors hover:bg-bg-secondary"
+        :class="i > 0 ? 'border-l border-rule pl-6' : ''"
+      >
+        <dd class="font-display text-6xl font-semibold leading-none tabular-nums">
+          {{ stat.n }}
+        </dd>
+        <dt class="mt-3 font-mono text-mono-sm uppercase tracking-widest text-text-muted transition-colors group-hover:text-accent">
+          {{ stat.label }} →
+        </dt>
+      </NuxtLink>
+    </dl>
+
+    <p class="mt-8 font-mono text-mono-sm uppercase tracking-widest text-text-muted">
+      Sourced → scored → hook sent → replied → consult → live
+    </p>
+  </div>
 </template>
