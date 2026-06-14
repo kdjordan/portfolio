@@ -1,7 +1,5 @@
 <script setup lang="ts">
-definePageMeta({
-  layout: false
-})
+definePageMeta({ layout: 'admin' })
 
 interface TerritoryRecord {
   id: number
@@ -72,20 +70,14 @@ async function runTerritory(id: number) {
 </script>
 
 <template>
-  <main class="min-h-screen bg-bg-primary px-6 py-8 text-text-primary md:px-16">
-    <div class="mx-auto w-full max-w-5xl">
-      <header class="flex items-center justify-between border-b border-rule pb-5">
-        <div>
-          <NuxtLink
-            to="/admin"
-            class="font-mono text-label uppercase tracking-widest text-accent hover:underline"
-          >
-            ← Console
-          </NuxtLink>
-          <h1 class="mt-2 font-display text-4xl font-semibold leading-none">
-            Territories
-          </h1>
-        </div>
+  <div class="mx-auto w-full max-w-5xl">
+      <header class="border-b-2 border-text-primary pb-4">
+        <p class="font-mono text-label uppercase tracking-widest text-accent">
+          Searches
+        </p>
+        <h1 class="mt-2 font-display text-4xl font-semibold leading-none">
+          Territories
+        </h1>
       </header>
 
       <section class="py-8">
@@ -191,6 +183,5 @@ async function runTerritory(id: number) {
           No territories yet. Add one above to drive Places ingest.
         </p>
       </section>
-    </div>
-  </main>
+  </div>
 </template>
