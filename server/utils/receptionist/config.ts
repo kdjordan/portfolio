@@ -6,6 +6,8 @@ export interface ReceptionistConfig {
   adminUsername: string
   adminPasswordHash: string
   sessionSecret: string
+  googlePlacesApiKey: string
+  googlePageSpeedApiKey: string
   isProduction: boolean
 }
 
@@ -34,6 +36,8 @@ export function getReceptionistConfig(): ReceptionistConfig {
     adminUsername: readEnv('RECEPTIONIST_ADMIN_USERNAME') ?? '',
     adminPasswordHash: readEnv('RECEPTIONIST_ADMIN_PASSWORD_HASH') ?? '',
     sessionSecret: readEnv('RECEPTIONIST_SESSION_SECRET') ?? '',
+    googlePlacesApiKey: readEnv('GOOGLE_PLACES_API_KEY') ?? '',
+    googlePageSpeedApiKey: readEnv('GOOGLE_PAGESPEED_API_KEY') ?? '',
     isProduction: process.env.NODE_ENV === 'production'
   }
 }

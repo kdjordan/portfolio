@@ -1,26 +1,6 @@
 import Database from 'better-sqlite3'
 import { assertReceptionistDbDirectory, getReceptionistConfig } from './config'
 
-export interface BusinessRecord {
-  id: number
-  placeId: string | null
-  name: string
-  phone: string | null
-  website: string | null
-  address: string | null
-  createdAt: string
-  updatedAt: string
-}
-
-export interface LeadRecord {
-  id: number
-  businessId: number
-  stage: string
-  ownerNotes: string | null
-  createdAt: string
-  updatedAt: string
-}
-
 let connection: Database.Database | undefined
 
 export function getReceptionistDb(): Database.Database {
@@ -89,100 +69,40 @@ export function runMigrations(db: Database.Database): void {
     CREATE INDEX IF NOT EXISTS idx_businesses_place_id ON businesses(place_id);
     CREATE INDEX IF NOT EXISTS idx_leads_stage ON leads(stage);
   `)
+
+  migration(2, 'stage_1b_1c_territories', `
+    ALTER TABLE businesses ADD COLUMN rating REAL;
+    ALTER TABLE businesses ADD COLUMN reviews_count INTEGER;
+    ALTER TABLE businesses ADD COLUMN has_site INTEGER NOT NULL DEFAULT 0;
+    ALTER TABLE businesses ADD COLUMN lat REAL;
+    ALTER TABLE businesses ADD COLUMN lng REAL;
+    ALTER TABLE businesses ADD COLUMN category TEXT;
+    ALTER TABLE businesses ADD COLUMN site_score INTEGER;
+    ALTER TABLE businesses ADD COLUMN scored_at TEXT;
+    ALTER TABLE businesses ADD COLUMN pagespeed_json TEXT;
+
+    CREATE TABLE IF NOT EXISTS territories (
+      id INTEGER PRIMARY KEY,
+      vertical TEXT NOT NULL,
+      metro TEXT NOT NULL,
+      created_at TEXT NOT NULL DEFAULT (datetime('now')),
+      last_run_at TEXT,
+      UNIQUE (vertical, metro)
+    );
+
+    CREATE INDEX IF NOT EXISTS idx_businesses_has_site ON businesses(has_site);
+  `)
 }
 
-export const receptionistRepository = {
-  health() {
-    const db = getReceptionistDb()
-    const migration = db
-      .prepare('SELECT id, name, applied_at as appliedAt FROM schema_migrations ORDER BY id DESC LIMIT 1')
-      .get()
+export function getSchemaStatus() {
+  const db = getReceptionistDb()
+  const migration = db
+    .prepare('SELECT id, name, applied_at as appliedAt FROM schema_migrations ORDER BY id DESC LIMIT 1')
+    .get()
 
-    return {
-      ok: true,
-      dbPath: getReceptionistConfig().dbPath,
-      migration
-    }
-  },
-
-  createBusiness(input: {
-    placeId?: string | null
-    name: string
-    phone?: string | null
-    website?: string | null
-    address?: string | null
-  }): BusinessRecord {
-    const db = getReceptionistDb()
-    const result = db
-      .prepare(`
-        INSERT INTO businesses (place_id, name, phone, website, address)
-        VALUES (@placeId, @name, @phone, @website, @address)
-      `)
-      .run({
-        placeId: input.placeId ?? null,
-        name: input.name,
-        phone: input.phone ?? null,
-        website: input.website ?? null,
-        address: input.address ?? null
-      })
-
-    return this.getBusinessById(Number(result.lastInsertRowid))!
-  },
-
-  getBusinessById(id: number): BusinessRecord | null {
-    const row = getReceptionistDb()
-      .prepare(`
-        SELECT
-          id,
-          place_id as placeId,
-          name,
-          phone,
-          website,
-          address,
-          created_at as createdAt,
-          updated_at as updatedAt
-        FROM businesses
-        WHERE id = ?
-      `)
-      .get(id) as BusinessRecord | undefined
-
-    return row ?? null
-  },
-
-  createLead(input: {
-    businessId: number
-    stage?: string
-    ownerNotes?: string | null
-  }): LeadRecord {
-    const result = getReceptionistDb()
-      .prepare(`
-        INSERT INTO leads (business_id, stage, owner_notes)
-        VALUES (@businessId, @stage, @ownerNotes)
-      `)
-      .run({
-        businessId: input.businessId,
-        stage: input.stage ?? 'sourced',
-        ownerNotes: input.ownerNotes ?? null
-      })
-
-    return this.getLeadById(Number(result.lastInsertRowid))!
-  },
-
-  getLeadById(id: number): LeadRecord | null {
-    const row = getReceptionistDb()
-      .prepare(`
-        SELECT
-          id,
-          business_id as businessId,
-          stage,
-          owner_notes as ownerNotes,
-          created_at as createdAt,
-          updated_at as updatedAt
-        FROM leads
-        WHERE id = ?
-      `)
-      .get(id) as LeadRecord | undefined
-
-    return row ?? null
+  return {
+    ok: true,
+    dbPath: getReceptionistConfig().dbPath,
+    migration
   }
 }

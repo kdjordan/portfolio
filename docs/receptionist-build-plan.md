@@ -34,16 +34,19 @@ Exit: kevinjordan.dev served from Hetzner, output indistinguishable from the Amp
 
 The reusable asset. All new surface lives behind `/admin`; nothing changes the public site.
 
+**Go-to-market (consult-first):** the lead engine feeds a paid **$100 / 30-min consult**, not a voice-agent sale. The consult forks — recommend self-serve third-party AI tools, or upsell a custom build/retainer. The AI Receptionist (Stage 3) is **demand-gated**: built only against a paying custom-build Client. → ADR-0004
+
 - **Console auth:** in-app password + sealed httpOnly session cookie (`nuxt-auth-utils`, or ~30 lines hand-rolled with H3 cookie helpers + a secret). Server middleware guards `/admin` + `/api/admin/*`. ⚠️ `nuxt-auth-utils` is a new dep → run the install age-gate/GuardDog review first.
 - **DB:** `better-sqlite3` on the Coolify volume (**mounted and writable at `/app/data`** as of Stage 0). Thin data-access layer so a later Postgres swap (multi-tenant) is contained.
-- **Lead source:** Google Places API (Text/Nearby Search → Place Details). Free at pilot volume (~5k Pro / 10k Essentials free calls/mo; a batch is hundreds). Store `place_id` permanently + our derived fields; re-fetch details on demand (Google's ToS limits caching most fields >30 days; `place_id` exempt).
+- **Lead source:** Google Places API (Text/Nearby Search → Place Details). Searches are driven by saved **territories** (vertical + metro) managed in the Console — never hardcoded; supply is thin and uneven across the Willamette Valley metros (Eugene, Springfield, Salem, Portland). Free at pilot volume (~5k Pro / 10k Essentials free calls/mo; a batch is hundreds). Store `place_id` permanently + our derived fields; re-fetch details on demand (Google's ToS limits caching most fields >30 days; `place_id` exempt).
 - **Site scoring:** `no_site` straight from Places (no `website` field) — the strongest signal. For Businesses *with* a site, PageSpeed Insights API (free) → `bad_site`.
 - **Pipeline board:** stages sourced → scored → hook_sent → replied → consult → live → churned.
 - **Data model (minimal):**
-  - `businesses` (place_id, name, phone, website, rating, reviews_count, has_site, site_score, contact_email, address, ...)
+  - `territories` (vertical, metro, last_run_at) — saved searches managed in the Console
+  - `businesses` (place_id, name, phone, website, rating, reviews_count, has_site, lat, lng, category, site_score, scored_at, address, ...)
   - `leads` (business_id, stage, owner_notes, timestamps)
 
-Exit: pull ~50 Businesses for one vertical+geo, see who's missing/weak online, track them on the board.
+Exit: save a territory, pull ~50 Businesses for it, see who's missing/weak online, track them on the board.
 
 ---
 
@@ -63,7 +66,7 @@ Exit: send a small batch, vanity pages live, replies in your inbox, demo-views l
 
 ## Stage 3 — The product (Phase 3: voice agent, configured not trained)
 
-Separate Python service; lighter-specced here (pilots = market research, per roadmap).
+**Demand-gated (ADR-0004):** build this only once a paid consult produces a Client who wants a custom build. Not on spec. Separate Python service; lighter-specced here (pilots = market research, per roadmap).
 
 - **Voice core:** Pipecat + Deepgram (STT) + Cartesia (TTS) + Claude, its own container. Note: a live **FreeSWITCH telecom edge already runs on the `sip-reasoner` box (5.161.237.218)** serving sip/demo.telcoos.io — the SIP/DID path likely lives near it, not on the portfolio's `telcoos-prod` box. Decide placement when building this stage.
 - **Dedicated number** per Client via wholesale rails — never their main line; their line forwards to it, reversibly, on their terms.
