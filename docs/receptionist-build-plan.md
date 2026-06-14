@@ -17,12 +17,12 @@ Goal: identical public site, new host, zero SEO/traffic regression. No reception
 - **Cutover (Cloudflare):** test on a staging hostname/IP first; diff prerendered HTML, all routes, the `/work` redirect, sitemap, robots. Then flip the origin record. Propagation is instant (edge IP unchanged). **Keep Amplify warm ~48h** as one-click rollback.
 - **Verify before declaring done:** homepage + blog render, redirects intact, sitemap served, Core Web Vitals stable, Search Console shows no crawl errors, traffic steady for a few days.
 
-**Status (2026-06-13): technically DONE, baking.** Live on Hetzner/Coolify via Cloudflare, output byte-equivalent to Amplify. PR #23 (`migrate-to-hetzner-node-ssr`). Amplify kept warm ~48h as rollback.
+**Status (2026-06-14): DONE, baking.** Live on Hetzner/Coolify via Cloudflare, output byte-equivalent to Amplify. PR #23 (`migrate-to-hetzner-node-ssr`) **merged**; Coolify now **auto-deploys from `main`**. Cloudflare SSL at **Full (strict)**. Amplify kept warm ~48h as rollback.
 - **Host:** Coolify app `kj-portfolio` (uuid `h4ow80os4scco4k0osscw44w`) on the box **`telcoos-prod` = 178.156.251.139** (Traefik on 80/443, hostname routing). The candidate box `sip-reasoner` (5.161.237.218) was **deliberately rejected** — it's a live FreeSWITCH telecom edge (nginx + certbot certs for sip/demo.telcoos.io, no Docker); Coolify there would have broken its certs/SIP firewall.
-- **Persistent volume:** deferred (Coolify's public API didn't expose storage cleanly) → **provision in the Coolify UI as the first Stage 1 task**, before the sqlite DB exists.
+- **Persistent volume:** **mounted and writable at `/app/data`** (Coolify UI). Ready for the Stage 1 sqlite DB — no longer a blocker.
 - **Runbook:** `docs/stage-0-cutover-runbook.md` (incl. rollback DNS values).
 
-Outstanding before the gate fully clears: (1) flip Cloudflare SSL → **Full (strict)**; (2) merge PR #23, then point Coolify at `main` for push-to-deploy; (3) monitor ~48h — Search Console clean + traffic/CWV steady. (3) is the only part not yet verifiable.
+Outstanding before the gate fully clears: **only the ~48h bake/monitoring** — Search Console clean + traffic/CWV steady. (Cloudflare Full (strict), PR #23 merge, Coolify push-to-deploy from `main`, and the `/app/data` volume are all done.)
 
 Exit: kevinjordan.dev served from Hetzner, output indistinguishable from the Amplify version, rankings/traffic unchanged.
 
@@ -33,7 +33,7 @@ Exit: kevinjordan.dev served from Hetzner, output indistinguishable from the Amp
 The reusable asset. All new surface lives behind `/admin`; nothing changes the public site.
 
 - **Console auth:** in-app password + sealed httpOnly session cookie (`nuxt-auth-utils`, or ~30 lines hand-rolled with H3 cookie helpers + a secret). Server middleware guards `/admin` + `/api/admin/*`. ⚠️ `nuxt-auth-utils` is a new dep → run the install age-gate/GuardDog review first.
-- **DB:** `better-sqlite3` on the Coolify volume. **First task: provision the persistent volume in the Coolify UI** (deferred from Stage 0). Thin data-access layer so a later Postgres swap (multi-tenant) is contained.
+- **DB:** `better-sqlite3` on the Coolify volume (**mounted and writable at `/app/data`** as of Stage 0). Thin data-access layer so a later Postgres swap (multi-tenant) is contained.
 - **Lead source:** Google Places API (Text/Nearby Search → Place Details). Free at pilot volume (~5k Pro / 10k Essentials free calls/mo; a batch is hundreds). Store `place_id` permanently + our derived fields; re-fetch details on demand (Google's ToS limits caching most fields >30 days; `place_id` exempt).
 - **Site scoring:** `no_site` straight from Places (no `website` field) — the strongest signal. For Businesses *with* a site, PageSpeed Insights API (free) → `bad_site`.
 - **Pipeline board:** stages sourced → scored → hook_sent → replied → consult → live → churned.
