@@ -10,7 +10,10 @@ export default defineNuxtConfig({
     // output is identical to the old Amplify build. Everything else is
     // served by the Node server.
     '/': { prerender: true },
-    '/blog/**': { prerender: true }
+    '/blog/**': { prerender: true },
+    '/admin': { prerender: false },
+    '/admin/**': { prerender: false },
+    '/api/admin/**': { prerender: false }
   },
   nitro: {
     preset: 'node-server',

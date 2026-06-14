@@ -10,7 +10,7 @@ const links = [
   },
   {
     name: 'X',
-    href: 'https://x.com/',
+    href: 'https://x.com/kdjordan_io',
   },
 ]
 </script>
@@ -34,10 +34,10 @@ const links = [
     <!-- Email CTA -->
     <div class="mb-12">
       <a
-        href="mailto:k.dean.jordan@gmail.com"
+        href="mailto:kevin@kevinjordan.dev"
         class="email-cta inline-block font-mono text-body text-accent border border-accent px-8 py-4 hover:bg-accent hover:text-bg-primary transition-all duration-smooth"
       >
-        k.dean.jordan@gmail.com
+        kevin@kevinjordan.dev
       </a>
     </div>
 
