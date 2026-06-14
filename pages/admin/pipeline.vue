@@ -33,6 +33,12 @@ function rating(value: number | null) {
 function score(value: number | null) {
   return value === null ? '—' : String(value)
 }
+
+// Only link out to http(s) URLs — guards against a javascript:/data: URI in the
+// stored website becoming an XSS sink via :href.
+function siteHref(url: string | null) {
+  return url && /^https?:\/\//i.test(url) ? url : null
+}
 </script>
 
 <template>
@@ -81,8 +87,8 @@ function score(value: number | null) {
             class="border border-rule bg-bg-secondary p-4 transition-colors hover:border-accent"
           >
             <a
-              v-if="card.website"
-              :href="card.website"
+              v-if="siteHref(card.website)"
+              :href="siteHref(card.website)!"
               target="_blank"
               rel="noopener noreferrer"
               class="group/site inline-flex items-baseline gap-1 font-display text-lg font-semibold leading-tight transition-colors hover:text-accent"

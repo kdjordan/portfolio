@@ -89,7 +89,9 @@ export async function searchPlaces(query: string): Promise<NormalizedPlace[]> {
       name: place.displayName?.text ?? '',
       address: place.formattedAddress ?? null,
       phone: place.nationalPhoneNumber ?? null,
-      website: place.websiteUri ?? null,
+      // Only keep http(s) URLs — never store a javascript:/data: URI that would
+      // become an XSS sink when rendered as a link in the Console.
+      website: /^https?:\/\//i.test(place.websiteUri ?? '') ? place.websiteUri! : null,
       rating: place.rating ?? null,
       reviewsCount: place.userRatingCount ?? null,
       lat: place.location?.latitude ?? null,
