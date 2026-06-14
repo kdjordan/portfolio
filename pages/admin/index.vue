@@ -18,7 +18,7 @@ const sections = [
     title: 'Pipeline',
     href: '/admin/pipeline',
     description: 'Sourced → scored → consult → live board for working Leads.',
-    ready: false
+    ready: true
   }
 ]
 
