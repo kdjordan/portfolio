@@ -12,7 +12,7 @@ const sections = [
     title: 'Territories',
     href: '/admin/territories',
     description: 'Saved vertical + metro searches that drive Places ingest.',
-    ready: false
+    ready: true
   },
   {
     title: 'Pipeline',
