@@ -1,6 +1,6 @@
 # Resume — Local Lead Engine (conductor handoff)
 
-**Updated:** 2026-06-15
+**Updated:** 2026-06-15 (Amplify decommissioned)
 **Repo:** `/Users/indiedev/Desktop/code-projects/portfolio` (GitHub `kdjordan/portfolio`, public). **Deploy branch:** `main`.
 **Live:** https://kevinjordan.dev (public site) · https://kevinjordan.dev/admin (Console, login-gated)
 **For:** the next conductor chat picking up **Stage 2** (vanity-page hook + embedded AI chat).
@@ -58,6 +58,8 @@ Agreed conditions on the ladder: **raise prices on a trigger** (Kevin's rule: "~
 - **Auto-deploy:** push to `main` → GitHub→Coolify webhook → build+deploy. Manual Redeploy is the fallback.
 - DB on a Coolify volume at `/app/data/receptionist.sqlite`. ⚠️ **No offsite backup yet** — fine through Stages 1–2; mandatory before Stage 3 (call records/creds).
 - **Env in Coolify:** `RECEPTIONIST_*` (db path, admin user, argon2 hash, session secret), `GOOGLE_PLACES_API_KEY`, `GOOGLE_PAGESPEED_API_KEY`. Stage 2 will add `ANTHROPIC_API_KEY`.
+
+**AWS Amplify:** fully decommissioned 2026-06-15 — old SSG host + all AWS resources deleted, **no rollback target remains**. Live origin is 100% the Coolify Nitro server (verified: server-only `/api/admin/health` 401, `/admin` 302 — the SSG never had these). Cloudflare zone is clean (8 records: A→box, www CNAME, CF Email Routing MX+DKIM+SPF, google-site-verification), no `*.amplifyapp.com`/ACM leftovers. ⚠️ **No DMARC record yet** — revisit SPF/DKIM/DMARC before the Stage 2 Gmail-API outreach sub-stage or cold email will land in spam.
 
 **Google Cloud:** project `kj-ai-leads`, two IP-locked keys (Places New + PageSpeed) restricted to box IP. Places **Text Search Enterprise SKU = $35/1k requests, first 1,000/mo free** → effectively free at pilot volume (ingest is per-request, ≤20 businesses/request, no pagination). PageSpeed is free. See memory `google-api-keys`.
 
