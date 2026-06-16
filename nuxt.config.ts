@@ -11,8 +11,10 @@ export default defineNuxtConfig({
     // served by the Node server.
     '/': { prerender: true },
     '/blog/**': { prerender: true },
-    '/admin': { prerender: false },
-    '/admin/**': { prerender: false },
+    // Private console — never index. noindex lets Google drop any admin URLs
+    // it already discovered; the sitemap exclude below stops advertising them.
+    '/admin': { prerender: false, headers: { 'X-Robots-Tag': 'noindex, nofollow' } },
+    '/admin/**': { prerender: false, headers: { 'X-Robots-Tag': 'noindex, nofollow' } },
     '/api/admin/**': { prerender: false }
   },
   nitro: {
@@ -33,6 +35,11 @@ export default defineNuxtConfig({
 
   site: {
     url: 'https://kevinjordan.dev',
+  },
+
+  sitemap: {
+    // Keep the private console out of the public sitemap.
+    exclude: ['/admin', '/admin/**']
   },
 
   app: {
