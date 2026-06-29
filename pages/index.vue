@@ -149,6 +149,12 @@ const services = [
 
 const dispatches = [
   {
+    date: 'JUN 29 / 2026 / ESSAY',
+    title: 'The Best AI Projects Start With a Workflow Everyone Hates',
+    description: 'The best AI projects do not start with models or chatbots. They start with expensive manual workflows and one bottleneck worth replacing.',
+    href: '/blog/best-ai-projects-start-with-hated-workflows'
+  },
+  {
     date: 'MAY 20 / 2026 / ESSAY',
     title: "AI Dev SF: Everyone's Building the Same Thing",
     description: 'The context layer is becoming critical enterprise infrastructure. The hard questions now are reliability, portability, and whether your agent stack can survive a provider switch.',
@@ -159,12 +165,6 @@ const dispatches = [
     title: 'Claude Code: What I Actually Use After a Year',
     description: "A practitioner's guide: the commands, shortcuts, and workflows that survived 12 months of daily use. No fluff, just what works.",
     href: '/blog/claude-code-guide-what-i-actually-use'
-  },
-  {
-    date: 'MAR 24 / 2026 / FIELD NOTES',
-    title: 'AWC Miami: The Two Camps of Telecom',
-    description: 'A week at the wholesale telecom circuit talking to carriers about AI. The industry is splitting into two camps, and one is about to get left behind.',
-    href: '/blog/awc-miami-ai-disruption-telecom'
   }
 ]
 </script>
