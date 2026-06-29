@@ -16,7 +16,7 @@ const sameAs = [
   'https://x.com/kdjordan_io'
 ]
 
-const auditMailto = 'mailto:kevin@kevinjordan.dev?subject=Free%2015-minute%20AI%20workflow%20audit&body=Hey%20Kevin%2C%0A%0AI%20have%20a%20workflow%20that%20might%20be%20a%20good%20fit%20for%20automation.%0A%0AWorkflow%3A%0ACurrent%20manual%20process%3A%0AApprox.%20hours%20lost%20per%20week%3A%0AWhat%20a%20win%20would%20look%20like%3A%0A'
+const auditHref = '/ai-workflow-audit'
 
 useSeoMeta({
   title: siteTitle,
@@ -231,7 +231,7 @@ const dispatches = [
             infrastructure that keeps them running when the demo is over.
           </p>
           <div class="ctas">
-            <a class="btn btn--primary" :href="auditMailto">Free 15-Min AI Audit <span class="arr">&rarr;</span></a>
+            <a class="btn btn--primary" :href="auditHref">Free 15-Min AI Audit <span class="arr">&rarr;</span></a>
             <a class="btn" href="#work">See Proof <span class="arr">&darr;</span></a>
           </div>
         </div>
@@ -385,7 +385,7 @@ const dispatches = [
               Free 15-minute AI workflow audit. No slide deck. One painful process,
               a quick fit check, and a practical next step.
             </p>
-            <a class="email" :href="auditMailto">
+            <a class="email" :href="auditHref">
               Book the free audit <span class="arr">&nearr;</span>
             </a>
           </div>
