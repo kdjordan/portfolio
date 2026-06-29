@@ -206,7 +206,7 @@ const dispatches = [
 
           <div class="vital">
             <div class="label">AVAILABILITY</div>
-            <div class="v availability">ACCEPTING WORK / Q3 2026</div>
+            <div class="v availability">ACCEPTING WORK / AI WORKFLOW BUILDS</div>
           </div>
 
           <div class="vital">
