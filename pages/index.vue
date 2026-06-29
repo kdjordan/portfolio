@@ -16,6 +16,8 @@ const sameAs = [
   'https://x.com/kdjordan_io'
 ]
 
+const auditMailto = 'mailto:kevin@kevinjordan.dev?subject=Free%2015-minute%20AI%20workflow%20audit&body=Hey%20Kevin%2C%0A%0AI%20have%20a%20workflow%20that%20might%20be%20a%20good%20fit%20for%20automation.%0A%0AWorkflow%3A%0ACurrent%20manual%20process%3A%0AApprox.%20hours%20lost%20per%20week%3A%0AWhat%20a%20win%20would%20look%20like%3A%0A'
+
 useSeoMeta({
   title: siteTitle,
   description: siteDescription,
@@ -98,77 +100,50 @@ useHead({
 
 const work = [
   {
-    name: 'MockDeskAI',
-    description: 'AI-powered design proofing for decorated apparel.',
-    domain: 'Apparel / AI proof',
-    stack: 'React 19 / Vite / Fastify / Drizzle',
-    status: 'SHIPPING',
-    tone: 'signal',
-    href: 'https://mockdeskai.com'
-  },
-  {
-    name: 'VOIPAccelerator',
-    description: 'Operator tool for LERG, rate decks, NANP routing.',
-    domain: 'Telecom / Ops',
-    stack: 'Vue 3 / Hono / Postgres / Hetzner',
-    status: 'PRODUCTION',
-    tone: 'ink',
-    href: 'https://voipaccelerator.com'
-  },
-  {
-    name: 'ReconcileCDR',
-    description: 'Web-based CDR reconciliation. Two files, one truth.',
-    domain: 'Telecom / Data',
-    stack: 'Next.js 16 / Drizzle / BullMQ / SQLite',
-    status: 'PRODUCTION',
-    tone: 'ink',
-    href: 'https://reconcilecdr.com'
-  },
-  {
-    name: 'SIP Reasoner',
-    description: 'AI answering pipeline for rejected inbound SIP.',
-    domain: 'Telecom / AI',
-    stack: 'FreeSWITCH / Python / uv / SIP',
-    status: 'PHASE 1',
+    name: 'Apparel Proofing System',
+    description: 'Custom workflow for customer signoff proofs: garment templates, artwork placement, and production-artist review instead of hours of manual setup.',
+    domain: 'Apparel / Ops',
+    stack: '4-8 hr manual path -> 15-30 min target',
+    status: 'PILOT',
     tone: 'signal',
     href: null
   },
   {
-    name: 'TelcoOS',
-    description: 'Customer-hosted AI operator workspace, streamed.',
-    domain: 'AI / Platform',
-    stack: 'React 18 / Express / SQLite / Hetzner',
-    status: 'PRODUCTION',
+    name: 'Telecom Operator Tools',
+    description: 'Rate-deck analysis, CDR reconciliation, routing intelligence, and carrier operations software built from real wholesale telecom pain.',
+    domain: 'Telecom / Data',
+    stack: 'VOIPAccelerator / ReconcileCDR / TelcoOS',
+    status: 'LIVE',
     tone: 'ink',
-    href: 'https://telcoos.io'
+    href: 'https://voipaccelerator.com'
   },
   {
-    name: 'GRHIIT',
-    description: 'Swift iOS app for the GRHIIT method.',
-    domain: 'Fitness / iOS',
-    stack: 'Swift / iOS',
-    status: 'PRE-LAUNCH',
-    tone: 'muted',
-    href: 'https://grhiit.com'
+    name: 'Always-On Agent Infrastructure',
+    description: 'Persistent AI assistant stack for research, email workflows, memory, scheduled work, tool access, and practical daily operating leverage.',
+    domain: 'AI / Systems',
+    stack: 'Hermes / agents / memory / automations',
+    status: 'RUNNING',
+    tone: 'signal',
+    href: null
   }
 ]
 
 const services = [
   {
-    title: 'AI Agent Systems',
-    description: 'Multi-model orchestration, persistent memory, tool integration, production monitoring. Agents that earn their keep.'
+    title: 'Free 15-Minute AI Workflow Audit',
+    description: 'Bring one manual workflow your team hates. I will tell you if it is a good automation candidate, where the ROI might be, and what I would build first.'
   },
   {
-    title: 'AI Strategy',
-    description: "Where AI fits and where it does not. Practical roadmaps grounded in what your team can actually ship. No slide decks."
+    title: 'Workflow Diagnostic',
+    description: 'Map the bottleneck, quantify the cost, define the first useful version, and separate real leverage from AI theater before anyone writes production code.'
   },
   {
-    title: 'Automation & Infrastructure',
-    description: 'Pipelines, monitoring, health checks, failovers, observability. The boring infra that keeps the exciting parts alive.'
+    title: 'AI Workflow Sprint',
+    description: 'Build the smallest working system that removes hours from a real process: ingestion, automation, human review, reporting, and handoff into your existing operation.'
   },
   {
-    title: 'Product Development',
-    description: 'Full-stack, concept to production. Vue, React, Node, Python, Postgres, SQLite, AWS, Hetzner, Coolify. 25+ years of shipping working software.'
+    title: 'Fractional AI / Technical Partner',
+    description: 'Ongoing support for teams that need a practical AI operator in the room: systems maintenance, new workflow discovery, vendor sanity checks, and roadmap execution.'
   }
 ]
 
@@ -251,13 +226,13 @@ const dispatches = [
             that <em>survive real work.</em>
           </h1>
           <p class="abstract">
-            I turn messy business operations into production software: agent systems,
-            telecom analytics, internal command centers, and the infrastructure that
-            keeps them running when the demo is over.
+            I find expensive manual workflows and replace them with production software:
+            AI-assisted systems, telecom analytics, internal command centers, and the
+            infrastructure that keeps them running when the demo is over.
           </p>
           <div class="ctas">
-            <a class="btn btn--primary" href="#work">View Work <span class="arr">&darr;</span></a>
-            <a class="btn" href="#contact">Get in Touch <span class="arr">&rarr;</span></a>
+            <a class="btn btn--primary" :href="auditMailto">Free 15-Min AI Audit <span class="arr">&rarr;</span></a>
+            <a class="btn" href="#work">See Proof <span class="arr">&darr;</span></a>
           </div>
         </div>
       </section>
@@ -279,9 +254,9 @@ const dispatches = [
           <div class="sub">zero -> market</div>
         </div>
         <div class="stat">
-          <div class="label">SYSTEMS LIVE</div>
-          <div class="n">06</div>
-          <div class="sub">see section 02</div>
+          <div class="label">FIRST STEP</div>
+          <div class="n">15m</div>
+          <div class="sub">workflow audit</div>
         </div>
       </section>
 
@@ -299,26 +274,26 @@ const dispatches = [
             Leading U.S. operations at
             <a class="link" href="https://bts.io" target="_blank" rel="noopener noreferrer">BTS</a>,
             one of the largest wholesale VoIP carriers in the world. Simultaneously building
-            autonomous AI agent systems: multi-model orchestration, persistent memory,
-            automated research pipelines, and production monitoring. Human oversight at
-            the decision points that matter.
+            AI systems for operators with messy, expensive workflows: apparel proofing,
+            telecom analytics, persistent agents, and internal tools that create measurable
+            leverage instead of another demo.
           </p>
         </div>
         <div class="now-tiles">
           <div class="now-tile">
             <div class="n">[01]</div>
-            <div class="t">AI agent infrastructure</div>
-            <div class="d">Orchestration, memory layer, tool routing, observability: built for production, not demos.</div>
+            <div class="t">AI workflow replacement</div>
+            <div class="d">Find the manual process, quantify the drag, and build the smallest system that removes hours.</div>
           </div>
           <div class="now-tile">
             <div class="n">[02]</div>
             <div class="t">Telecom operations tooling</div>
-            <div class="d">Rate analysis, routing optimization, CDR reconciliation, internal command centers for VoIP carriers.</div>
+            <div class="d">Rate analysis, routing optimization, CDR reconciliation, and internal command centers for VoIP carriers.</div>
           </div>
           <div class="now-tile">
             <div class="n">[03]</div>
-            <div class="t">Content and research pipelines</div>
-            <div class="d">Automated research, dispatch publishing, ops content infrastructure running quietly in the background.</div>
+            <div class="t">Persistent agent infrastructure</div>
+            <div class="d">Research, email, memory, scheduling, and tool access running quietly in the background.</div>
           </div>
         </div>
       </section>
@@ -326,10 +301,10 @@ const dispatches = [
       <section id="work" class="section">
         <div class="sechead">
           <div>
-            <div class="label">&sect;02 / SELECTED WORK</div>
-            <h2>Built for <em>real workflows.</em></h2>
+            <div class="label">&sect;02 / PROOF SYSTEMS</div>
+            <h2>Selected systems, <em>not shelfware.</em></h2>
           </div>
-          <div class="meta">06 PROJECTS / 04 DOMAINS</div>
+          <div class="meta">03 SYSTEMS / 01 OFFER</div>
         </div>
         <hr>
         <div class="work-scroll">
@@ -339,7 +314,7 @@ const dispatches = [
                 <th class="num">No.</th>
                 <th>System</th>
                 <th>Domain</th>
-                <th>Stack</th>
+                <th>Proof</th>
                 <th>Status</th>
               </tr>
             </thead>
@@ -371,7 +346,7 @@ const dispatches = [
         <div class="twoup">
           <div id="services">
             <div class="label">&sect;03 / SERVICES</div>
-            <h2 class="compact-h">What I do, <em>when hired.</em></h2>
+            <h2 class="compact-h">Start with <em>one bottleneck.</em></h2>
             <div v-for="(service, index) in services" :key="service.title" class="svc-row">
               <div class="num">{{ String(index + 1).padStart(2, '0') }}</div>
               <div>
@@ -405,9 +380,13 @@ const dispatches = [
         <div class="footer-top">
           <div>
             <div class="label">&sect;FIN / CONTACT</div>
-            <div class="cta-h">Let's build <em>something.</em></div>
-            <a class="email" href="mailto:kevin@kevinjordan.dev">
-              kevin@kevinjordan.dev <span class="arr">&nearr;</span>
+            <div class="cta-h">Bring me one <em>workflow.</em></div>
+            <p class="footer-copy">
+              Free 15-minute AI workflow audit. No slide deck. One painful process,
+              a quick fit check, and a practical next step.
+            </p>
+            <a class="email" :href="auditMailto">
+              Book the free audit <span class="arr">&nearr;</span>
             </a>
           </div>
           <div class="elsewhere">
@@ -1001,6 +980,15 @@ table.work .stack {
   margin: 8px 0 0;
 }
 
+.footer-copy {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  line-height: 1.55;
+  max-width: 620px;
+  margin: 16px 0 0;
+  color: var(--ink);
+}
+
 .email {
   font-family: var(--font-mono);
   font-size: 18px;
@@ -1255,7 +1243,7 @@ table.work .stack {
   }
 
   table.work tbody td:nth-child(4)::before {
-    content: "Stack";
+    content: "Proof";
   }
 
   table.work tbody td:nth-child(5)::before {
