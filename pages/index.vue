@@ -147,26 +147,29 @@ const services = [
   }
 ]
 
-const dispatches = [
-  {
-    date: 'JUN 29 / 2026 / ESSAY',
-    title: 'The Best AI Projects Start With a Workflow Everyone Hates',
-    description: 'The best AI projects do not start with models or chatbots. They start with expensive manual workflows and one bottleneck worth replacing.',
-    href: '/blog/best-ai-projects-start-with-hated-workflows'
-  },
-  {
-    date: 'MAY 20 / 2026 / ESSAY',
-    title: "AI Dev SF: Everyone's Building the Same Thing",
-    description: 'The context layer is becoming critical enterprise infrastructure. The hard questions now are reliability, portability, and whether your agent stack can survive a provider switch.',
-    href: '/blog/ai-dev-sf-everyones-building-the-same-thing'
-  },
-  {
-    date: 'APR 03 / 2026 / GUIDE',
-    title: 'Claude Code: What I Actually Use After a Year',
-    description: "A practitioner's guide: the commands, shortcuts, and workflows that survived 12 months of daily use. No fluff, just what works.",
-    href: '/blog/claude-code-guide-what-i-actually-use'
-  }
-]
+const { data: dispatches } = await useAsyncData('home-dispatches', () => {
+  return queryContent('blog')
+    .only(['_path', 'title', 'description', 'date', 'tags'])
+    .sort({ date: -1 })
+    .limit(3)
+    .find()
+})
+
+const formatDispatchDate = (date: string, tags?: string[]) => {
+  const parsed = new Date(date)
+  const dateParts = parsed.toLocaleDateString('en-US', {
+    timeZone: 'UTC',
+    month: 'short',
+    day: '2-digit',
+    year: 'numeric'
+  }).replace(',', '').toUpperCase()
+
+  const primaryTag = tags?.[0]?.toUpperCase() || 'ESSAY'
+
+  const [month, day, year] = dateParts.split(' ')
+
+  return `${month} ${day} / ${year} / ${primaryTag}`
+}
 </script>
 
 <template>
@@ -361,11 +364,11 @@ const dispatches = [
             <h2 class="compact-h">Recent <em>writing.</em></h2>
             <NuxtLink
               v-for="dispatch in dispatches"
-              :key="dispatch.href"
-              :to="dispatch.href"
+              :key="dispatch._path"
+              :to="dispatch._path"
               class="dispatch"
             >
-              <span class="d-date">{{ dispatch.date }}</span>
+              <span class="d-date">{{ formatDispatchDate(dispatch.date, dispatch.tags) }}</span>
               <span class="d-title">{{ dispatch.title }}</span>
               <span class="d-dek">{{ dispatch.description }}</span>
             </NuxtLink>
