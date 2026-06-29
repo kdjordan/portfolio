@@ -357,13 +357,14 @@ hr {
 }
 
 .btn--primary {
-  background: var(--ink);
+  background: var(--signal);
+  border-color: var(--signal);
   color: var(--paper);
 }
 
 .btn--primary:hover {
-  background: var(--signal);
-  border-color: var(--signal);
+  background: var(--ink);
+  border-color: var(--ink);
 }
 
 .btn:hover {
