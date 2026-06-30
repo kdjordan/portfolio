@@ -5,9 +5,9 @@ definePageMeta({
 
 const siteUrl = 'https://kevinjordan.dev'
 const pageUrl = `${siteUrl}/ai-workflow-audit`
-const pageTitle = 'Free 15-Minute AI Workflow Audit — Kevin Jordan'
-const pageDescription = 'Bring one manual workflow your team hates. Kevin Jordan will tell you whether it is a real automation candidate, what to build first, and where the ROI might be.'
-const auditMailto = 'mailto:kevin@kevinjordan.dev?subject=Free%2015-minute%20AI%20workflow%20audit&body=Hey%20Kevin%2C%0A%0AI%20have%20a%20workflow%20that%20might%20be%20a%20good%20fit%20for%20automation.%0A%0AWorkflow%3A%0ACurrent%20manual%20process%3A%0AApprox.%20hours%20lost%20per%20week%3A%0AWhat%20a%20win%20would%20look%20like%3A%0A'
+const pageTitle = 'Broken Workflow Fit Check — Kevin Jordan'
+const pageDescription = 'Bring one workflow your team has normalized but probably should not. Kevin Jordan will tell you whether it is worth building around, what to build first, and where the ROI might be.'
+const auditMailto = 'mailto:kevin@kevinjordan.dev?subject=Broken%20workflow%20fit%20check&body=Hey%20Kevin%2C%0A%0AI%20have%20a%20workflow%20my%20team%20has%20normalized%20but%20probably%20should%20not.%0A%0AWorkflow%3A%0ACurrent%20manual%20process%20or%20workaround%3A%0AApprox.%20hours%2C%20money%2C%20risk%2C%20or%20rework%20lost%3A%0AWho%20owns%20it%20today%3A%0AWhat%20a%20win%20would%20look%20like%3A%0A'
 
 useSeoMeta({
   title: pageTitle,
@@ -50,8 +50,8 @@ useHead({
         <div class="identity">
           <div class="label">OFFER</div>
           <div class="mark">15<span class="dash">m</span></div>
-          <div class="name">AI Workflow Audit</div>
-          <div class="role">Free / bounded / practical</div>
+          <div class="name">Broken Workflow Fit Check</div>
+          <div class="role">Free / bounded / no theater</div>
 
           <div class="vital">
             <div class="label">SEND TO</div>
@@ -61,7 +61,7 @@ useHead({
           <div class="vital">
             <div class="label">BEST FIT</div>
             <div class="listing">
-              Manual workflows<br>
+              Normalized workarounds<br>
               Repetitive ops<br>
               Messy inputs<br>
               Clear business pain
@@ -72,17 +72,17 @@ useHead({
         <div class="body">
           <div class="label">ABSTRACT</div>
           <h1 class="headline">
-            Bring me one workflow<br>
-            your team <em>hates.</em>
+            Bring me the workflow<br>
+            your team <em>normalized.</em>
           </h1>
           <p class="abstract">
-            I will tell you whether it looks like a real automation candidate,
-            what I would build first, and where the ROI might be. No slide deck.
-            No vague AI transformation talk. One bottleneck and a practical next step.
+            The weird part is not that the workflow is broken. The weird part is that
+            everyone got used to it. Send me the workaround, queue, exception path, or
+            handoff your team keeps tolerating. I will tell you whether it is worth building around.
           </p>
           <div class="ctas">
             <a class="btn btn--primary" :href="auditMailto">
-              Start the email <span class="arr">&rarr;</span>
+              Send the mess <span class="arr">&rarr;</span>
             </a>
             <NuxtLink class="btn" to="/">
               Back to site <span class="arr">&larr;</span>
@@ -105,12 +105,12 @@ useHead({
         <div class="stat">
           <div class="label">INPUT</div>
           <div class="n">01</div>
-          <div class="sub">painful workflow</div>
+          <div class="sub">normalized mess</div>
         </div>
         <div class="stat">
           <div class="label">OUTPUT</div>
           <div class="n">Y/N</div>
-          <div class="sub">worth automating?</div>
+          <div class="sub">worth building?</div>
         </div>
       </section>
 
@@ -118,7 +118,7 @@ useHead({
         <div class="sechead">
           <div>
             <div class="label">&sect;01 / WHAT TO SEND</div>
-            <h2>Make the bottleneck <em>specific.</em></h2>
+            <h2>Make the mess <em>specific.</em></h2>
           </div>
           <div class="meta">EMAIL TEMPLATE INCLUDED</div>
         </div>
@@ -127,22 +127,22 @@ useHead({
           <div class="row">
             <div class="num">01</div>
             <div>
-              <div class="h">The workflow</div>
-              <div class="d">What your team is doing manually today, in plain English.</div>
+              <div class="h">The normalized mess</div>
+              <div class="d">The process, queue, handoff, spreadsheet, or exception path your team still tolerates.</div>
             </div>
           </div>
           <div class="row">
             <div class="num">02</div>
             <div>
-              <div class="h">The current process</div>
-              <div class="d">Files, tools, handoffs, judgment calls, and the parts everyone complains about.</div>
+              <div class="h">The current workaround</div>
+              <div class="d">Files, tools, handoffs, judgment calls, tribal knowledge, and the parts everyone complains about.</div>
             </div>
           </div>
           <div class="row">
             <div class="num">03</div>
             <div>
-              <div class="h">Approximate time lost</div>
-              <div class="d">Hours per week, per job, or per customer. Rough estimates are enough to start.</div>
+              <div class="h">Approximate leakage</div>
+              <div class="d">Hours, money, rework, risk, delay, or customer friction. Rough estimates are enough to start.</div>
             </div>
           </div>
           <div class="row">
@@ -160,10 +160,10 @@ useHead({
           <div class="label">&sect;FIN / CTA</div>
           <div class="cta-h">Start with the <em>email.</em></div>
           <p class="footer-copy">
-            The button opens a pre-filled email to kevin@kevinjordan.dev with the right subject and prompts.
+            The button opens a pre-filled email to kevin@kevinjordan.dev with the right prompts.
           </p>
           <a class="email" :href="auditMailto">
-            Send workflow for audit <span class="arr">&nearr;</span>
+            Send normalized mess <span class="arr">&nearr;</span>
           </a>
         </div>
       </footer>

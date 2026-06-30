@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const siteUrl = 'https://kevinjordan.dev'
 const pageTitle = 'Blog — Kevin Jordan'
-const pageDescription = 'Thoughts on AI systems, building companies, and shipping products.'
+const pageDescription = 'Dispatches on broken workflows, operator-built AI systems, hidden operational value, and shipping software that survives real work.'
 const ogImage = `${siteUrl}/og-image.png`
 
 useSeoMeta({
@@ -55,7 +55,7 @@ const formatDate = (date: string) => {
           BLOG
         </h1>
         <p class="text-body-lg text-text-secondary max-w-2xl">
-          On AI systems, building companies, and shipping products.
+          On broken workflows, operator-built AI systems, and the mess companies should stop tolerating.
         </p>
       </div>
 

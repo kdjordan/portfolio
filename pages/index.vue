@@ -5,7 +5,7 @@ definePageMeta({
 
 const siteUrl = 'https://kevinjordan.dev'
 const siteTitle = 'Kevin Jordan - Technical Founder, Operator'
-const siteDescription = 'Kevin Jordan builds AI systems and operator tools that survive real work. KDJORDAN LLC - Pacific Northwest.'
+const siteDescription = 'Kevin Jordan builds systems for operational messes that should not still exist. Hidden value, broken workflows, operator-built AI/software.'
 const ogImage = `${siteUrl}/og-image.png`
 const personId = `${siteUrl}/#kevin-jordan`
 const organizationId = `${siteUrl}/#kdjordan-llc`
@@ -60,9 +60,11 @@ useHead({
             worksFor: { '@id': organizationId },
             affiliation: { '@id': organizationId },
             knowsAbout: [
+              'operational workflow automation',
               'AI systems',
               'operator tools',
               'telecom analytics',
+              'hidden operational value',
               'AI agent systems',
               'internal command centers',
               'product development',
@@ -80,7 +82,7 @@ useHead({
             founder: { '@id': personId },
             sameAs,
             areaServed: 'Pacific Northwest',
-            description: 'KDJORDAN LLC builds AI systems, telecom analytics, operator tools, and production software infrastructure.'
+            description: 'KDJORDAN LLC builds AI and software systems for operational messes, hidden value, telecom analytics, workflow automation, and operator tools.'
           },
           {
             '@type': 'WebSite',
@@ -101,17 +103,17 @@ useHead({
 const work = [
   {
     name: 'Apparel Proofing System',
-    description: 'Custom workflow for customer signoff proofs: garment templates, artwork placement, and production-artist review instead of hours of manual setup.',
-    domain: 'Apparel / Ops',
-    stack: '4-8 hr manual path -> 15-30 min target',
+    description: 'A proofing queue everyone learned to tolerate: garment templates, artwork placement, customer signoff, and production-artist review buried in hours of manual setup.',
+    domain: 'Manual Production Bottleneck',
+    stack: '4-8 hr path -> 15-30 min target',
     status: 'PILOT',
     tone: 'signal',
     href: null
   },
   {
     name: 'Telecom Operator Tools',
-    description: 'Rate-deck analysis, CDR reconciliation, routing intelligence, and carrier operations software built from real wholesale telecom pain.',
-    domain: 'Telecom / Data',
+    description: 'Carrier workflows full of rejected flow, rate chaos, CDR disputes, routing exceptions, and data nobody fully trusts until an operator touches it.',
+    domain: 'Operational Waste Streams',
     stack: 'VOIPAccelerator / ReconcileCDR / TelcoOS',
     status: 'LIVE',
     tone: 'ink',
@@ -119,8 +121,8 @@ const work = [
   },
   {
     name: 'Always-On Agent Infrastructure',
-    description: 'Persistent AI assistant stack for research, email workflows, memory, scheduled work, tool access, and practical daily operating leverage.',
-    domain: 'AI / Systems',
+    description: 'Context that used to be scattered across chat, files, email, memory, schedules, and tools, pulled into a persistent operating layer.',
+    domain: 'Context / Leverage',
     stack: 'Hermes / agents / memory / automations',
     status: 'RUNNING',
     tone: 'signal',
@@ -130,20 +132,20 @@ const work = [
 
 const services = [
   {
-    title: 'Free 15-Minute AI Workflow Audit',
-    description: 'Bring one manual workflow your team hates. I will tell you if it is a good automation candidate, where the ROI might be, and what I would build first.'
+    title: 'Broken Workflow Fit Check',
+    description: 'Bring one workflow your team has normalized but probably should not. I will tell you if it is a real automation candidate, where the ROI might be, and what I would build first.'
   },
   {
-    title: 'Workflow Diagnostic',
-    description: 'Map the bottleneck, quantify the cost, define the first useful version, and separate real leverage from AI theater before anyone writes production code.'
+    title: 'Operational Waste Map',
+    description: 'Map the ugly corner: who owns it, what leaks out, what the manual workaround costs, and whether there is hidden value worth building around.'
   },
   {
-    title: 'AI Workflow Sprint',
-    description: 'Build the smallest working system that removes hours from a real process: ingestion, automation, human review, reporting, and handoff into your existing operation.'
+    title: 'Bottleneck-to-System Sprint',
+    description: 'Build the smallest working system around a real process: ingestion, automation, human review, reporting, and handoff into the existing operation.'
   },
   {
-    title: 'Fractional AI / Technical Partner',
-    description: 'Ongoing support for teams that need a practical AI operator in the room: systems maintenance, new workflow discovery, vendor sanity checks, and roadmap execution.'
+    title: 'Operator-Build Partner',
+    description: 'Ongoing support for teams that need someone practical in the room: systems maintenance, new workflow discovery, vendor sanity checks, and roadmap execution.'
   }
 ]
 
@@ -224,17 +226,17 @@ const formatDispatchDate = (date: string, tags?: string[]) => {
         <div class="body">
           <div class="label">ABSTRACT</div>
           <h1 class="headline">
-            I build AI&nbsp;systems<br>
-            and operator tools<br>
-            that <em>survive real work.</em>
+            I build systems for<br>
+            operational messes<br>
+            that <em>should not still exist.</em>
           </h1>
           <p class="abstract">
-            I find expensive manual workflows and replace them with production software:
-            AI-assisted systems, telecom analytics, internal command centers, and the
-            infrastructure that keeps them running when the demo is over.
+            I look for the workflows companies have learned to tolerate: rejected flows,
+            manual exceptions, reconciliation messes, proofing queues, internal handoffs,
+            and data nobody trusts. Then I build software that turns the drag into leverage.
           </p>
           <div class="ctas">
-            <a class="btn btn--primary" :href="auditHref">Free 15-Min AI Audit <span class="arr">&rarr;</span></a>
+            <a class="btn btn--primary" :href="auditHref">Broken Workflow Check <span class="arr">&rarr;</span></a>
             <a class="btn" href="#work">See Proof <span class="arr">&darr;</span></a>
           </div>
         </div>
@@ -263,10 +265,34 @@ const formatDispatchDate = (date: string, tags?: string[]) => {
         </div>
       </section>
 
+      <section class="section thesis">
+        <div class="sechead">
+          <div>
+            <div class="label">&sect;01 / OPERATING THESIS</div>
+            <h2>The weirdest thing about broken workflows is <em>how normal they become.</em></h2>
+          </div>
+          <div class="meta">DIAGNOSE / BUILD / MEASURE</div>
+        </div>
+        <hr>
+        <div class="thesis-grid">
+          <p>
+            At first, everyone knows the process is stupid. Then someone builds a spreadsheet,
+            one experienced person becomes the translation layer, and the business starts
+            depending on the workaround. A few years later nobody calls it broken anymore.
+            They call it how we do it.
+          </p>
+          <p>
+            That is where I look first: not the clean dashboard, not the strategy deck, but
+            the operational corner where time, money, risk, and tribal knowledge are leaking
+            out of the business. Different industries. Same pattern.
+          </p>
+        </div>
+      </section>
+
       <section id="about" class="section">
         <div class="sechead">
           <div>
-            <div class="label">&sect;01 / CURRENTLY</div>
+            <div class="label">&sect;02 / CURRENTLY</div>
             <h2>What's on <em>the bench.</em></h2>
           </div>
           <div class="meta">UPDATED / 2026.05.27</div>
@@ -276,27 +302,26 @@ const formatDispatchDate = (date: string, tags?: string[]) => {
           <p>
             Leading U.S. operations at
             <a class="link" href="https://bts.io" target="_blank" rel="noopener noreferrer">BTS</a>,
-            one of the largest wholesale VoIP carriers in the world. Simultaneously building
-            AI systems for operators with messy, expensive workflows: apparel proofing,
-            telecom analytics, persistent agents, and internal tools that create measurable
-            leverage instead of another demo.
+            one of the largest wholesale VoIP carriers in the world. Telecom is the current
+            proving ground, not the box. The bigger thesis is finding the weird operational
+            corners every industry normalizes, then building systems around the value leaking out.
           </p>
         </div>
         <div class="now-tiles">
           <div class="now-tile">
             <div class="n">[01]</div>
-            <div class="t">AI workflow replacement</div>
-            <div class="d">Find the manual process, quantify the drag, and build the smallest system that removes hours.</div>
+            <div class="t">Broken workflow replacement</div>
+            <div class="d">Find the process everyone tolerates, quantify the drag, and build the smallest system that removes hours.</div>
           </div>
           <div class="now-tile">
             <div class="n">[02]</div>
-            <div class="t">Telecom operations tooling</div>
-            <div class="d">Rate analysis, routing optimization, CDR reconciliation, and internal command centers for VoIP carriers.</div>
+            <div class="t">Operational waste streams</div>
+            <div class="d">Rejected flow, rate chaos, CDR disputes, routing exceptions, and the ugly data paths where telecom proves the pattern.</div>
           </div>
           <div class="now-tile">
             <div class="n">[03]</div>
             <div class="t">Persistent agent infrastructure</div>
-            <div class="d">Research, email, memory, scheduling, and tool access running quietly in the background.</div>
+            <div class="d">Research, email, memory, scheduling, and tool access stitched into one operating layer instead of scattered context.</div>
           </div>
         </div>
       </section>
@@ -304,7 +329,7 @@ const formatDispatchDate = (date: string, tags?: string[]) => {
       <section id="work" class="section">
         <div class="sechead">
           <div>
-            <div class="label">&sect;02 / PROOF SYSTEMS</div>
+            <div class="label">&sect;03 / PROOF SYSTEMS</div>
             <h2>Selected systems, <em>not shelfware.</em></h2>
           </div>
           <div class="meta">03 SYSTEMS / 01 OFFER</div>
@@ -348,8 +373,8 @@ const formatDispatchDate = (date: string, tags?: string[]) => {
       <section class="section">
         <div class="twoup">
           <div id="services">
-            <div class="label">&sect;03 / SERVICES</div>
-            <h2 class="compact-h">Start with <em>one bottleneck.</em></h2>
+            <div class="label">&sect;04 / SERVICES</div>
+            <h2 class="compact-h">Start with <em>one normalized mess.</em></h2>
             <div v-for="(service, index) in services" :key="service.title" class="svc-row">
               <div class="num">{{ String(index + 1).padStart(2, '0') }}</div>
               <div>
@@ -360,7 +385,7 @@ const formatDispatchDate = (date: string, tags?: string[]) => {
           </div>
 
           <div id="writing">
-            <div class="label">&sect;04 / DISPATCHES</div>
+            <div class="label">&sect;05 / DISPATCHES</div>
             <h2 class="compact-h">Recent <em>writing.</em></h2>
             <NuxtLink
               v-for="dispatch in dispatches"
@@ -385,11 +410,11 @@ const formatDispatchDate = (date: string, tags?: string[]) => {
             <div class="label">&sect;FIN / CONTACT</div>
             <div class="cta-h">Bring me one <em>workflow.</em></div>
             <p class="footer-copy">
-              Free 15-minute AI workflow audit. No slide deck. One painful process,
-              a quick fit check, and a practical next step.
+              Broken workflow fit check. No slide deck. One process your team has
+              normalized, a quick read on whether it is worth building around, and a practical next step.
             </p>
             <a class="email" :href="auditHref">
-              Book the free audit <span class="arr">&nearr;</span>
+              Send the normalized mess <span class="arr">&nearr;</span>
             </a>
           </div>
           <div class="elsewhere">
@@ -723,6 +748,20 @@ hr {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   white-space: nowrap;
+}
+
+.thesis-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  padding-top: 20px;
+}
+
+.thesis-grid p {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  line-height: 1.6;
+  margin: 0;
 }
 
 .currently {
@@ -1131,6 +1170,11 @@ table.work .stack {
   .twoup {
     grid-template-columns: 1fr;
     gap: 32px;
+  }
+
+  .thesis-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
   }
 
   .stats {
