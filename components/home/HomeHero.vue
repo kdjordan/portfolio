@@ -10,9 +10,9 @@ const proofPoints = [
 ]
 
 const activeSystems = [
-  'AI agent infrastructure',
-  'Telecom operations tooling',
-  'Content and research pipelines',
+  'Broken workflow replacement',
+  'Operational waste mapping',
+  'Persistent agent infrastructure',
 ]
 
 const animateIn = async () => {
@@ -104,13 +104,12 @@ defineExpose({ animateIn })
           </p>
 
           <h1 class="hero-title">
-            I build AI systems and operator tools that survive real work.
+            I build systems for operational messes that should not still exist.
           </h1>
 
           <p class="hero-copy">
-            I turn messy business operations into production software: agent systems,
-            telecom analytics, internal command centers, and the infrastructure that
-            keeps them running when the demo is over.
+            I look for the workflows companies have learned to tolerate, then build
+            AI/software systems that turn the drag into leverage when the demo is over.
           </p>
 
           <div class="hero-actions">
