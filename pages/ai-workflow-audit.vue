@@ -6,8 +6,8 @@ definePageMeta({
 const siteUrl = 'https://kevinjordan.dev'
 const pageUrl = `${siteUrl}/ai-workflow-audit`
 const pageTitle = 'Broken Workflow Fit Check — Kevin Jordan'
-const pageDescription = 'Bring one workflow your team has normalized but probably should not. Kevin Jordan will tell you whether it is worth building around, what to build first, and where the ROI might be.'
-const auditMailto = 'mailto:kevin@kevinjordan.dev?subject=Broken%20workflow%20fit%20check&body=Hey%20Kevin%2C%0A%0AI%20have%20a%20workflow%20my%20team%20has%20normalized%20but%20probably%20should%20not.%0A%0AWorkflow%3A%0ACurrent%20manual%20process%20or%20workaround%3A%0AApprox.%20hours%2C%20money%2C%20risk%2C%20or%20rework%20lost%3A%0AWho%20owns%20it%20today%3A%0AWhat%20a%20win%20would%20look%20like%3A%0A'
+const pageDescription = 'Bring one workflow your team has normalized but probably should not. Kevin Jordan will tell you whether it is worth mapping deeper, what to inspect first, and where the ROI might be.'
+const auditMailto = 'mailto:kevin@kevinjordan.dev?subject=Broken%20workflow%20fit%20check&body=Hey%20Kevin%2C%0A%0AI%20have%20a%20workflow%20my%20team%20has%20normalized%20but%20probably%20should%20not.%0A%0AWorkflow%3A%0ACurrent%20manual%20process%20or%20workaround%3A%0AApprox.%20hours%2C%20money%2C%20risk%2C%20or%20rework%20lost%3A%0AWho%20owns%20it%20today%3A%0AWhat%20a%20win%20would%20look%20like%3A%0AWhere%20you%20are%20based%20%28optional%29%3A%0A'
 
 useSeoMeta({
   title: pageTitle,
@@ -78,7 +78,7 @@ useHead({
           <p class="abstract">
             The weird part is not that the workflow is broken. The weird part is that
             everyone got used to it. Send me the workaround, queue, exception path, or
-            handoff your team keeps tolerating. I will tell you whether it is worth building around.
+            handoff your team keeps tolerating. I will tell you whether it is worth mapping deeper.
           </p>
           <div class="ctas">
             <a class="btn btn--primary" :href="auditMailto">
@@ -110,7 +110,7 @@ useHead({
         <div class="stat">
           <div class="label">OUTPUT</div>
           <div class="n">Y/N</div>
-          <div class="sub">worth building?</div>
+          <div class="sub">worth mapping?</div>
         </div>
       </section>
 
@@ -150,6 +150,47 @@ useHead({
             <div>
               <div class="h">What a win would look like</div>
               <div class="d">Faster turnaround, fewer errors, better reporting, less rework, or a cleaner customer handoff.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="sechead">
+          <div>
+            <div class="label">&sect;02 / WHAT HAPPENS NEXT</div>
+            <h2>Free fit check first. <em>Deeper map only if it earns it.</em></h2>
+          </div>
+          <div class="meta">LOCAL / REGIONAL / REMOTE</div>
+        </div>
+        <hr>
+        <div class="rows">
+          <div class="row">
+            <div class="num">01</div>
+            <div>
+              <div class="h">Fit check</div>
+              <div class="d">A quick read on whether the workflow is a real AI/software candidate or just annoying work that should stay manual for now.</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="num">02</div>
+            <div>
+              <div class="h">Workflow Map / AI Audit</div>
+              <div class="d">For serious problems: current-state map, bottleneck diagnosis, automation fit, ROI/risk read, and the first practical implementation path.</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="num">03</div>
+            <div>
+              <div class="h">Build only after the map</div>
+              <div class="d">No blind implementation. If the audit shows the system is worth building, the next step is scoped around the smallest version that removes real drag.</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="num">04</div>
+            <div>
+              <div class="h">Springfield based, broader than local</div>
+              <div class="d">I am based in Springfield, Oregon, next door to Eugene. Best fit is workflow pain: local, Pacific Northwest, or remote.</div>
             </div>
           </div>
         </div>

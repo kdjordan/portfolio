@@ -5,7 +5,7 @@ definePageMeta({
 
 const siteUrl = 'https://kevinjordan.dev'
 const siteTitle = 'Kevin Jordan - Technical Founder, Operator'
-const siteDescription = 'Kevin Jordan builds systems for operational messes that should not still exist. Hidden value, broken workflows, operator-built AI/software.'
+const siteDescription = 'Kevin Jordan builds systems for operational messes that should not still exist. Based in Springfield, Oregon; working locally, regionally, and remotely on broken workflows and operator-built AI/software.'
 const ogImage = `${siteUrl}/og-image.png`
 const personId = `${siteUrl}/#kevin-jordan`
 const organizationId = `${siteUrl}/#kdjordan-llc`
@@ -81,7 +81,7 @@ useHead({
             logo: `${siteUrl}/favicon.png`,
             founder: { '@id': personId },
             sameAs,
-            areaServed: 'Pacific Northwest',
+            areaServed: ['Springfield, Oregon', 'Eugene, Oregon', 'Lane County', 'Pacific Northwest', 'United States'],
             description: 'KDJORDAN LLC builds AI and software systems for operational messes, hidden value, telecom analytics, workflow automation, and operator tools.'
           },
           {
@@ -133,11 +133,11 @@ const work = [
 const services = [
   {
     title: 'Broken Workflow Fit Check',
-    description: 'Bring one workflow your team has normalized but probably should not. I will tell you if it is a real automation candidate, where the ROI might be, and what I would build first.'
+    description: 'Bring one workflow your team has normalized but probably should not. I will tell you if it is a real automation candidate, where the ROI might be, and what I would look at first.'
   },
   {
-    title: 'Operational Waste Map',
-    description: 'Map the ugly corner: who owns it, what leaks out, what the manual workaround costs, and whether there is hidden value worth building around.'
+    title: 'Workflow Map / AI Audit',
+    description: 'Paid diagnostic for serious workflows: current-state map, bottlenecks, failure points, AI/software fit, ROI/risk read, and the first practical build path.'
   },
   {
     title: 'Bottleneck-to-System Sprint',
@@ -205,7 +205,7 @@ const formatDispatchDate = (date: string, tags?: string[]) => {
             <div class="label">STATUS</div>
             <div class="v">
               <span class="led"></span>
-              SHIPPING / Pacific Northwest
+              SHIPPING / Springfield, OR
             </div>
           </div>
 
@@ -233,10 +233,11 @@ const formatDispatchDate = (date: string, tags?: string[]) => {
           <p class="abstract">
             I look for the workflows companies have learned to tolerate: rejected flows,
             manual exceptions, reconciliation messes, proofing queues, internal handoffs,
-            and data nobody trusts. Then I build software that turns the drag into leverage.
+            and data nobody trusts. Based in Springfield, Oregon; working locally, regionally,
+            and remotely with operators who have workflows worth fixing.
           </p>
           <div class="ctas">
-            <a class="btn btn--primary" :href="auditHref">Broken Workflow Check <span class="arr">&rarr;</span></a>
+            <a class="btn btn--primary" :href="auditHref">Send me a broken workflow <span class="arr">&rarr;</span></a>
             <a class="btn" href="#work">See Proof <span class="arr">&darr;</span></a>
           </div>
         </div>
@@ -305,6 +306,8 @@ const formatDispatchDate = (date: string, tags?: string[]) => {
             one of the largest wholesale VoIP carriers in the world. Telecom is the current
             proving ground, not the box. The bigger thesis is finding the weird operational
             corners every industry normalizes, then building systems around the value leaking out.
+            I am based in Springfield, Oregon, next door to Eugene, and work with operators locally,
+            across the Pacific Northwest, and remotely.
           </p>
         </div>
         <div class="now-tiles">
@@ -411,7 +414,7 @@ const formatDispatchDate = (date: string, tags?: string[]) => {
             <div class="cta-h">Bring me one <em>workflow.</em></div>
             <p class="footer-copy">
               Broken workflow fit check. No slide deck. One process your team has
-              normalized, a quick read on whether it is worth building around, and a practical next step.
+              normalized, a quick read on whether it is worth mapping deeper, and a practical next step.
             </p>
             <a class="email" :href="auditHref">
               Send the normalized mess <span class="arr">&nearr;</span>
