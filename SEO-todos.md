@@ -10,21 +10,21 @@ Completed:
 - Valid sitemap is generated.
 - Open Graph and Twitter Card metadata are added.
 - `public/og-image.png` exists at 1200x630.
-- Homepage has JSON-LD for `Person`, `Organization`, and `WebSite`.
+- Homepage has JSON-LD for `Person`, `Organization`, `WebSite`, and `ProfessionalService`.
 - Canonical links are added to homepage and blog routes.
-- `public/robots.txt` allows major AI/search crawlers and references the sitemap.
+- Homepage title and meta description have been updated.
+- `/ai-workflow-audit` has `Service` JSON-LD.
+- `public/robots.txt` allows major AI/search crawlers, includes `Claude-Web` and `meta-externalagent`, and references the sitemap.
 - `public/llms.txt` exists with identity, disambiguation, work, and key URLs.
 - Heading hierarchy has one homepage H1 and real section H2s.
 
 Still pending:
 
 - Rewrite hero positioning around a buyer/category: fractional AI engineer for telecom and ops-heavy teams.
-- Rewrite title and meta description around service/buyer keywords.
 - Add booking CTA and qualifying flow.
 - Recast services as named, buyable offers.
-- Add `ProfessionalService` schema and `BlogPosting` schema.
+- Add `BlogPosting` schema.
 - Add dedicated service pages and mini case studies.
-- Expand robots coverage for `Claude-Web` and `meta-externalagent`.
 
 ## Executive Summary
 
@@ -230,15 +230,17 @@ Repeatable claim:
 
 ## Next 7 Days
 
-- [ ] Expand `robots.txt` to include Claude-Web and meta-externalagent.
+- [x] Expand `robots.txt` to include Claude-Web and meta-externalagent.
 - [ ] Add a Cal.com/Calendly booking link and short qualifying form.
-- [ ] Rewrite title and meta description.
+- [x] Rewrite title and meta description.
 - [ ] Add fractional AI engineer / telecom and ops-heavy teams hero positioning.
 - [ ] Submit sitemap in Google Search Console and Bing Webmaster Tools.
 
 ## Next 30 Days
 
-- [ ] Add `ProfessionalService` JSON-LD and `BlogPosting` JSON-LD.
+- [x] Add homepage `ProfessionalService` JSON-LD.
+- [x] Add `/ai-workflow-audit` `Service` JSON-LD.
+- [ ] Add `BlogPosting` JSON-LD.
 - [ ] Rewrite headings to be keyword-bearing.
 - [ ] Recast services as outcome + offer + proof with engagement model.
 - [ ] Turn ReconcileCDR, VOIPAccelerator, and voice-agent work into mini case studies.
