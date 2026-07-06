@@ -53,7 +53,7 @@ export default defineNuxtConfig({
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
         { name: 'theme-color', content: '#f1ede3' },
-        { name: 'description', content: 'Kevin Jordan builds AI systems and operator tools that survive real work. KDJORDAN LLC - Pacific Northwest.' }
+        { name: 'description', content: 'Kevin Jordan builds AI/software systems for broken operational workflows. Based in Springfield, Oregon; working locally, regionally, and remotely.' }
       ],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg?v=2' },

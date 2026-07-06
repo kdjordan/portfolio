@@ -8,6 +8,8 @@ const pageUrl = `${siteUrl}/ai-workflow-audit`
 const pageTitle = 'Broken Workflow Fit Check — Kevin Jordan'
 const pageDescription = 'Bring one workflow your team has normalized but probably should not. Kevin Jordan will tell you whether it is worth mapping deeper, what to inspect first, and where the ROI might be.'
 const auditMailto = 'mailto:kevin@kevinjordan.dev?subject=Broken%20workflow%20fit%20check&body=Hey%20Kevin%2C%0A%0AI%20have%20a%20workflow%20my%20team%20has%20normalized%20but%20probably%20should%20not.%0A%0AWorkflow%3A%0ACurrent%20manual%20process%20or%20workaround%3A%0AApprox.%20hours%2C%20money%2C%20risk%2C%20or%20rework%20lost%3A%0AWho%20owns%20it%20today%3A%0AWhat%20a%20win%20would%20look%20like%3A%0AWhere%20you%20are%20based%20%28optional%29%3A%0A'
+const providerId = `${siteUrl}/#kdjordan-llc`
+const serviceId = `${pageUrl}#service`
 
 useSeoMeta({
   title: pageTitle,
@@ -24,6 +26,48 @@ useSeoMeta({
 useHead({
   link: [
     { rel: 'canonical', href: pageUrl }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        '@id': serviceId,
+        name: 'Broken Workflow Fit Check',
+        alternateName: ['AI Workflow Audit', 'Workflow Map / AI Audit'],
+        url: pageUrl,
+        description: pageDescription,
+        provider: {
+          '@type': 'ProfessionalService',
+          '@id': providerId,
+          name: 'KDJORDAN LLC',
+          url: siteUrl,
+          areaServed: ['Springfield, Oregon', 'Eugene, Oregon', 'Lane County', 'Pacific Northwest', 'United States'],
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Springfield',
+            addressRegion: 'OR',
+            addressCountry: 'US'
+          }
+        },
+        serviceType: [
+          'AI workflow audit',
+          'workflow mapping',
+          'AI implementation assessment',
+          'workflow automation consulting'
+        ],
+        areaServed: ['Springfield, Oregon', 'Eugene, Oregon', 'Lane County', 'Pacific Northwest', 'United States'],
+        offers: {
+          '@type': 'Offer',
+          name: 'Free 15-minute Broken Workflow Fit Check',
+          price: '0',
+          priceCurrency: 'USD',
+          availability: 'https://schema.org/InStock',
+          url: pageUrl
+        }
+      })
+    }
   ]
 })
 </script>
@@ -190,7 +234,7 @@ useHead({
             <div class="num">04</div>
             <div>
               <div class="h">Springfield based, broader than local</div>
-              <div class="d">I am based in Springfield, Oregon, next door to Eugene. Best fit is workflow pain: local, Pacific Northwest, or remote.</div>
+              <div class="d">I am based in Springfield, Oregon, next door to Eugene. Best fit is workflow pain: Lane County, Pacific Northwest, or remote.</div>
             </div>
           </div>
         </div>
