@@ -4,11 +4,12 @@ definePageMeta({
 })
 
 const siteUrl = 'https://kevinjordan.dev'
-const siteTitle = 'Kevin Jordan - Technical Founder, Operator'
-const siteDescription = 'Kevin Jordan builds systems for operational messes that should not still exist. Based in Springfield, Oregon; working locally, regionally, and remotely on broken workflows and operator-built AI/software.'
+const siteTitle = 'Kevin Jordan - AI Workflow Audits & Operator-Built Systems'
+const siteDescription = 'Kevin Jordan builds AI/software systems for broken operational workflows. Based in Springfield, Oregon; working locally, across Lane County and the Pacific Northwest, and remotely.'
 const ogImage = `${siteUrl}/og-image.png`
 const personId = `${siteUrl}/#kevin-jordan`
 const organizationId = `${siteUrl}/#kdjordan-llc`
+const professionalServiceId = `${siteUrl}/#professional-service`
 const websiteId = `${siteUrl}/#website`
 const sameAs = [
   'https://www.linkedin.com/in/kevin-dean-jordan/',
@@ -83,6 +84,31 @@ useHead({
             sameAs,
             areaServed: ['Springfield, Oregon', 'Eugene, Oregon', 'Lane County', 'Pacific Northwest', 'United States'],
             description: 'KDJORDAN LLC builds AI and software systems for operational messes, hidden value, telecom analytics, workflow automation, and operator tools.'
+          },
+          {
+            '@type': 'ProfessionalService',
+            '@id': professionalServiceId,
+            name: 'KDJORDAN LLC',
+            url: siteUrl,
+            image: ogImage,
+            founder: { '@id': personId },
+            parentOrganization: { '@id': organizationId },
+            areaServed: ['Springfield, Oregon', 'Eugene, Oregon', 'Lane County', 'Pacific Northwest', 'United States'],
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: 'Springfield',
+              addressRegion: 'OR',
+              addressCountry: 'US'
+            },
+            serviceType: [
+              'AI workflow audits',
+              'AI implementation',
+              'workflow automation',
+              'operator-built software systems',
+              'telecom and VoIP automation',
+              'AI agent infrastructure'
+            ],
+            description: 'Practical AI and software implementation for broken operational workflows, based in Springfield, Oregon and working locally, regionally, and remotely.'
           },
           {
             '@type': 'WebSite',
@@ -233,8 +259,9 @@ const formatDispatchDate = (date: string, tags?: string[]) => {
           <p class="abstract">
             I look for the workflows companies have learned to tolerate: rejected flows,
             manual exceptions, reconciliation messes, proofing queues, internal handoffs,
-            and data nobody trusts. Based in Springfield, Oregon; working locally, regionally,
-            and remotely with operators who have workflows worth fixing.
+            and data nobody trusts. Based in Springfield, Oregon; working locally,
+            across Lane County and the Pacific Northwest, and remotely with operators
+            who have workflows worth fixing.
           </p>
           <div class="ctas">
             <a class="btn btn--primary" :href="auditHref">Send me a broken workflow <span class="arr">&rarr;</span></a>
