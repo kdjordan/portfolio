@@ -126,3 +126,32 @@ tags:
 - `TheNavigation.vue`, `TheFooter.vue` - Single-instance layout components
 - `Home*.vue` - Home page section components
 - `SectionBreaker.vue` - Reusable rotating text circle
+
+## DEV Profile Rules
+
+This repo is registered in Kevin's Hermes `dev` profile as `portfolio-site`.
+
+### Product intent
+
+`kevinjordan.dev` is Kevin's public portfolio/positioning site. It supports consulting, proof-of-work, writing, and credibility. Preserve Kevin's voice: direct, operator-real, specific, and non-corporate. Do not turn copy into generic SEO sludge.
+
+### Branch / PR rules
+
+- Never work directly on `main` unless Kevin explicitly says to.
+- Use focused branches, e.g. `fix/<thing>`, `docs/<thing>`, `seo/<thing>`.
+- Open a PR for repo changes by default.
+- Do not merge or deploy unless Kevin explicitly authorizes that step.
+- Report branch, commit SHA, PR URL, verification output, and live-prod caveats.
+
+### Verification checklist
+
+- For source/copy/SEO changes: run `npm run generate`.
+- For generated-site checks: preview `.output/public` and verify affected routes with `curl` and/or browser.
+- For SEO changes: inspect generated HTML, not just Vue source.
+- For production verification after merge: check `https://kevinjordan.dev/` and affected routes. Note Cloudflare/AWS cache behavior if live assets lag.
+
+### Safety boundaries
+
+- Do not commit secrets, analytics credentials, private documents, or unpublished strategy notes.
+- Do not publish public-facing claims about clients, revenue, local positioning, or availability unless the brief explicitly authorizes the wording.
+- Do not add tracking, newsletter, forms, or third-party scripts without approval.
